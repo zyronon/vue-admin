@@ -24,13 +24,27 @@ export const asyncRouterMap = [
     {
         path: '/car',
         component: Layout,
+        name: 'CarManager',
+        meta: {
+            title: 'CarManager',
+            icon: 'widgets'
+        },
         children: [
             {
                 path: 'car-all-list',
                 component: _import('car/AllList'),
-                name: 'carAllList',
+                name: 'CarAllList',
                 meta: {
-                    title: 'carAllList',
+                    title: 'CarAllList',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'add-car',
+                component: _import('car/AddCar'),
+                name: 'AddCar',
+                meta: {
+                    title: 'AddCar',
                     icon: 'widgets'
                 }
             }
@@ -120,21 +134,21 @@ export const asyncRouterMap = [
                 path: 'page1',
                 component: _import('components/page1'),
                 name: 'page1',
-                meta: { title: 'page1' }
+                meta: {title: 'page1'}
             },
             {
                 path: 'page2',
                 component: _import('components/page2'),
                 name: 'page2',
-                meta: { title: 'page2' }
+                meta: {title: 'page2'}
             },
             {
                 path: 'page3',
                 component: _import('components/page3'),
                 name: 'page3',
-                meta: { title: 'page3' }
+                meta: {title: 'page3'}
             }
         ]
     },
-    { path: '*', redirect: '/404', hidden: true }
+    {path: '*', redirect: '/404', hidden: true}
 ]

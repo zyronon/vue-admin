@@ -15,7 +15,9 @@ export default {
         page3: '组件3',
         profile: '个人中心',
         panels: '卡片展示',
-        carAllList:'所有车辆'
+        CarAllList:'所有车辆',
+        AddCar:'添加车辆',
+        CarManager:'车辆管理'
     },
     app: {
         switchlang: '切换语言成功',
