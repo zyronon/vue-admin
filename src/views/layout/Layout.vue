@@ -9,39 +9,13 @@
                 <side-bar class="sidebar-container"/>
             </el-aside>
 
-            <el-container>
-                <el-main style="display: flex;">
-                    <div style="width: 100%;">
-                        <tags-view/>
-                        <app-main class="app-main"/>
-                    </div>
-                    <div class="right_bar" v-bind:style="{'width':rightBarWidth}">
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                        adfasdfads
-                    </div>
-                </el-main>
-                <el-footer style="display: flex;justify-content: space-between;align-items: center;">
-                    <span><a href="http://console.jxzuche.cn">驾享租车共享平台</a> {{v}}</span>
-                    <!-- <span class="ml-auto">Powered by <a href="http://coreui.io">CoreUI</a></span> -->
-                    <div>使用过程中有问题请联系：滕先生，电话：
-                        <span class="clickable">16621180566(微信同号)</span>
-                    </div>
-                </el-footer>
-            </el-container>
+            <el-main>
+                <tags-view/>
+                <app-main/>
+            </el-main>
+            <el-aside :width="rightSideWidth">
+                <side-bar class="sidebar-container"/>
+            </el-aside>
         </el-container>
     </el-container>
 </template>
@@ -64,17 +38,15 @@
             asideWidth() {
                 return this.$store.getters.getSliderStateWidth
             },
-            rightBarWidth(){
-                return this.$store.getters.getRightBarStateWidth
+            rightSideWidth() {
+                return this.$store.getters.getRightSliderStateWidth
             }
-
         }
     }
 </script>
 
 <style lang="stylus" scoped>
     @import "../../assets/styl/variables.styl"
-
 
     .el-container
         width 100%

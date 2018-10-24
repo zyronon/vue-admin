@@ -1,6 +1,6 @@
 <template>
     <el-badge is-dot class="notice-area">
-        <div @click="handleSwitchRightBar">
+        <div @click="handleSwitchRightSidebar">
             <icon name="notice" :scale="2.8"></icon>
         </div>
     </el-badge>
@@ -9,10 +9,9 @@
 <script>
     export default {
         name: 'demo',
-        methods: {
-            handleSwitchRightBar() {
-                console.log(32456)
-                this.$store.dispatch('toggleRightBar')
+        methods:{
+            handleSwitchRightSidebar(){
+                this.$store.dispatch('toggleRightSideBar')
             }
         }
     }

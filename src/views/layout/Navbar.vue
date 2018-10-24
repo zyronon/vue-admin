@@ -1,18 +1,13 @@
 <template>
     <div class="sidebar-wrap">
         <div class="left-area">
-            <!--<icon class="el-header__icon" name="tree" :scale="4"></icon>-->
-            <div class="el-header__icon" >
-                <img src="../../assets/images/logo.png" alt="" style="height: 60px;">
-            </div>
-            <!--<span class="el-header__title">-->
-                <!--&lt;!&ndash;VUE<span class="subtitle">EDEN</span>&ndash;&gt;-->
-                <!--驾享<span class="subtitle">租车</span>-->
-                <!--<span class="version-wrap">-->
-                  <!--{{system_version}}-->
-                <!--</span>-->
-            <!--</span>-->
-
+            <icon class="el-header__icon" name="tree" :scale="4"></icon>
+            <span class="el-header__title">
+        VUE<span class="subtitle">EDEN</span>
+        <span class="version-wrap">
+          {{system_version}}
+        </span>
+      </span>
         </div>
 
         <div class="middle-area">
@@ -23,15 +18,15 @@
             <div class="middle-area__msglist">
                 <breadcrumb/>
 
-                <!--<seamless-list-->
-                <!--:messageList="messageList"-->
-                <!--:singleHeight="60"-->
-                <!--:limitMoveNum="2"/>-->
+                <seamless-list
+                        :messageList="messageList"
+                        :singleHeight="60"
+                        :limitMoveNum="2"/>
             </div>
         </div>
 
         <div class="right-area">
-            <!--<lang-select class="lang"/>-->
+            <lang-select class="lang"/>
             <fullscreen class="fullscreen"/>
             <infodrop/>
             <notice class="notice"/>
@@ -85,9 +80,6 @@
         methods: {
             handleSwitchNavbar() {
                 this.$store.dispatch('toggleSideBar')
-            },
-            test(){
-                console.log('test')
             }
         }
     }
@@ -145,11 +137,12 @@
             min-width right-area-width
             .fullscreen
                 height: 100%
-                padding: 0 22px
+                padding-right: 22px
             .lang
                 height 60px
             .notice
-                padding-left: 20px
+                margin-left: 20px
+
         &__title
         &__icon
             vertical-align middle

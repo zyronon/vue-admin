@@ -4,8 +4,8 @@ const getters = {
     getSliderStateWidth: state => {
         return state.app.sidebar.sliderState === 'full' ? '240px' : '60px'
     },
-    getRightBarStateWidth: state => {
-        return state.app.rightBar.rightBarState === 'full' ? '240px' : '0px'
+    getRightSliderStateWidth: state => {
+        return state.app.rightSidebar.rightSliderState === 'full' ? '240px' : '0px'
     },
     lockState: state => state.app.lock,
     /* permission */

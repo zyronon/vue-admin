@@ -10,14 +10,14 @@ import tagsView from './modules/tagsView'
 import getters from './getters'
 
 const store = new Vuex.Store({
-    modules: {
-        app,
-        permission,
-        user,
-        tagsView
-    },
-    getters,
-    strict: false
+  modules: {
+    app,
+    permission,
+    user,
+    tagsView
+  },
+  getters,
+  strict: false
 })
 
 export default store

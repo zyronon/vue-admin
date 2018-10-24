@@ -99,12 +99,12 @@ export default {
     langselect
   },
   mounted() {
-    this.$notify({
-      title: '登陆提示',
-      message: '用户名 admin 密码随意输入',
-      position: 'top-left',
-      duration: 0
-    })
+    // this.$notify({
+    //   title: '登陆提示',
+    //   message: '用户名 admin 密码随意输入',
+    //   position: 'top-left',
+    //   duration: 0
+    // })
   },
   data() {
     const validobj = {

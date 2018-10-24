@@ -10,8 +10,8 @@ const app = {
         sidebar: {
             sliderState: storage.get('sliderState')
         },
-        rightBar: {
-            rightBarState: storage.get('rightBarState')
+        rightSidebar: {
+            rightSliderState: storage.get('rightSliderState')
         },
         lock: storage.get('lock') || 'unlock'
     },
@@ -28,9 +28,9 @@ const app = {
             state.sidebar.sliderState = newSliderState
             storage.set('sliderState', newSliderState)
         },
-        [types.SET_RIGHTBARSTATE]: (state, newSliderState) => {
-            state.rightBar.rightBarState = newSliderState
-            storage.set('rightBarState', newSliderState)
+        [types.SET_RIGHTSLIDERSTATE]: (state, newSliderState) => {
+            state.rightSidebar.rightSliderState = newSliderState
+            storage.set('rightSliderState', newSliderState)
         },
         [types.SET_LOCK_STATE]: (state, lockstate) => {
             state.lock = lockstate
@@ -45,12 +45,12 @@ const app = {
                 : (state = 'full')
             commit(types.SET_SLIDERSTATE, state)
         },
-        toggleRightBar({ commit }) {
+        toggleRightSideBar({ commit }) {
             let state = ''
-            storage.get('rightBarState') === 'full'
+            storage.get('rightSliderState') === 'full'
                 ? (state = 'collapse')
                 : (state = 'full')
-            commit(types.SET_RIGHTBARSTATE, state)
+            commit(types.SET_RIGHTSLIDERSTATE, state)
         },
         setLanguage({ commit }, language) {
             commit(types.SET_LANGUAGE, language)
