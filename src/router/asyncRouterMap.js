@@ -50,6 +50,22 @@ export const asyncRouterMap = [
             }
         ]
     },
+    // 文章
+    {
+        path: '/article',
+        component: Layout,
+        children: [
+            {
+                path: 'list',
+                component: _import('article/List'),
+                name: 'ArticleList',
+                meta: {
+                    title: 'ArticleList',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
     // 控件
     {
         path: '/widget',

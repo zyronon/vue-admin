@@ -17,7 +17,8 @@ export default {
         panels: '卡片展示',
         CarAllList:'所有车辆',
         AddCar:'添加车辆',
-        CarManager:'车辆管理'
+        CarManager:'车辆管理',
+        ArticleList:'文章列表'
     },
     app: {
         switchlang: '切换语言成功',
