@@ -319,7 +319,7 @@
 
 <script>
     export default {
-        name: "AddCar",
+        name: "CreateCar",
         data() {
             return {
                 checked: '',

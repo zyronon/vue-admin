@@ -26,15 +26,17 @@
         <el-row type="flex" justify="space-between">
             <div>
                 <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addCar()">添加车辆</el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addArticle()">添加文章</el-button>
             </div>
             <div>
-                <el-radio-group v-model="radio">
-                    <el-radio-button label="不可发车"></el-radio-button>
-                    <el-radio-button label="可发车"></el-radio-button>
-                    <el-radio-button label="已出租"></el-radio-button>
-                    <el-radio-button label="即将到期车辆"></el-radio-button>
-                </el-radio-group>
+                <el-select v-model="value4" clearable placeholder="请选择" style="margin-left: 10px;">
+                    <el-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
             </div>
         </el-row>
         <el-row>
@@ -153,7 +155,7 @@
 
 <script>
     export default {
-        name: "List",
+        name: "ArticleList",
         data() {
             return {
                 car: {
@@ -244,8 +246,8 @@
                     this.listLoading = false
                 }, 1000)
             },
-            addCar() {
-                this.$router.push('add-car')
+            addArticle() {
+                this.$router.push('create')
             },
             showIllegal(row) {
                 this.isShowIllegal = true;

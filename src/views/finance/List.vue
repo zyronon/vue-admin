@@ -26,44 +26,29 @@
         <el-row type="flex" justify="space-between">
             <div>
                 <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addCar()">添加车辆</el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createIncome()">添加收款</el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createPayout()">添加付款</el-button>
             </div>
             <div>
                 <el-radio-group v-model="radio">
-                    <el-radio-button label="不可发车"></el-radio-button>
-                    <el-radio-button label="可发车"></el-radio-button>
-                    <el-radio-button label="已出租"></el-radio-button>
-                    <el-radio-button label="即将到期车辆"></el-radio-button>
+                    <el-radio-button label="收款"></el-radio-button>
+                    <el-radio-button label="付款"></el-radio-button>
                 </el-radio-group>
             </div>
         </el-row>
         <el-row>
             <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
-                <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column fixed prop="CarOwnerName" label="车主姓名" sortable></el-table-column>
-                <el-table-column prop="LicensePlateNumber" label="车牌号/是否现车" sortable width="200">
+                <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                <el-table-column fixed prop="CarOwnerName" label="收款人" sortable></el-table-column>
+                <el-table-column prop="CarBrand" label="付款人" sortable></el-table-column>
+                <el-table-column prop="CarType" label="金额" sortable></el-table-column>
+                <el-table-column prop="CanRentTime" label="付款方式" sortable></el-table-column>
+                <el-table-column prop="CreationTime" label="原因" sortable></el-table-column>
+                <el-table-column prop="IsRent" label="打款时间" sortable></el-table-column>
+                <el-table-column prop="IsRent" label="备注" sortable></el-table-column>
+                <el-table-column prop="" label="操作" fixed="right" width="150">
                     <template slot-scope="scope">
-                        <div style="display: flex;align-items: center;justify-content: space-around;">
-                            <span>{{ scope.row.LicensePlateNumber }}</span>
-                            <el-button type="primary" size="mini" icon="el-icon-arrow-right">现车
-                            </el-button>
-                        </div>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="CarBrand" label="品牌" sortable></el-table-column>
-                <el-table-column prop="CarType" label="型号" sortable></el-table-column>
-                <el-table-column label="未外理违章" sortable>
-                    <template slot-scope="scope">
-                        <div @click="showIllegal(scope.row)" class="clickable">{{ scope.row.Illegal }}</div>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="CanRentTime" label="可租时间" sortable></el-table-column>
-                <el-table-column prop="CreationTime" label="上传时间" sortable></el-table-column>
-                <el-table-column prop="IsRent" label="是否可发车" sortable></el-table-column>
-                <el-table-column prop="" label="操作" fixed="right" width="250">
-                    <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
-                        <el-button type="primary" size="small">编辑</el-button>
+                        <el-button type="primary" size="small">查看</el-button>
                         <el-button type="primary" size="small">删除</el-button>
                     </template>
                 </el-table-column>
@@ -232,6 +217,12 @@
             }
         },
         methods: {
+            createIncome() {
+                this.$router.push('income')
+            },
+            createPayout() {
+                this.$router.push('payout')
+            },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`)
             },

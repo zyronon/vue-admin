@@ -31,7 +31,7 @@ export const asyncRouterMap = [
         },
         children: [
             {
-                path: 'car-all-list',
+                path: 'all-list',
                 component: _import('car/AllList'),
                 name: 'CarAllList',
                 meta: {
@@ -40,11 +40,11 @@ export const asyncRouterMap = [
                 }
             },
             {
-                path: 'add-car',
-                component: _import('car/AddCar'),
-                name: 'AddCar',
+                path: 'create',
+                component: _import('car/Create'),
+                name: 'CreateCar',
                 meta: {
-                    title: 'AddCar',
+                    title: 'CreateCar',
                     icon: 'widgets'
                 }
             }
@@ -54,6 +54,10 @@ export const asyncRouterMap = [
     {
         path: '/article',
         component: Layout,
+        meta: {
+            title: 'ArticleManager',
+            icon: 'widgets'
+        },
         children: [
             {
                 path: 'list',
@@ -61,6 +65,111 @@ export const asyncRouterMap = [
                 name: 'ArticleList',
                 meta: {
                     title: 'ArticleList',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'create',
+                component: _import('article/Create'),
+                name: 'CreateArticle',
+                meta: {
+                    title: 'CreateArticle',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
+    // 订单
+    {
+        path: '/order',
+        component: Layout,
+        meta: {
+            title: 'OrderManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('order/List'),
+                name: 'OrderList',
+                meta: {
+                    title: 'OrderList',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'create',
+                component: _import('order/Create'),
+                name: 'CreateOrder',
+                meta: {
+                    title: 'CreateOrder',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
+    // 财务
+    {
+        path: '/finance',
+        component: Layout,
+        meta: {
+            title: 'FinanceManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('finance/List'),
+                name: 'FinanceList',
+                meta: {
+                    title: 'FinanceList',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'income',
+                component: _import('finance/Income'),
+                name: 'CreateIncome',
+                meta: {
+                    title: 'CreateIncome',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'payout',
+                component: _import('finance/Payout'),
+                name: 'CreatePayout',
+                meta: {
+                    title: 'CreatePayout',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
+    // 订单
+    {
+        path: '/employee',
+        component: Layout,
+        meta: {
+            title: 'EmployeeManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('employee/List'),
+                name: 'EmployeeList',
+                meta: {
+                    title: 'EmployeeList',
+                    icon: 'widgets'
+                }
+            },
+            {
+                path: 'create',
+                component: _import('employee/Create'),
+                name: 'CreateEmployee',
+                meta: {
+                    title: 'CreateEmployee',
                     icon: 'widgets'
                 }
             }
