@@ -244,8 +244,8 @@
                     this.listLoading = false
                 }, 1000)
             },
-            addArticle() {
-                this.$router.push('add-car')
+            addCar() {
+                this.$router.push('create')
             },
             showIllegal(row) {
                 this.isShowIllegal = true;

@@ -146,7 +146,7 @@ export const asyncRouterMap = [
             }
         ]
     },
-    // 订单
+    // 员工
     {
         path: '/employee',
         component: Layout,
@@ -170,6 +170,26 @@ export const asyncRouterMap = [
                 name: 'CreateEmployee',
                 meta: {
                     title: 'CreateEmployee',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
+    // 设置
+    {
+        path: '/setting',
+        component: Layout,
+        meta: {
+            title: 'SystemSetting',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'company',
+                component: _import('setting/Company'),
+                name: 'CompanySetting',
+                meta: {
+                    title: 'CompanySetting',
                     icon: 'widgets'
                 }
             }

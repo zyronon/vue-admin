@@ -31,6 +31,8 @@ export default {
         EmployeeManager:'员工管理',
         EmployeeList:'员工列表',
         CreateEmployee:'添加员工',
+        SystemSetting:'系统设置',
+        CompanySetting:'公司设置',
     },
     app: {
         switchlang: '切换语言成功',
