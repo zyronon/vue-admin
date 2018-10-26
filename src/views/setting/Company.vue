@@ -136,7 +136,7 @@
                 textarea2:'',
                 listLoading:false,
                 rows: [],
-                form: {},
+                employee: {},
                 ContractTemplateVisible: false,
                 MessageTemplateVisible: false,
                 editor: null,

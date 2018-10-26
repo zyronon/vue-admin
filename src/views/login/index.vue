@@ -1,8 +1,10 @@
 <template>
     <div class="login-page">
-        <langselect class="lang" />
+        <langselect class="lang"/>
         <el-tooltip class="svg-github" effect="dark" content="Fork Me" placement="bottom">
-            <a href="https://github.com/Sakuyakun/vue-eden"><icon name="github" :scale="2.5"></icon></a>
+            <a href="https://github.com/Sakuyakun/vue-eden">
+                <icon name="github" :scale="2.5"></icon>
+            </a>
         </el-tooltip>
 
         <div class="login-wrap">
@@ -13,7 +15,8 @@
                         <icon name="tree" :scale="8"></icon>
                         <div class="title">
                             <a>
-                                <span>{{$t('login.edenPart1')}}</span><span class="subtitle">{{$t('login.edenPart2')}}</span>
+                                <span>{{$t('login.edenPart1')}}</span><span
+                                    class="subtitle">{{$t('login.edenPart2')}}</span>
                             </a>
                         </div>
                     </div>
@@ -21,13 +24,17 @@
                     <div class="login-form">
                         <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
                             <el-form-item prop="username">
-                                <el-input :placeholder="$t('login.userplaceholder')" v-model="ruleForm.username"></el-input>
+                                <el-input :placeholder="$t('login.userplaceholder')"
+                                          v-model="ruleForm.username"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
-                                <el-input :placeholder="$t('login.pwdplaceholder')" type="password" v-model="ruleForm.password"></el-input>
+                                <el-input :placeholder="$t('login.pwdplaceholder')" type="password"
+                                          v-model="ruleForm.password"></el-input>
                             </el-form-item>
                             <el-form-item class="btn">
-                                <el-button :loading="loading" type="primary" @click="handleLogin('ruleForm')">{{$t('login.btn')}}</el-button>
+                                <el-button :loading="loading" type="primary" @click="handleLogin('ruleForm')">
+                                    {{$t('login.btn')}}
+                                </el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -57,18 +64,23 @@
                                 <el-input :placeholder="$t('login.forget_code')" v-model="forgetForm.code"></el-input>
                             </el-form-item>
                             <el-form-item>
-                                <el-input :placeholder="$t('login.forget_passwrd')" type="password" v-model="forgetForm.newPassword"></el-input>
+                                <el-input :placeholder="$t('login.forget_passwrd')" type="password"
+                                          v-model="forgetForm.newPassword"></el-input>
                             </el-form-item>
                             <el-form-item>
-                                <el-input :placeholder="$t('login.confirm_passwrd')" type="password" v-model="forgetForm.confirmPassword"></el-input>
+                                <el-input :placeholder="$t('login.confirm_passwrd')" type="password"
+                                          v-model="forgetForm.confirmPassword"></el-input>
                             </el-form-item>
                             <el-form-item class="btn">
                                 <el-row :gutter="20">
                                     <el-col :span="12">
-                                        <el-button @click="wrapSwitch(true)" type="primary">{{$t('login.forget_back')}}</el-button>
+                                        <el-button @click="wrapSwitch(true)" type="primary">
+                                            {{$t('login.forget_back')}}
+                                        </el-button>
                                     </el-col>
                                     <el-col :span="12">
-                                        <el-button @click="forgetHandle" type="primary">{{$t('login.forget_btn')}}</el-button>
+                                        <el-button @click="forgetHandle" type="primary">{{$t('login.forget_btn')}}
+                                        </el-button>
                                     </el-col>
                                 </el-row>
                             </el-form-item>
@@ -109,9 +121,9 @@
         data() {
             const validobj = {
                 username: [
-                    { ruleName: 'exist', error: this.$t('login.valid.userexist') }
+                    {ruleName: 'exist', error: this.$t('login.valid.userexist')}
                 ],
-                password: [{ ruleName: 'exist', error: this.$t('login.valid.pwdexist') }]
+                password: [{ruleName: 'exist', error: this.$t('login.valid.pwdexist')}]
             }
 
             const _typeof = val =>
@@ -145,8 +157,8 @@
                     password: ''
                 },
                 rules: {
-                    username: [{ validator: validfn, trigger: 'blur', required: true }],
-                    password: [{ validator: validfn, trigger: 'blur', required: true }]
+                    username: [{validator: validfn, trigger: 'blur', required: true}],
+                    password: [{validator: validfn, trigger: 'blur', required: true}]
                 },
                 remember: true,
                 loading: false,
@@ -191,7 +203,7 @@
                 this.$refs[formName].validate(async valid => {
                     if (valid) {
                         try {
-                            let { username, password } = this.ruleForm
+                            let {username, password} = this.ruleForm
                             this.remember
                                 ? storage.set('loginUser', username)
                                 : storage.remove('loginUser', username)
@@ -202,7 +214,7 @@
                             this.loading = false
                             if (response.data) {
                                 this.$notify.closeAll()
-                                this.$router.push({ path: '/' })
+                                this.$router.push({path: '/'})
                             } else {
                                 this.$message({
                                     message: response.message,
@@ -308,7 +320,6 @@
                 margin-left 10px
                 transform translateX(10px)
                 transition transform .2s, opacity .2s
-
 
             a:hover:after
                 opacity 1

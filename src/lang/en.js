@@ -41,7 +41,7 @@ export default {
     confirm_passwrd: 'confirm new password',
     forget_btn: 'Confirm',
     forget_back: 'Back',
-    validfaild: 'Login form does not pass !',
+    validfaild: 'Login employee does not pass !',
     pwdChanged: 'Password Reset Successfully !'
   },
   sidebarDropDown: {

@@ -84,7 +84,7 @@
         name: "CreateArticle",
         data() {
             return {
-                form: {},
+                employee: {},
                 editor: null,
                 textarea2:'',
                 checked:false
