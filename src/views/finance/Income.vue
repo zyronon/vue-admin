@@ -88,6 +88,7 @@
         name: "Income",
         data() {
             return {
+                form:{},
                 rows: [],
                 listLoading: false,
                 checked: '',

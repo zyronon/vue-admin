@@ -322,6 +322,7 @@
         name: "CreateCar",
         data() {
             return {
+                form:{},
                 checked: '',
                 textarea2: '',
                 fileList: [{

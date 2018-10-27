@@ -203,6 +203,7 @@
         name: "CreateOrder",
         data() {
             return {
+                form:{},
                 rows: [],
                 listLoading: false,
                 checked: '',

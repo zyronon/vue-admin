@@ -88,6 +88,7 @@
         name: "Payout",
         data() {
             return {
+                form:{},
                 rows: [],
                 listLoading: false,
                 checked: '',

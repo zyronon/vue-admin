@@ -133,6 +133,7 @@
         name: "CompanySetting",
         data() {
             return {
+                form:{},
                 textarea2:'',
                 listLoading:false,
                 rows: [],

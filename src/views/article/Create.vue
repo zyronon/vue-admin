@@ -84,10 +84,11 @@
         name: "CreateArticle",
         data() {
             return {
+                form: {},
                 employee: {},
                 editor: null,
-                textarea2:'',
-                checked:false
+                textarea2: '',
+                checked: false
             }
         },
         methods: {
