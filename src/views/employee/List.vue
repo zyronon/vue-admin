@@ -74,8 +74,8 @@
                 </div>
             </div>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogEmployeeVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogEmployeeVisible = false">确 定</el-button>
+                <el-button @click="dialogProjectVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogProjectVisible = false">确 定</el-button>
             </div>
         </el-dialog>
 

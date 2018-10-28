@@ -20,6 +20,27 @@ export const asyncRouterMap = [
             }
         ]
     },
+    // 项目管理
+    {
+        path: '/project',
+        component: Layout,
+        name: 'ProjectManager',
+        meta: {
+            title: 'ProjectManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('project/List'),
+                name: 'ProjectList',
+                meta: {
+                    title: 'ProjectList',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
     // 车辆管理
     {
         path: '/car',

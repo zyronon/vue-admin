@@ -174,7 +174,7 @@ title-sub = #8c8c8c
       display inline-block
       vertical-align middle
       width 100px
-      img 
+      img
         border-radius 50%
         width 100%
     &-content

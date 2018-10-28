@@ -5,7 +5,7 @@ import * as tools from './tools'
 import Config from '../config/index'
 
 const http = axios.create({
-    baseURL: Config.API_URL,
+    baseURL: Config.API_URL + Config.API_VERSION,
     timeout: 30000
 })
 

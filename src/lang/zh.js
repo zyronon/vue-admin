@@ -33,6 +33,8 @@ export default {
         CreateEmployee:'添加员工',
         SystemSetting:'系统设置',
         CompanySetting:'公司设置',
+        ProjectManager:'项目管理',
+        ProjectList:'项目列表',
     },
     app: {
         switchlang: '切换语言成功',
