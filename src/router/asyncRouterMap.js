@@ -38,6 +38,16 @@ export const asyncRouterMap = [
                     title: 'ProjectList',
                     icon: 'widgets'
                 }
+            },
+            {
+                path: 'detail',
+                hidden: true,
+                component: _import('project/Detail'),
+                name: 'ProjectDetail',
+                meta: {
+                    title: 'ProjectDetail',
+                    icon: 'widgets'
+                }
             }
         ]
     },

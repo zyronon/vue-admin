@@ -9,7 +9,7 @@ export default {
         let projects = []
         for (let i = 0; i < limit; i++) {
             let newProjectObject = {
-                id:Random.string('lower', 16, 16),
+                id: Random.string('lower', 16, 16),
                 Name: Random.csentence(15, 30), //  Random.csentence( min, max )
                 Number: Random.string('upper', 5, 15), //  Random.csentence( min, max )
                 thumbnail_pic_s: Random.dataImage('300x250', 'mock的图片'), // Random.dataImage( size, text ) 生成一段随机的 Base64 图片编码
@@ -17,7 +17,7 @@ export default {
                 Create_Date: Random.date(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
                 Create_By: Random.cname()//
             }
-            console.log(type)
+            // console.log(type)
 
             switch (type) {
                 case '-1':
@@ -40,6 +40,22 @@ export default {
                 list: projects,
                 count: 100
             },
+            status: 1,
+            msg: ''
+        }
+    },
+    detail(request) {
+        let {id} = JSON.parse(request.body)
+        let project = {
+            id,
+            Name: Random.csentence(15, 30), //  Random.csentence( min, max ):
+            Number: Random.string('upper', 5, 15), //  Random.csentence( min, max )
+            Create_Date: Random.date(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
+            Create_By: Random.cname(),
+            Status: Random.integer(100, 100) + ''
+        }
+        return {
+            data: project,
             status: 1,
             msg: ''
         }

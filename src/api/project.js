@@ -8,5 +8,12 @@ export default {
             method: 'post',
             data
         })
+    },
+    detail(data) {
+        return http({
+            url: '/project/detail',
+            method: 'post',
+            data
+        })
     }
 }

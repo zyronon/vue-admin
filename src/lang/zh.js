@@ -35,6 +35,7 @@ export default {
         CompanySetting:'公司设置',
         ProjectManager:'项目管理',
         ProjectList:'项目列表',
+        ProjectDetail:'项目详情',
     },
     app: {
         switchlang: '切换语言成功',

@@ -21,7 +21,7 @@
         </el-row>
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
+                <el-button type="primary" circle icon="el-icon-refresh" @click="getData()"></el-button>
                 <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createProject()">添加项目</el-button>
             </div>
             <div>
@@ -144,6 +144,7 @@
         },
         methods: {
             async getData() {
+                this.listLoading = true
                 let data = {
                     offset: this.rows.offset,
                     limit: this.rows.limit,
@@ -152,23 +153,18 @@
                     type: this.rows.filter.type,
 
                 }
-                console.log(data)
+                // console.log(data)
                 let result = await Project.list(data)
-                console.log(result)
+                // console.log(result)
                 if (result.status == 1) {
                     this.rows.list = result.data.list
                     this.rows.count = result.data.count
                 }
+                this.listLoading = false
             },
             handleSizeChange(limit) {
                 this.rows.limit = limit
                 this.getData()
-            },
-            refresh() {
-                this.listLoading = true
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1000)
             },
             close() {
                 this.dialogProjectVisible = false
@@ -177,10 +173,11 @@
                 this.dialogProjectVisible = true
             },
             del(id) {
-                console.log(id);
+                console.log(id)
             },
             look(id) {
-                console.log(id);
+                console.log(id)
+                this.$router.push({name: 'ProjectDetail', params: {id: id}})
             }
         },
         filters: {

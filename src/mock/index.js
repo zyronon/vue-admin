@@ -9,6 +9,7 @@ if (openMock) {
     Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
     Mock.mock(/\/user\/info/, 'get', loginAPI.info)
     Mock.mock(/\/project\/list/, 'post', projectAPI.list)
+    Mock.mock(/\/project\/detail/, 'post', projectAPI.detail)
 }
 
 export default Mock
