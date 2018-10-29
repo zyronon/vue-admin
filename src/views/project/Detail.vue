@@ -1,11 +1,11 @@
 <template>
     <div class="project-detail">
         <el-row>
-            <el-button type="primary" icon="el-icon-arrow-left" style="margin-bottom: 10px;" @click="back()">返回
+            <el-button type="primary" icon="el-icon-arrow-left" @click="back()">返回
             </el-button>
         </el-row>
         <el-card class="box-card">
-            <el-card class="box-card">
+            <el-card class="box-card mb20p">
                 <div slot="header" class="clearfix">
                     <span>项目详情</span>
                 </div>
@@ -22,23 +22,170 @@
                     <label>创建人：{{project.Create_By}}</label>
                 </el-row>
                 <el-row>
-                    <label>状态：{{project.Status}}</label>
+                    <label>当前状态：{{project.Status}}</label>
+                </el-row>
+                <el-row>
+                    <el-button type="primary" @click="ProjectBiddingStartVisible = true">竞标</el-button>
+                    <el-button type="primary" @click="projectChange()">变更</el-button>
+                    <el-button type="primary" @click="back()">结算</el-button>
+                    <el-button type="primary" @click="back()">资料导出</el-button>
+                    <el-button type="primary" @click="back()">终止</el-button>
                 </el-row>
             </el-card>
+            <el-tabs type="border-card" stretch>
+                <el-tab-pane label="规划管理">
+                    <el-row>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">添加预算</el-button>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">变更记录</el-button>
+                    </el-row>
+                    <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
+                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column fixed prop="Name" label="供应商" sortable></el-table-column>
+                        <el-table-column prop="Number" label="合同分类" sortable></el-table-column>
+                        <el-table-column prop="Number" label="合同金额" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="创建人" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="创建时间" sortable></el-table-column>
+                        <el-table-column prop="Status" label="状态" sortable>
+                            <template slot-scope="scope">
+                                {{scope.row.Status|processStatus}}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="" label="操作" fixed="right" width="150">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
+                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="采购管理">
+                    <el-row>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">添加采购
+                        </el-button>
+                    </el-row>
+                    <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
+                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column fixed prop="Name" label="供应商" sortable></el-table-column>
+                        <el-table-column prop="Number" label="合同分类" sortable></el-table-column>
+                        <el-table-column prop="Number" label="合同金额" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="创建人" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="创建时间" sortable></el-table-column>
+                        <el-table-column prop="Status" label="状态" sortable>
+                            <template slot-scope="scope">
+                                {{scope.row.Status|processStatus}}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="" label="操作" fixed="right" width="150">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
+                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="现场周报管理">
+                    <el-row>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">添加周报/节点报
+                        </el-button>
+                    </el-row>
+                    <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
+                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column prop="Create_Date" label="日期" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="上传人" sortable></el-table-column>
+                        <el-table-column prop="Number" label="说明" sortable></el-table-column>
+                        <el-table-column prop="Number" label="文件" sortable></el-table-column>
+                        <el-table-column prop="" label="操作" fixed="right" width="150">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">预览</el-button>
+                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="计量支付管理">
+                    <el-row>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">新增支付申请
+                        </el-button>
+                    </el-row>
+                    <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
+                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column fixed prop="Name" label="标题" sortable></el-table-column>
+                        <el-table-column prop="Number" label="不含税金额" sortable></el-table-column>
+                        <el-table-column prop="Number" label="税额" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="应报金额" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="实际支付" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="发起人" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="申请时间" sortable></el-table-column>
+                        <el-table-column prop="Status" label="状态" sortable>
+                            <template slot-scope="scope">
+                                {{scope.row.Status|processStatus}}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="" label="操作" fixed="right" width="150">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">导出</el-button>
+                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="收款管理">
+                    <el-row>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">新增收款
+                        </el-button>
+                    </el-row>
+                    <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
+                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column fixed prop="Name" label="收款金额" sortable></el-table-column>
+                        <el-table-column fixed prop="Name" label="录入时间" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="录入人员" sortable></el-table-column>
+                        <el-table-column prop="Number" label="备注" sortable></el-table-column>
+                        <el-table-column prop="Create_Date" label="提交时间" sortable></el-table-column>
+                        <el-table-column prop="" label="操作" fixed="right" width="150">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
+                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+            </el-tabs>
         </el-card>
+
+        <ProjectBiddingStart v-bind:is-visible="ProjectBiddingStartVisible" v-on:close="ProjectBiddingStartVisible = false"/>
     </div>
 </template>
 
 <script>
     import Project from "../../api/project"
+    import ProjectBiddingStart from "./dialog/ProjectBiddingStart"
 
 
     export default {
         name: "ProjectDetail",
+        components: {
+            ProjectBiddingStart,
+        },
         data() {
             return {
+                ProjectBiddingStartVisible:false,
                 project: {
                     id: ''
+                },
+                listLoading: false,
+                rows: {
+                    purchase: {
+                        list: [],
+                        count: 0,
+                        offset: 0,
+                        limit: 10,
+                        filter: {
+                            type: '-1',
+                            date: [],
+                            key: ''
+                        }
+                    }
                 }
             }
         },
@@ -58,6 +205,9 @@
                     this.project = result.data
                 }
                 console.log(this.project)
+            },
+            projectChange() {
+
             }
         },
         filter: {},

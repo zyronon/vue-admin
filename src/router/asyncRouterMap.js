@@ -23,6 +23,7 @@ export const asyncRouterMap = [
     // 项目管理
     {
         path: '/project',
+        redirect: 'project/list',
         component: Layout,
         name: 'ProjectManager',
         meta: {
