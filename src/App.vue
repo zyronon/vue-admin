@@ -17,7 +17,8 @@
         color: #007bff;
         cursor: pointer;
     }
-    p{
+
+    p {
         padding: 0;
         margin: 0;
     }
@@ -147,7 +148,15 @@
         text-align: center;
     }
 
-    .red {background: red;}
-    .gold {background: gold;}
-    .green {background: green;}
+    .red {
+        background: red;
+    }
+
+    .gold {
+        background: gold;
+    }
+
+    .green {
+        background: green;
+    }
 </style>

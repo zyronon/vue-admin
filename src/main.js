@@ -3,7 +3,7 @@ import Element from 'element-ui'
 import scroll from 'vue-seamless-scroll'
 import Icon from 'vue-svg-icon/Icon.vue'
 import '@/theme/element-#41B883/index.css'
-import '@/assets/styl/index'
+import '@/assets/scss/index.scss'
 import '@/mock'
 
 import App from '@/App'
@@ -31,3 +31,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+ 

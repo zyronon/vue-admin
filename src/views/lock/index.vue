@@ -42,7 +42,7 @@
     }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
     .lock-wrap {
         width: 100%;
         height: 100%;

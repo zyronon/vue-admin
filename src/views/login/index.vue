@@ -362,7 +362,7 @@
                     cursor: pointer;
                     font-size: 14px;
                     font-weight: 500;
-                    color:#606266;
+                    color: #606266;
                 }
             }
         }
@@ -374,4 +374,5 @@
             position: relative;
         }
     }
+
 </style>

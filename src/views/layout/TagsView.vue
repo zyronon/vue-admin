@@ -191,33 +191,41 @@
     }
 </script>
 
-<style lang="stylus">
-    @import "../../assets/styl/variables.styl"
+<style lang="scss">
+    @import "../../assets/scss/variables";
 
-    .tags-handle
-        .el-button--medium
-            padding 12px 16px
-            border-radius 0
+    .tags-handle {
+        .el-button--medium {
+            padding: 12px 16px;
+            border-radius: 0;
+        }
+    }
 
-    .tags-inner
-        .el-tag
-            transition all .3s
-            border-radius 2px
-            cursor pointer
-            border 1px solid tag-border
-            color tag-color
-            margin 1px 4px 0px 0px
-        .el-icon-close
-            color tag-close
-        .el-tag-active
-            background-color tag-active-bg !important
-            color tag-active-color
-            .el-icon-close
-                transition all .3s
-                color tag-active-color
-                &:hover
-                    background-color tag-active-color
-                    color tag-active-bg
+    .tags-inner {
+        .el-tag {
+            transition: all .3s;
+            border-radius: 2px;
+            cursor: pointer;
+            border: 1px solid $tag-border;
+            color: $tag-color;
+            margin: 1px 4px 0px 0px;
+        }
+        .el-icon-close {
+            color: $tag-close;
+        }
+        .el-tag-active {
+            background-color: $tag-active-bg !important;
+            color: $tag-active-color;
+            .el-icon-close {
+                transition: all .3s;
+                color: $tag-active-color;
+                &:hover {
+                    background-color: $tag-active-color;
+                    color: $tag-active-bg;
+                }
+            }
+        }
+    }
 </style>
 
 <style lang="scss" scoped>
