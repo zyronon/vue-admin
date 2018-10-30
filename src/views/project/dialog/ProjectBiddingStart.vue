@@ -5,11 +5,11 @@
                 :visible.sync="isVisible"
                 width="30%"
                 :before-close="handleClose">
-            <el-form ref="form" :model="form" label-width="150px" label-position="left">
-                <el-form-item label="标前分析会会议纪要:">
-                    <input type="file">
+            <el-form ref="form" label-width="180px" label-position="left">
+                <el-form-item label="标前分析会会议纪要:" required>
+                    <input type="file"  @change="fileChange($event,1)">
                 </el-form-item>
-                <el-form-item label="资信输申请表:">
+                <el-form-item label="资信输申请表:" required @change="fileChange($event,2)">
                     <input type="file">
                 </el-form-item>
             </el-form>
@@ -27,7 +27,7 @@
         props: ['isVisible'],
         data() {
             return {
-                form: {},
+                formData: new FormData(),
             }
         },
         created() {
@@ -40,6 +40,17 @@
             },
             handleClose(done) {
                 this.$emit('close')
+            },
+            fileChange(event, from) {
+                let file = event.target.files[0]
+                switch (from) {
+                    case 1:
+                        this.formData.set("标前分析会会议纪要", file)
+                        break
+                    case 2:
+                        this.formData.set("资信输申请表", file)
+                        break
+                }
             }
         },
         filter: {},
