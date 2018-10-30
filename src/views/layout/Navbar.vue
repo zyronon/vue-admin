@@ -85,79 +85,91 @@
     }
 </script>
 
-<style lang="stylus" scoped>
-    @import "../../assets/styl/variables.styl"
+<style lang="scss" scoped>
+    @import "../../assets/scss/variables";
 
-    right-area-width = 250px
+    $right-area-width: 250px;
 
-    .el-header
-        position relative
+    .el-header {
+        position: relative;
+        .sidebar-wrap {
+            display: flex;
+        }
+        .left-area {
+            min-width: 240px;
+            padding-left: 12px;
+            box-sizing: border-box;
+        }
+        .middle-area {
+            height: 60px;
+            flex: 1;
+            &__cgwrap {
+                float: left;
+                height: 100%;
+                width: 60px;
+                .category-icon {
+                    color: #515151;
+                    cursor: pointer;
+                    height: 100%;
+                    padding: 0 15px;
+                    transition: color .28s;
+                    &:hover {
+                        color: #41b883;
+                    }
+                }
+            }
+            &__msglist {
+                float: left;
+                height: 60px;
+                width: calc(100% - 60px);
+                color: #808080;
+                font-weight: 500;
+                padding-left: 10px;
+                box-sizing: border-box;
+            }
+            &:after {
+                content: '';
+                clear: both;
+                display: block;
+                width: 100%;
+            }
+        }
+        .right-area {
+            //{flex-center}
+            @extend .flex-center;
+            padding-right: 16px;
+            height: 60px;
+            min-width: $right-area-width;
+            .fullscreen {
+                height: 100%;
+                padding-right: 22px;
+            }
+            .lang {
+                height: 60px;
+            }
+            .notice {
+                margin-left: 20px;
+            }
+        }
+        &__title &__icon {
+            vertical-align: middle;
+        }
 
-        .sidebar-wrap
-            display flex
-
-        .left-area
-            min-width 240px
-            padding-left 12px
-            box-sizing border-box
-
-        .middle-area
-            height 60px
-            flex 1
-            &__cgwrap
-                float left
-                height 100%
-                width 60px
-                .category-icon
-                    color #515151
-                    cursor pointer
-                    height 100%
-                    padding 0 15px
-                    transition color .28s
-                    &:hover
-                        color #41b883
-            &__msglist
-                float left
-                height 60px
-                width 'calc(%s - %s)' % (100% 60px)
-                color #808080
-                font-weight 500
-                padding-left 10px
-                box-sizing border-box
-            &:after
-                content ''
-                clear both
-                display block
-                width 100%
-
-        .right-area
-            {flex-center}
-            padding-right 16px
-            height 60px
-            min-width right-area-width
-            .fullscreen
-                height: 100%
-                padding-right: 22px
-            .lang
-                height 60px
-            .notice
-                margin-left: 20px
-
-        &__title
-        &__icon
-            vertical-align middle
-
-        &__title
-            font-size 20px
-            font-weight bold
-            color main-color
-            .subtitle
-                color sub-color
-            .version-wrap
-                background #eaeaea
-                padding 3px 8px
-                font-size 12px
-                margin-left 8px
-                border-radius 3px
-                vertical-align top
+        &__title {
+            font-size: 20px;
+            font-weight: bold;
+            color: $main-color;
+            .subtitle {
+                color: $sub-color;
+            }
+            .version-wrap {
+                background: #eaeaea;
+                padding: 3px 8px;
+                font-size: 12px;
+                margin-left: 8px;
+                border-radius: 3px;
+                vertical-align: top;
+            }
+        }
+    }
 </style>

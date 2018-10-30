@@ -9,10 +9,20 @@
                 <side-bar class="sidebar-container"/>
             </el-aside>
 
-            <el-main>
-                <tags-view/>
-                <app-main/>
-            </el-main>
+            <el-container>
+                <el-main>
+                    <tags-view/>
+                    <app-main/>
+                </el-main>
+                <el-footer>
+                    <div class="company">
+                        VUE管理系统 © 2017 版本号: 1.5.2bate
+                    </div>
+                    <div class="github">
+                        Github地址：<a href="https://github.com/ttentau/vue-admin">vue-admin</a>
+                    </div>
+                </el-footer>
+            </el-container>
             <el-aside :width="rightSideWidth">
                 <side-bar class="sidebar-container"/>
             </el-aside>
@@ -45,29 +55,41 @@
     }
 </script>
 
-<style lang="stylus" scoped>
-    @import "../../assets/styl/variables.styl"
+<style lang="scss" scoped>
+    @import "../../assets/scss/variables";
 
-    .el-container
-        width 100%
-        height 100%
+    .el-container {
+        width: 100%;
+        height: 100%;
+    }
 
-    .el-header
-        padding 0
-        font-size 0
-        line-height 60px
-        background white
-        box-sizing border-box
-        overflow hidden
+    .el-header {
+        padding: 0;
+        font-size: 0;
+        line-height: 60px;
+        background: white;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
 
-    .el-aside
-        transition width .3s
-        background el-aside-bg
-        color el-aside-color
-        overflow hidden
+    .el-aside {
+        transition: width .3s;
+        background: $el-aside-bg;
+        color: $el-aside-color;
+        overflow: hidden;
+    }
 
-    .el-main
-        padding 0
-        height 100%
-        overflow auto
+    .el-main {
+        padding: 0;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .el-footer{
+        /*padding: 0;*/
+        border-top: 1px solid gainsboro;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>

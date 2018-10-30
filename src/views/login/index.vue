@@ -240,120 +240,138 @@
     }
 </script>
 
-<style lang="stylus">
-    .forget-form,
-    .login-form
-        .el-form-item__content
-            line-height 40px
-        .el-input__inner
+<style lang="scss">
+    .forget-form, .login-form {
+        .el-form-item__content {
+            line-height: 40px
+        }
+        .el-input__inner {
             padding-top: 2px;
-            height 40px
-            line-height 40px
+            height: 40px;
+            line-height: 40px;
+        }
 
-    .btn button
-        width: 100%
-        padding 12px 20px
+    }
+
+    .btn button {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+
 </style>
 
-<style lang="stylus" scoped>
-    @import "../../assets/styl/variables.styl"
+<style lang="scss" scoped>
+    @import "../../assets/scss/variables";
 
-    .login-col
-        height 100%
+    .login-col {
+        height: 100%;
+    }
 
-    .login-page
-        display flex
-        justify-content center
-        align-items center
-        position absolute
-        height 100%
-        width 100%
-        .lang
-            position absolute
-            right 59px
-            top 24px
-        .svg-github
-            position absolute
-            right 29px
-            top 25px
-        .translate-left
-        .translate-right
-            will-change auto
-            transform translateX(0px)
-            transition transform .6s ease-in-out
-        .switch-left
-            transform translateX(525px)
-        .switch-right
-            transform translateX(-375px)
+    .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        .lang {
+            position: absolute;
+            right: 59px;
+            top: 24px;
+        }
+        .svg-github {
+            position: absolute;
+            right: 29px;
+            top: 25px;
+        }
+        .translate-left .translate-right {
+            will-change: auto;
+            transform: translateX(0px);
+            transition: transform .6s ease-in-out;
+        }
+        .switch-left {
+            transform: translateX(525px);
+        }
+        .switch-right {
+            transform: translateX(-375px);
+        }
+    }
 
-    .login-wrap
-        overflow hidden
-        width 900px
-        height 400px
-        background white
-        border-radius 4px
-        transform translateY(-10px)
-        box-shadow 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04)
+    .login-wrap {
+        overflow: hidden;
+        width: 900px;
+        height: 400px;
+        background: white;
+        border-radius: 4px;
+        transform: translateY(-10px);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
 
-        .logo
-            padding-top 26px
-            text-align center
+        .logo {
+            padding-top: 26px;
+            text-align: center;
+        }
+        .title {
+            font-weight: bold;
+            color: $main-color;
+            padding-top: 8px;
+            font-size: 22px;
+            a {
+                cursor: cell;
+            }
+            a:before {
+                content: '[';
+                opacity: 0;
+                margin-right: 10px;
+                transform: translateX(-10px);
+                transition: transform .2s, opacity .2s;
+            }
+            a:after {
+                content: ']';
+                opacity: 0;
+                margin-left: 10px;
+                transform: translateX(10px);
+                transition: transform .2s, opacity .2s;
+            }
+            a:hover:after {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            .subtitle {
+                color: $sub-color;
+            }
+        }
 
-        .title
-            font-weight bold
-            color main-color
-            padding-top 8px
-            font-size 22px
-
-            a
-                cursor cell
-            a:before
-                content '['
-                opacity 0
-                margin-right 10px
-                transform translateX(-10px)
-                transition transform .2s, opacity .2s
-
-            a:after
-                content ']'
-                opacity 0
-                margin-left 10px
-                transform translateX(10px)
-                transition transform .2s, opacity .2s
-
-            a:hover:after
-                opacity 1
-                transform translateX(0)
-
-            .subtitle
-                color sub-color
-
-        .forgetwrap-title
-            padding-top 30px
-            padding-left 15px
-
-        .forget-form
-            padding 20px 30px 30px
-            padding-bottom 0
-
-        .login-form
-            padding 30px
-            padding-bottom 0
-
-        .login-footer
-            padding 0 30px
-            .forgetpwd
-                text-align right
-                span
-                    cursor pointer
-                    font-size 14px
-                    font-weight 500
-                    color #606266
-
-        .wallpaper
-            width 100%
-            height 100%
-            background url('../../assets/images/loginwallpaper.jpg')
-            background-size cover
-            position relative
+        .forgetwrap-title {
+            padding-top: 30px;
+            padding-left: 15px;
+        }
+        .forget-form {
+            padding: 20px 30px 30px;
+            padding-bottom: 0;
+        }
+        .login-form {
+            padding: 30px;
+            padding-bottom: 0;
+        }
+        .login-footer {
+            padding: 0 30px;
+            .forgetpwd {
+                text-align: right;
+                span {
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color:#606266;
+                }
+            }
+        }
+        .wallpaper {
+            width: 100%;
+            height: 100%;
+            background: url('../../assets/images/loginwallpaper.jpg');
+            background-size: cover;
+            position: relative;
+        }
+    }
 </style>
