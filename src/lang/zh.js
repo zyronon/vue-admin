@@ -36,6 +36,7 @@ export default {
         ProjectManager: '项目管理',
         ProjectList: '项目列表',
         ProjectDetail: '项目详情',
+        ProjectChange: '项目变更记录',
     },
     app: {
         switchlang: '切换语言成功',

@@ -1,7 +1,7 @@
 <template>
     <div class="project-detail">
         <el-row>
-            <el-button type="primary" icon="el-icon-arrow-left" @click="back()">返回
+            <el-button type="primary" icon="el-icon-arrow-left" @click="$router.go(-1)">返回
             </el-button>
         </el-row>
         <el-card class="box-card">
@@ -207,7 +207,7 @@
                 console.log(this.project)
             },
             projectChange() {
-
+                this.$router.push('project-change')
             }
         },
         filter: {},

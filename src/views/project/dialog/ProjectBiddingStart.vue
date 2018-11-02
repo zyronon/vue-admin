@@ -4,7 +4,7 @@
                 title="竞标启动"
                 :visible.sync="isVisible"
                 width="30%"
-                :before-close="handleClose">
+                :before-close="close">
             <el-form ref="form" label-width="180px" label-position="left">
                 <el-form-item label="标前分析会会议纪要:" required>
                     <input type="file"  @change="fileChange($event,1)">
@@ -14,7 +14,7 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="$emit('close')">取 消</el-button>
+                <el-button @click="close()">取 消</el-button>
                 <el-button type="primary" @click="submit()">确 定</el-button>
             </span>
         </el-dialog>
@@ -33,13 +33,11 @@
         created() {
         },
         methods: {
-            submit() {
-                //do something
-                console.log('这里是项目竞标弹窗的submit事件')
+            close() {
                 this.$emit('close')
             },
-            handleClose(done) {
-                this.$emit('close')
+            submit() {
+                this.close();
             },
             fileChange(event, from) {
                 let file = event.target.files[0]
