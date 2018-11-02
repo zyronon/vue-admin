@@ -25,7 +25,8 @@
                     <label>当前状态：{{project.Status}}</label>
                 </el-row>
                 <el-row>
-                    <el-button type="primary" @click="ProjectBiddingStartVisible = true">竞标</el-button>
+                    <el-button type="primary" @click="dialog.ProjectBiddingStartVisible = true">竞标</el-button>
+                    <el-button type="primary" @click="dialog.AddMainContractVisible = true">中标</el-button>
                     <el-button type="primary" @click="projectChange()">变更</el-button>
                     <el-button type="primary" @click="back()">结算</el-button>
                     <el-button type="primary" @click="back()">资料导出</el-button>
@@ -153,23 +154,31 @@
             </el-tabs>
         </el-card>
 
-        <ProjectBiddingStart v-bind:is-visible="ProjectBiddingStartVisible" v-on:close="ProjectBiddingStartVisible = false"/>
+        <ProjectBiddingStart v-bind:is-visible="dialog.ProjectBiddingStartVisible"
+                             v-on:close="dialog.ProjectBiddingStartVisible = false"/>
+        <AddMainContract v-bind:is-visible="dialog.AddMainContractVisible"
+                         v-on:close="dialog.AddMainContractVisible = false"/>
     </div>
 </template>
 
 <script>
     import Project from "../../api/project"
     import ProjectBiddingStart from "./dialog/ProjectBiddingStart"
+    import AddMainContract from "./dialog/AddMainContract"
 
 
     export default {
         name: "ProjectDetail",
         components: {
             ProjectBiddingStart,
+            AddMainContract,
         },
         data() {
             return {
-                ProjectBiddingStartVisible:false,
+                dialog: {
+                    ProjectBiddingStartVisible: false,
+                    AddMainContractVisible: false,
+                },
                 project: {
                     id: ''
                 },

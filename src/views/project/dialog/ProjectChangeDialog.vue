@@ -21,16 +21,36 @@
                 <el-form-item label="发起时间：">
                     <span>2018-11-11 11:11:11</span>
                 </el-form-item>
-                <el-form-item label="发起人：">
+                <el-form-item label="立项申请表：">
                     <span class="clickable">立项申请表.docx</span>
                     <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
                 </el-form-item>
-                <el-form-item label="标前分析会会议纪要：" required>
-                    <input type="file" @change="fileChange($event,1)">
+                <el-form-item label="标前分析会会议纪要：">
+                    <span class="clickable">标前分析会会议纪要.docx</span>
+                    <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
+                </el-form-item>
+                <el-form-item label="资信办理申请表：">
+                    <span class="clickable">资信办理申请表.docx</span>
+                    <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
+                </el-form-item>
+                <el-form-item label="项目启动会议纪要：">
+                    <span class="clickable">项目启动会议纪要.docx</span>
+                    <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
+                </el-form-item>
+                <el-form-item label="前置条件办理申请表：">
+                    <span class="clickable">前置条件办理申请表.docx</span>
+                    <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
+                </el-form-item>
+                <el-form-item label="合同办理审签表：">
+                    <span class="clickable">合同办理审签表.docx</span>
+                    <el-button class="el-button ml10p" type="primary" size="mini">重新上传</el-button>
                 </el-form-item>
                 <el-form-item label="资信输申请表：" required @change="fileChange($event,2)">
                     <input type="file">
                 </el-form-item>
+
+                <!--<h2 class="tac">主合同信息</h2>-->
+
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="close()">取 消</el-button>
