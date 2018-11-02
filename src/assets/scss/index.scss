@@ -1,15 +1,13 @@
 @import "../../../node_modules/normalize.css/normalize.css";
 @import "./variables";
 
-/*
-opacity(n)
-	opacity n
-	if support-for-ie
-		filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
-*/
+@mixin opacity($n){
+    opacity:$n;
+    //if support-for-ie
+    //    filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+}
 
-html
-body {
+html,body {
     @extend .edenfont;
     width: 100%;
     height: 100%;
@@ -23,11 +21,8 @@ ul {
     margin: 0;
 }
 
-a a:hover a:focus {
+a ,a:hover, a:focus {
     cursor: pointer;
-    text-decoration: none;
-}
-span span:hover span:focus {
     text-decoration: none;
 }
 .el-card.is-always-shadow,
@@ -67,8 +62,7 @@ span span:hover span:focus {
     }
 
     // sidebar
-    .sidebar-wrap
-    .el-submenu__icon-arrow {
+    .sidebar-wrap ,.el-submenu__icon-arrow {
         color: white;
     }
     .el-submenu {
