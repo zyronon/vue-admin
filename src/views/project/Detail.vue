@@ -29,8 +29,8 @@
                     <el-button type="primary" @click="dialog.WinningBidVisible = true">中标</el-button>
                     <el-button type="primary" @click="projectChange()">变更</el-button>
                     <el-button type="primary" @click="dialog.SettlementVisible = true">结算</el-button>
-                    <el-button type="primary" @click="back()">资料导出</el-button>
-                    <el-button type="primary" @click="back()">终止</el-button>
+                    <el-button type="primary" @click="dialog.DataExportVisible = true">资料导出</el-button>
+                    <el-button type="primary" @click="dialog.ProjectStopVisible = true">终止</el-button>
                 </el-row>
             </el-card>
             <el-tabs type="border-card" stretch>
@@ -160,6 +160,10 @@
                     v-on:close="dialog.WinningBidVisible = false"/>
         <Settlement v-bind:is-visible="dialog.SettlementVisible"
                     v-on:close="dialog.SettlementVisible = false"/>
+        <DataExport v-bind:is-visible="dialog.DataExportVisible"
+                    v-on:close="dialog.DataExportVisible = false"/>
+        <ProjectStop v-bind:is-visible="dialog.ProjectStopVisible"
+                    v-on:close="dialog.ProjectStopVisible = false"/>
 
     </div>
 </template>
@@ -169,6 +173,8 @@
     import ProjectBiddingStart from "./dialog/ProjectBiddingStart"
     import WinningBid from "./dialog/WinningBid"
     import Settlement from "./dialog/Settlement"
+    import DataExport from "./dialog/DataExport"
+    import ProjectStop from "./dialog/ProjectStop"
 
 
     export default {
@@ -176,7 +182,9 @@
         components: {
             ProjectBiddingStart,
             WinningBid,
-            Settlement
+            Settlement,
+            DataExport,
+            ProjectStop
         },
         data() {
             return {
@@ -184,6 +192,8 @@
                     ProjectBiddingStartVisible: false,
                     WinningBidVisible: false,
                     SettlementVisible: false,
+                    DataExportVisible: false,
+                    ProjectStopVisible: false,
                 },
                 project: {
                     id: ''
