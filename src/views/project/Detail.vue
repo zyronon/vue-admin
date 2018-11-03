@@ -26,9 +26,9 @@
                 </el-row>
                 <el-row>
                     <el-button type="primary" @click="dialog.ProjectBiddingStartVisible = true">竞标</el-button>
-                    <el-button type="primary" @click="dialog.AddMainContractVisible = true">中标</el-button>
+                    <el-button type="primary" @click="dialog.WinningBidVisible = true">中标</el-button>
                     <el-button type="primary" @click="projectChange()">变更</el-button>
-                    <el-button type="primary" @click="back()">结算</el-button>
+                    <el-button type="primary" @click="dialog.SettlementVisible = true">结算</el-button>
                     <el-button type="primary" @click="back()">资料导出</el-button>
                     <el-button type="primary" @click="back()">终止</el-button>
                 </el-row>
@@ -156,28 +156,34 @@
 
         <ProjectBiddingStart v-bind:is-visible="dialog.ProjectBiddingStartVisible"
                              v-on:close="dialog.ProjectBiddingStartVisible = false"/>
-        <AddMainContract v-bind:is-visible="dialog.AddMainContractVisible"
-                         v-on:close="dialog.AddMainContractVisible = false"/>
+        <WinningBid v-bind:is-visible="dialog.WinningBidVisible"
+                    v-on:close="dialog.WinningBidVisible = false"/>
+        <Settlement v-bind:is-visible="dialog.SettlementVisible"
+                    v-on:close="dialog.SettlementVisible = false"/>
+
     </div>
 </template>
 
 <script>
     import Project from "../../api/project"
     import ProjectBiddingStart from "./dialog/ProjectBiddingStart"
-    import AddMainContract from "./dialog/AddMainContract"
+    import WinningBid from "./dialog/WinningBid"
+    import Settlement from "./dialog/Settlement"
 
 
     export default {
         name: "ProjectDetail",
         components: {
             ProjectBiddingStart,
-            AddMainContract,
+            WinningBid,
+            Settlement
         },
         data() {
             return {
                 dialog: {
                     ProjectBiddingStartVisible: false,
-                    AddMainContractVisible: false,
+                    WinningBidVisible: false,
+                    SettlementVisible: false,
                 },
                 project: {
                     id: ''
