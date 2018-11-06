@@ -37,6 +37,7 @@
         components: {},
         data() {
             return {
+                listLoading:false,
                 rows:{
                     notify:{
                         list:[]

@@ -11,7 +11,7 @@
             </div>
             <el-form ref="form" :model="form" label-width="120px" label-position="left">
                 <el-form-item label="编号:">
-                    <el-select v-model="value" placeholder="请选择">
+                    <el-select v-model="value" placeholder="请选择" :change="changeType()">
                         <el-option
                                 v-for="item in options"
                                 :key="item.value"
@@ -84,22 +84,38 @@
         components: {},
         data() {
             return {
+                textarea2:"",
                 form:{},
                 options: [{
-                    value: '选项1',
-                    label: '黄金糕'
+                    value: '1',
+                    label: '普通申请'
                 }, {
-                    value: '选项2',
-                    label: '双皮奶'
+                    value: '2',
+                    label: '党委发文申请'
                 }, {
-                    value: '选项3',
-                    label: '蚵仔煎'
+                    value: '3',
+                    label: '党委收文申请'
                 }, {
-                    value: '选项4',
-                    label: '龙须面'
+                    value: '4',
+                    label: '行政发文申请'
                 }, {
-                    value: '选项5',
-                    label: '北京烤鸭'
+                    value: '5',
+                    label: '行政收文申请'
+                }, {
+                    value: '6',
+                    label: '纪委发文申请'
+                }, {
+                    value: '7',
+                    label: '纪委收文申请'
+                }, {
+                    value: '8',
+                    label: '对外支付证书申请'
+                }, {
+                    value: '9',
+                    label: '合同审签申请'
+                }, {
+                    value: '10',
+                    label: '用印申请'
                 }],
                 value: ''
             }
@@ -107,7 +123,11 @@
         created() {
 
         },
-        methods: {},
+        methods: {
+            changeType(){
+                console.log(2)
+            }
+        },
         filter: {},
         computed: {}
     }
