@@ -1,12 +1,12 @@
 <template>
-    <div class="Create">
+    <div class="Detail">
         <el-row class="mb20p">
             <el-button type="primary" icon="el-icon-arrow-left" @click="$router.go(-1)">返回
             </el-button>
         </el-row>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>新建公告</span>
+                <span>详情</span>
                 <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
             </div>
             <el-form ref="form" :model="form" label-width="120px" label-position="left">
@@ -14,7 +14,7 @@
                     XXSDFSFGEW34FSF32
                 </el-form-item>
                 <el-form-item label="标题:">
-                    <el-input v-model="form.name"></el-input>
+                    这是某某标题这是某某标题
                 </el-form-item>
                 <el-row>
                     <el-col :span="10">
@@ -31,26 +31,13 @@
                 <el-row>
                     <el-col :span="24">
                         <el-form-item label="内容:">
-                            <el-input
-                                    type="textarea"
-                                    :autosize="{ minRows: 4, maxRows: 7}"
-                                    placeholder="请输入内容"
-                                    v-model="textarea2">
-                            </el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="24">
-                        <el-form-item label="是否可评论:">
-                            <el-checkbox v-model="checked"></el-checkbox>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="6">
-                        <el-form-item label="通知人员:">
-                            <el-input v-model="form.name"></el-input>
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
+                            这是某某内容这是某某内容这是某某内容这是某某内容这是某某内容
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -62,19 +49,28 @@
                     </el-col>
                 </el-row>
                 <el-row>
-                <el-col :span="24">
-                    <el-form-item label="发起时间:">
-                        2018-11-06 01:22:22
-                    </el-form-item>
-                </el-col>
-            </el-row>
+                    <el-col :span="24">
+                        <el-form-item label="发起时间:">
+                            2018-11-06 01:22:22
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <el-form-item label="评论:">
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 4, maxRows: 7}"
+                                    placeholder="请输入内容"
+                                    v-model="textarea2">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
             </el-form>
             <el-row style="border-top: 1px solid gainsboro;padding-top: 20px;">
                 <el-col :span="24">
-                    <el-button type="primary" icon="el-icon-check" style="margin-bottom: 10px;">提交</el-button>
-                    <el-button @click="$router.push('detail')" type="success" icon="el-icon-check" style="margin-bottom: 10px;">预览
-                    </el-button>
-                    <el-button type="danger" icon="el-icon-delete" style="margin-bottom: 10px;">重置</el-button>
+                    <el-button type="primary" icon="el-icon-check" style="margin-bottom: 10px;">发布</el-button>
                 </el-col>
             </el-row>
         </el-card>
@@ -86,7 +82,7 @@
 
 
     export default {
-        name: "Create",
+        name: "Detail",
         components: {},
         data() {
             return {

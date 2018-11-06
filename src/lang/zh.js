@@ -40,6 +40,7 @@ export default {
         NotifyManager: '公告通知管理',
         NotifyList: '公告通知列表',
         CreateNotify: '新建',
+        NotifyDetail: '详情',
     },
     app: {
         switchlang: '切换语言成功',
