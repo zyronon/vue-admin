@@ -61,6 +61,28 @@ export const asyncRouterMap = [
                 }
             }
         ]
+    }
+    ,
+    // 公告通知管理
+    {
+        path: '/notify',
+        component: Layout,
+        name: 'NotifyManager',
+        meta: {
+            title: 'NotifyManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('notify/List'),
+                name: 'NotifyList',
+                meta: {
+                    title: 'NotifyList',
+                    icon: 'widgets'
+                }
+            }
+        ]
     },
     // 车辆管理
     {
