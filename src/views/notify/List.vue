@@ -3,7 +3,7 @@
         <el-tabs type="border-card" stretch>
             <el-tab-pane label="公告">
                 <el-row class="mb20p">
-                    <el-button type="primary" icon="el-icon-arrow-left" @click="">发布公告
+                    <el-button type="primary" icon="el-icon-arrow-left" @click="$router.push('create')">发布公告
                     </el-button>
                 </el-row>
                 <el-card class="box-card mb20p">

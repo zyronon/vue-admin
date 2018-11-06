@@ -81,6 +81,15 @@ export const asyncRouterMap = [
                     title: 'NotifyList',
                     icon: 'widgets'
                 }
+            },{
+                path: 'create',
+                component: _import('notify/Create'),
+                name: 'CreateNotify',
+                hidden:true,
+                meta: {
+                    title: 'CreateNotify',
+                    icon: 'widgets'
+                }
             }
         ]
     },
