@@ -36,7 +36,9 @@
             <el-tabs type="border-card" stretch>
                 <el-tab-pane label="规划管理">
                     <el-row>
-                        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">添加预算</el-button>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline"
+                                   @click="dialog.AddProjectPlanVisible =true">添加预算
+                        </el-button>
                         <el-button type="primary" icon="el-icon-circle-plus-outline" @click="back()">变更记录</el-button>
                     </el-row>
                     <el-table :data="rows.purchase.list" style="width: 100%" border stripe v-loading="listLoading">
@@ -163,7 +165,9 @@
         <DataExport v-bind:is-visible="dialog.DataExportVisible"
                     v-on:close="dialog.DataExportVisible = false"/>
         <ProjectStop v-bind:is-visible="dialog.ProjectStopVisible"
-                    v-on:close="dialog.ProjectStopVisible = false"/>
+                     v-on:close="dialog.ProjectStopVisible = false"/>
+        <AddProjectPlan v-bind:is-visible="dialog.AddProjectPlanVisible"
+                        v-on:close="dialog.AddProjectPlanVisible = false"/>
 
     </div>
 </template>
@@ -175,6 +179,7 @@
     import Settlement from "./dialog/Settlement"
     import DataExport from "./dialog/DataExport"
     import ProjectStop from "./dialog/ProjectStop"
+    import AddProjectPlan from "./dialog/AddProjectPlan"
 
 
     export default {
@@ -184,7 +189,8 @@
             WinningBid,
             Settlement,
             DataExport,
-            ProjectStop
+            ProjectStop,
+            AddProjectPlan
         },
         data() {
             return {
@@ -194,6 +200,7 @@
                     SettlementVisible: false,
                     DataExportVisible: false,
                     ProjectStopVisible: false,
+                    AddProjectPlanVisible: false,
                 },
                 project: {
                     id: ''
