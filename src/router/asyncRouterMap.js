@@ -102,6 +102,36 @@ export const asyncRouterMap = [
             }
         ]
     },
+    // 流程申请
+    {
+        path: '/apply',
+        component: Layout,
+        name: 'ApplyManager',
+        meta: {
+            title: 'ApplyManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('apply/List'),
+                name: 'ApplyList',
+                meta: {
+                    title: 'ApplyList',
+                    icon: 'widgets'
+                }
+            },{
+                path: 'create',
+                component: _import('apply/Create'),
+                name: 'CreateApply',
+                hidden:true,
+                meta: {
+                    title: 'CreateApply',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
     // 车辆管理
     {
         path: '/car',

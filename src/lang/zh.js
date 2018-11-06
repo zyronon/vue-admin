@@ -41,6 +41,9 @@ export default {
         NotifyList: '公告通知列表',
         CreateNotify: '新建',
         NotifyDetail: '详情',
+        ApplyManager: '申请管理',
+        ApplyList: '申请列表',
+        CreateApply: '新建申请',
     },
     app: {
         switchlang: '切换语言成功',
