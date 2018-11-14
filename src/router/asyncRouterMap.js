@@ -328,35 +328,6 @@ export const asyncRouterMap = [
             }
         ]
     },
-    // 员工
-    {
-        path: '/employee',
-        component: Layout,
-        meta: {
-            title: 'EmployeeManager',
-            icon: 'widgets'
-        },
-        children: [
-            {
-                path: 'list',
-                component: _import('employee/List'),
-                name: 'EmployeeList',
-                meta: {
-                    title: 'EmployeeList',
-                    icon: 'widgets'
-                }
-            },
-            {
-                path: 'create',
-                component: _import('employee/Create'),
-                name: 'CreateEmployee',
-                meta: {
-                    title: 'CreateEmployee',
-                    icon: 'widgets'
-                }
-            }
-        ]
-    },
     // 设置
     {
         path: '/setting',

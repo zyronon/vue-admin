@@ -1,38 +1,81 @@
 <template>
     <div class="List">
-        <el-row class="mb20p">
-            <el-button type="info" icon="el-icon-refresh" @click="$router.push('create')">刷新</el-button>
-            <el-button type="primary" icon="el-icon-circle-plus-outline" @click="$router.push('create')">新建</el-button>
-            <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
-            <el-input v-model="input" placeholder="请输入内容" class="w200p ml20p"></el-input>
-            <el-button type="primary" icon="el-icon-search" class="ml10p"  @click="getData()">搜索</el-button>
-            <el-button type="primary" icon="el-icon-refresh" @click="rows.filter.key = '';rows.filter.date = ''">重置
-            </el-button>
-        </el-row>
         <el-row>
-            <el-col :span="5">
-                <el-card class="box-card mb20p">
+            <el-col :span="4">
+                <el-card class="box-card">
                     <div slot="header" class="clearfix">
                         <span>所有部门</span>
+                        <el-button style="float: right; padding: 3px 0" type="text"
+                                   @click="dialog.AddDepartmentVisible=true"
+                        >新建
+                        </el-button>
                     </div>
                     <el-tree
-                            :data="data2"
-                            show-checkbox
+                            :data="departments"
                             node-key="id"
-                            :default-expanded-keys="[2, 3]"
-                            :default-checked-keys="[5]"
+                            default-expand-all
                             :props="defaultProps">
+                        <span class="custom-tree-node" slot-scope="{ node, data }">
+                            <span>{{ node.label }}</span>
+                            <span>
+                              <el-button
+                                      type="text"
+                                      size="mini"
+                                      @click="() => remove(node, data)">
+                                {{data.id==1?"":"删除"}}
+                              </el-button>
+                            </span>
+                          </span>
                     </el-tree>
                 </el-card>
-
             </el-col>
-            <el-col :span="19" class="pl20p">
-                <el-card class="box-card mb20p">
+            <el-col :span="4" class="pl20p">
+                <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                        <span>部门列表</span>
+                        <span>所有职位</span>
+                        <el-button style="float: right; padding: 3px 0" type="text"
+                                   @click="dialog.AddDepartmentVisible=true"
+                        >新建
+                        </el-button>
                     </div>
+                    <el-tree
+                            :data="departments"
+                            node-key="id"
+                            default-expand-all
+                            :props="defaultProps">
+                        <span class="custom-tree-node" slot-scope="{ node, data }">
+                            <span>{{ node.label }}</span>
+                            <span>
+                              <el-button
+                                      type="text"
+                                      size="mini"
+                                      @click="() => remove(node, data)">
+                                {{data.id==1?"":"删除"}}
+                              </el-button>
+                            </span>
+                          </span>
+                    </el-tree>
+                </el-card>
+            </el-col>
+            <el-col :span="16" class="pl20p">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>员工列表</span>
+                    </div>
+                    <el-row class="mb20p">
+                        <el-button type="info" icon="el-icon-refresh"></el-button>
+                        <el-button type="primary" icon="el-icon-circle-plus-outline"
+                                   @click="dialog.AddEmployeeVisible=true">新建
+                        </el-button>
+                        <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                        <el-input v-model="input" placeholder="请输入内容" class="w200p ml20p"></el-input>
+                        <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
+                        <el-button type="primary" icon="el-icon-refresh"
+                                   @click="rows.filter.key = '';rows.filter.date = ''">重置
+                        </el-button>
+                    </el-row>
                     <el-table :data="rows.notify.list" style="width: 100%" border stripe v-loading="listLoading">
-                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column type="selection" width="55"></el-table-column>
                         <el-table-column fixed prop="Name" label="供应商" sortable></el-table-column>
                         <el-table-column prop="Number" label="合同分类" sortable></el-table-column>
                         <el-table-column prop="Number" label="合同金额" sortable></el-table-column>
@@ -50,60 +93,82 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                    <el-row class="mt20p">
+                        <el-pagination class="pull-right"
+                                       @size-change="handleSizeChange()"
+                                       @current-change="getData()"
+                                       :current-page="1"
+                                       :page-sizes="[10, 20, 30, 40]"
+                                       :page-size="100"
+                                       layout="total, sizes, prev, pager, next, jumper"
+                                       :total="rows.count">
+                        </el-pagination>
+                    </el-row>
+
+
                 </el-card>
             </el-col>
         </el-row>
 
+        <AddDepartment v-bind:is-visible="dialog.AddDepartmentVisible"
+                       v-on:close="dialog.AddDepartmentVisible = false"/>
+        <AddEmployee v-bind:is-visible="dialog.AddEmployeeVisible"
+                     v-on:close="dialog.AddEmployeeVisible = false"/>
     </div>
 </template>
 
 <script>
+
+    import AddDepartment from './dialog/AddDepartment'
+    import AddEmployee from './dialog/AddEmployee'
+
     export default {
         name: "List",
-        components: {},
+        components: {AddDepartment, AddEmployee},
         data() {
             return {
+                dialog: {
+                    AddDepartmentVisible: false,
+                    AddEmployeeVisible: false
+                },
                 input: "",
                 listLoading: false,
                 rows: {
                     notify: {
                         list: []
-                    }
+                    },
+                    limit: 10,
+                    count: 100
                 },
-                data2: [{
+                departments: [{
                     id: 1,
-                    label: '一级 1',
+                    label: '集团部门',
                     children: [{
+                        id: 2,
+                        label: '经营层',
+                    }, {
+                        id: 3,
+                        label: '财务部'
+                    }, {
                         id: 4,
-                        label: '二级 1-1',
-                        children: [{
-                            id: 9,
-                            label: '三级 1-1-1'
-                        }, {
-                            id: 10,
-                            label: '三级 1-1-2'
-                        }]
-                    }]
-                }, {
-                    id: 2,
-                    label: '一级 2',
-                    children: [{
+                        label: '安全生产部'
+                    }, {
                         id: 5,
-                        label: '二级 2-1'
+                        label: '市场经营部'
                     }, {
                         id: 6,
-                        label: '二级 2-2'
-                    }]
-                }, {
-                    id: 3,
-                    label: '一级 3',
-                    children: [{
+                        label: '广告项目部'
+                    }, {
                         id: 7,
-                        label: '二级 3-1'
+                        label: '测试部门'
                     }, {
                         id: 8,
-                        label: '二级 3-2'
-                    }]
+                        label: '研发部门'
+                    }, {
+                        id: 9,
+                        label: '工程管理部'
+                    }
+                    ]
                 }],
                 defaultProps: {
                     children: 'children',
@@ -114,12 +179,27 @@
         created() {
 
         },
-        methods: {},
+        methods: {
+            handleSizeChange(limit) {
+                this.rows.limit = limit
+                this.getData()
+            },
+            getData() {
+
+            }
+        },
         filter: {},
         computed: {}
     }
 </script>
 
 <style scoped lang='scss'>
-
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding-right: 8px;
+    }
 </style>
