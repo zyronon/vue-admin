@@ -75,7 +75,8 @@
                    notify:{
                        list:[]
                    }
-                }
+                },
+                listLoading:false
             }
         },
         created() {

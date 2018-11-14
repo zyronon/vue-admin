@@ -1,7 +1,7 @@
 <template>
     <div class="List">
         <el-row class="mb20p">
-            <el-button type="primary" icon="el-icon-circle-plus-outline" @click="$router.push('create')">新建申请
+            <el-button type="primary" icon="el-icon-circle-plus-outline" @click="$router.push('create')">新建流程
             </el-button>
         </el-row>
         <el-card class="box-card mb20p">

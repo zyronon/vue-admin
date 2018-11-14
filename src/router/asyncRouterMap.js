@@ -151,13 +151,52 @@ export const asyncRouterMap = [
                     icon: 'widgets'
                 }
             },
+            {
+                path: 'create',
+                component: _import('approval/Create'),
+                name: 'CreateApproval',
+                hidden:true,
+                meta: {
+                    title: 'CreateApproval',
+                    icon: 'widgets'
+                }
+            },{
+                path: 'detail',
+                component: _import('approval/Detail'),
+                name: 'ApprovalDetail',
+                hidden:true,
+                meta: {
+                    title: 'ApprovalDetail',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
+    // 部门管理
+    {
+        path: '/department',
+        component: Layout,
+        name: 'DepartmentManager',
+        meta: {
+            title: 'DepartmentManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('department/List'),
+                name: 'DepartmentList',
+                meta: {
+                    title: 'DepartmentList',
+                    icon: 'widgets'
+                }
+            },
             // {
             //     path: 'create',
-            //     component: _import('approval/Create'),
-            //     name: 'CreateApproval',
-            //     hidden:true,
+            //     component: _import('department/Create'),
+            //     name: 'CreateDepartment',
             //     meta: {
-            //         title: 'CreateApproval',
+            //         title: 'CreateDepartment',
             //         icon: 'widgets'
             //     }
             // }

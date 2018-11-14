@@ -47,6 +47,10 @@ export default {
         ApprovalManager: '流程管理',
         ApprovalList: '流程列表',
         CreateApproval: '新建流程',
+        ApprovalDetail: '流程详情',
+        DepartmentManager: '部门管理',
+        DepartmentList: '部门列表',
+        CreateDepartment: '新建部门',
     },
     app: {
         switchlang: '切换语言成功',
