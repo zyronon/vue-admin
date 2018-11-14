@@ -39,7 +39,7 @@ module.exports = {
         config.module.rule('svg').uses.clear()
         config.module.rule('svg').use('raw-loader').loader('raw-loader')
 
-        //config.when(process.env.NODE_ENV === 'production', config =>
+        //config.when(approval.env.NODE_ENV === 'production', config =>
         //  config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
         //)
     },

@@ -102,7 +102,7 @@ export const asyncRouterMap = [
             }
         ]
     },
-    // 流程申请
+    // 批文申请
     {
         path: '/apply',
         component: Layout,
@@ -130,6 +130,37 @@ export const asyncRouterMap = [
                     icon: 'widgets'
                 }
             }
+        ]
+    },
+    // 审批流程
+    {
+        path: '/approval',
+        component: Layout,
+        name: 'ApprovalManager',
+        meta: {
+            title: 'ApprovalManager',
+            icon: 'widgets'
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('approval/List'),
+                name: 'ApprovalList',
+                meta: {
+                    title: 'ApprovalList',
+                    icon: 'widgets'
+                }
+            },
+            // {
+            //     path: 'create',
+            //     component: _import('approval/Create'),
+            //     name: 'CreateApproval',
+            //     hidden:true,
+            //     meta: {
+            //         title: 'CreateApproval',
+            //         icon: 'widgets'
+            //     }
+            // }
         ]
     },
     // 车辆管理

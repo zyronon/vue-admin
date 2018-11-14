@@ -44,6 +44,9 @@ export default {
         ApplyManager: '申请管理',
         ApplyList: '申请列表',
         CreateApply: '新建申请',
+        ApprovalManager: '流程管理',
+        ApprovalList: '流程列表',
+        CreateApproval: '新建流程',
     },
     app: {
         switchlang: '切换语言成功',
