@@ -1,20 +1,22 @@
 <template>
     <div class="List">
         <el-row>
-            <el-col :span="4">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>所有部门</span>
-                        <el-button style="float: right; padding: 3px 0" type="text"
-                                   @click="dialog.AddDepartmentVisible=true"
-                        >新建
-                        </el-button>
-                    </div>
-                    <el-tree
-                            :data="departments"
-                            node-key="id"
-                            default-expand-all
-                            :props="defaultProps">
+            <el-col :span="5">
+                <el-tabs type="border-card" stretch>
+                    <el-tab-pane label="所有部门">
+                        <el-card class="box-card">
+                            <div slot="header" class="clearfix">
+                                <span>所有部门</span>
+                                <el-button style="float: right; padding: 3px 0" type="text"
+                                           @click="dialog.AddDepartmentVisible=true"
+                                >新建
+                                </el-button>
+                            </div>
+                            <el-tree
+                                    :data="departments"
+                                    node-key="id"
+                                    default-expand-all
+                                    :props="defaultProps">
                         <span class="custom-tree-node" slot-scope="{ node, data }">
                             <span>{{ node.label }}</span>
                             <span>
@@ -26,23 +28,23 @@
                               </el-button>
                             </span>
                           </span>
-                    </el-tree>
-                </el-card>
-            </el-col>
-            <el-col :span="4" class="pl20p">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>所有职位</span>
-                        <el-button style="float: right; padding: 3px 0" type="text"
-                                   @click="dialog.AddDepartmentVisible=true"
-                        >新建
-                        </el-button>
-                    </div>
-                    <el-tree
-                            :data="departments"
-                            node-key="id"
-                            default-expand-all
-                            :props="defaultProps">
+                            </el-tree>
+                        </el-card>
+                    </el-tab-pane>
+                    <el-tab-pane label="所有职位">
+                        <el-card class="box-card">
+                            <div slot="header" class="clearfix">
+                                <span>所有职位</span>
+                                <el-button style="float: right; padding: 3px 0" type="text"
+                                           @click="dialog.AddPositionVisible=true"
+                                >新建
+                                </el-button>
+                            </div>
+                            <el-tree
+                                    :data="positions"
+                                    node-key="id"
+                                    default-expand-all
+                                    :props="defaultProps">
                         <span class="custom-tree-node" slot-scope="{ node, data }">
                             <span>{{ node.label }}</span>
                             <span>
@@ -54,10 +56,14 @@
                               </el-button>
                             </span>
                           </span>
-                    </el-tree>
-                </el-card>
+                            </el-tree>
+                        </el-card>
+                    </el-tab-pane>
+                </el-tabs>
+
             </el-col>
-            <el-col :span="16" class="pl20p">
+
+            <el-col :span="19" class="pl20p">
                 <el-card class="box-card">
                     <div slot="header" class="clearfix">
                         <span>员工列表</span>
@@ -76,10 +82,12 @@
                     </el-row>
                     <el-table :data="rows.notify.list" style="width: 100%" border stripe v-loading="listLoading">
                         <el-table-column type="selection" width="55"></el-table-column>
-                        <el-table-column fixed prop="Name" label="供应商" sortable></el-table-column>
-                        <el-table-column prop="Number" label="合同分类" sortable></el-table-column>
-                        <el-table-column prop="Number" label="合同金额" sortable></el-table-column>
-                        <el-table-column prop="Create_By" label="创建人" sortable></el-table-column>
+                        <el-table-column fixed prop="Name" label="头像" sortable></el-table-column>
+                        <el-table-column prop="Number" label="职员姓名" sortable></el-table-column>
+                        <el-table-column prop="Number" label="性别" sortable></el-table-column>
+                        <el-table-column prop="Number" label="联系方式" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="部门名称" sortable></el-table-column>
+                        <el-table-column prop="Create_By" label="政治面貌" sortable></el-table-column>
                         <el-table-column prop="Create_Date" label="创建时间" sortable></el-table-column>
                         <el-table-column prop="Status" label="状态" sortable>
                             <template slot-scope="scope">
@@ -104,8 +112,6 @@
                                        :total="rows.count">
                         </el-pagination>
                     </el-row>
-
-
                 </el-card>
             </el-col>
         </el-row>
@@ -114,6 +120,8 @@
                        v-on:close="dialog.AddDepartmentVisible = false"/>
         <AddEmployee v-bind:is-visible="dialog.AddEmployeeVisible"
                      v-on:close="dialog.AddEmployeeVisible = false"/>
+        <AddPosition v-bind:is-visible="dialog.AddPositionVisible"
+                     v-on:close="dialog.AddPositionVisible = false"/>
     </div>
 </template>
 
@@ -121,15 +129,17 @@
 
     import AddDepartment from './dialog/AddDepartment'
     import AddEmployee from './dialog/AddEmployee'
+    import AddPosition from './dialog/AddPosition'
 
     export default {
         name: "List",
-        components: {AddDepartment, AddEmployee},
+        components: {AddDepartment, AddEmployee, AddPosition},
         data() {
             return {
                 dialog: {
                     AddDepartmentVisible: false,
-                    AddEmployeeVisible: false
+                    AddEmployeeVisible: false,
+                    AddPositionVisible: false
                 },
                 input: "",
                 listLoading: false,
@@ -170,6 +180,32 @@
                     }
                     ]
                 }],
+                positions: [{
+                    id: 2,
+                    label: '经营层',
+                }, {
+                    id: 3,
+                    label: '财务部'
+                }, {
+                    id: 4,
+                    label: '安全生产部'
+                }, {
+                    id: 5,
+                    label: '市场经营部'
+                }, {
+                    id: 6,
+                    label: '广告项目部'
+                }, {
+                    id: 7,
+                    label: '测试部门'
+                }, {
+                    id: 8,
+                    label: '研发部门'
+                }, {
+                    id: 9,
+                    label: '工程管理部'
+                }
+                ],
                 defaultProps: {
                     children: 'children',
                     label: 'label'

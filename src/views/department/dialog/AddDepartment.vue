@@ -1,10 +1,6 @@
 <template>
     <div class="AddDepartment">
-        <el-dialog
-                title="添加部门"
-                :visible.sync="isVisible"
-                width="30%"
-                :before-close="close">
+        <el-dialog title="添加部门" :visible.sync="isVisible" width="30%" :before-close="close">
             <el-form ref="form" label-width="130px" label-position="left">
                 <el-form-item label="部门名称：" required>
                     <el-input v-model="form.name"></el-input>
