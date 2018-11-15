@@ -29,7 +29,7 @@
                                 </el-option>
                             </el-select>
                         </el-form-item>
-                        <el-form-item label="权限:">
+                        <el-form-item  label="权限:">
                             <el-select v-model="employee.position" placeholder="请选择">
                                 <el-option
                                         v-for="item in positions"
