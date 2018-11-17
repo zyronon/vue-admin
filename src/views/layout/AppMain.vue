@@ -10,7 +10,7 @@
 
 <script>
     export default {
-        name: 'AppMain',
+        name: 'AppMain',   
         computed: {
             cachedViews() {
                 return this.$store.state.tagsView.cachedViews
@@ -21,7 +21,7 @@
 
 <style lang="scss" scoped>
     .main {
-        height: calc(100% - 40px) ;
+        height: calc(100% - 40px);
         padding: 15px;
         overflow: auto;
         box-sizing: border-box;
