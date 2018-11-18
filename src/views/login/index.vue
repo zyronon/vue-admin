@@ -184,6 +184,7 @@
                 return {
                     'translate-right': true,
                     'login-col': true,
+                    
                     'switch-right': this.switchLeft
                 }
             }
