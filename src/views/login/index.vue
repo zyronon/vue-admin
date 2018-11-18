@@ -184,7 +184,6 @@
                 return {
                     'translate-right': true,
                     'login-col': true,
-                    
                     'switch-right': this.switchLeft
                 }
             }
@@ -286,7 +285,7 @@
             right: 29px;
             top: 25px;
         }
-        .translate-left .translate-right {
+        .translate-left,.translate-right {
             will-change: auto;
             transform: translateX(0px);
             transition: transform .6s ease-in-out;
