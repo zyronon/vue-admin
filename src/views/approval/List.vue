@@ -1,7 +1,15 @@
 <template>
     <div class="List">
         <el-row class="mb20p">
-            <el-button type="primary" icon="el-icon-circle-plus-outline" @click="$router.push('create')">新建流程
+            <el-button type="info" icon="el-icon-refresh"></el-button>
+            <el-button type="primary" icon="el-icon-circle-plus-outline"
+                       @click="dialog.AddEmployeeVisible=true">新建
+            </el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+            <el-input v-model="input" placeholder="请输入内容" class="w200p ml20p"></el-input>
+            <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
+            <el-button type="primary" icon="el-icon-refresh"
+                       @click="rows.filter.key = '';rows.filter.date = ''">重置
             </el-button>
         </el-row>
         <el-card class="box-card mb20p">

@@ -1,29 +1,27 @@
 <template>
     <div class="all-list">
-        <el-row>
-            <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" style="width: 250px;"></el-input>
-            <el-date-picker style="margin-left: 10px;"
-                            v-model="rows.filter.date"
-                            type="daterange"
-                            align="right"
-                            unlink-panels
-                            range-separator="至"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期"
-                            :picker-options="pickerOptions">
-            </el-date-picker>
-            <el-button type="primary" icon="el-icon-circle-plus-outline" style="margin-left: 10px;" @click="getData()">
-                搜索
-            </el-button>
-            <el-button type="primary" icon="el-icon-refresh" style="margin-left: 10px;"
-                       @click="rows.filter.key = '';rows.filter.date = ''">重置
-            </el-button>
-        </el-row>
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="primary" circle icon="el-icon-refresh" @click="getData()"></el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createProject()">添加项目</el-button>
-            </div>
+                <el-button type="info" icon="el-icon-refresh"></el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline"
+                           @click="dialog.AddEmployeeVisible=true">新建
+                </el-button>
+                <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
+                <el-date-picker class="w300p ml10p"
+                                v-model="rows.filter.date"
+                                type="daterange"
+                                align="right"
+                                unlink-panels
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptions">
+                </el-date-picker>
+                <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
+                <el-button type="primary" icon="el-icon-refresh"
+                           @click="rows.filter.key = '';rows.filter.date = ''">重置
+                </el-button></div>
             <div>
                 <el-radio-group v-model="rows.filter.type" @change="getData()">
                     <el-radio-button label="-1">所有</el-radio-button>

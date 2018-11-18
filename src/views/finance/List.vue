@@ -1,33 +1,26 @@
 <template>
     <div class="all-list">
-        <el-row>
-            <el-input v-model="input" placeholder="车主姓名/车牌号/车辆型号" style="width: 250px;"></el-input>
-            <el-date-picker style="margin-left: 10px;"
-                            v-model="input"
-                            type="daterange"
-                            align="right"
-                            unlink-panels
-                            range-separator="至"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期"
-                            :picker-options="pickerOptions2">
-            </el-date-picker>
-            <el-select v-model="value4" clearable placeholder="请选择" style="margin-left: 10px;">
-                <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                </el-option>
-            </el-select>
-            <el-button type="primary" icon="el-icon-circle-plus-outline" style="margin-left: 10px;">搜索</el-button>
-            <el-button type="primary" icon="el-icon-refresh" style="margin-left: 10px;">重置</el-button>
-        </el-row>
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createIncome()">添加收款</el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createPayout()">添加付款</el-button>
+                <el-button type="info"  icon="el-icon-refresh" @click="refresh()"></el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createIncome()">收款</el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createPayout()">付款</el-button>
+                <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
+                <el-date-picker class="w300p ml10p"
+                                v-model="rows.filter.date"
+                                type="daterange"
+                                align="right"
+                                unlink-panels
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptions">
+                </el-date-picker>
+                <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
+                <el-button type="primary" icon="el-icon-refresh"
+                           @click="rows.filter.key = '';rows.filter.date = ''">重置
+                </el-button>
             </div>
             <div>
                 <el-radio-group v-model="radio">
@@ -239,15 +232,15 @@
                 this.$router.push('add-car')
             },
             showIllegal(row) {
-                this.isShowIllegal = true;
+                this.isShowIllegal = true
             },
             close() {
-                this.isShowIllegal = false;
+                this.isShowIllegal = false
             },
             refreshIllegal() {
             },
             showNotProcessRow() {
-                return [];
+                return []
             }
         }
     }

@@ -3,10 +3,11 @@
         <el-tabs type="border-card">
             <el-tab-pane label="合同模板">
                 <el-row>
-                    <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
+                    <el-button type="info" icon="el-icon-refresh" @click="refresh()"></el-button>
                     <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createContractTemplate()">
-                        添加合同模板
+                        合同模板
                     </el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
                 </el-row>
                 <el-row>
                     <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
@@ -66,10 +67,11 @@
 
             <el-tab-pane label="短信模板">
                 <el-row>
-                    <el-button type="primary" circle icon="el-icon-refresh" @click="refresh()"></el-button>
+                    <el-button type="info"  icon="el-icon-refresh" @click="refresh()"></el-button>
                     <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createMessageTemplate()">
-                        添加短信模板
+                        短信模板
                     </el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
                 </el-row>
                 <el-row>
                     <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">

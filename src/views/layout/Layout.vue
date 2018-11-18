@@ -23,8 +23,8 @@
                     </div>
                 </el-footer>
             </el-container>
-            <el-aside :width="rightSideWidth">
-                <side-bar class="sidebar-container"/>
+            <el-aside class="right_sidebar" :width="rightSideWidth">
+                <side-bar-right class="sidebar-container"/>
             </el-aside>
         </el-container>
     </el-container>
@@ -33,6 +33,7 @@
 <script>
     import Navbar from './Navbar'
     import Sidebar from './Sidebar'
+    import SidebarRight from './SidebarRight'
     import AppMain from './AppMain'
     import TagsView from './TagsView'
 
@@ -40,6 +41,7 @@
         name: 'Layout',
         components: {
             'side-bar': Sidebar,
+            'side-bar-right': SidebarRight,
             'nav-bar': Navbar,
             'app-main': AppMain,
             'tags-view': TagsView
@@ -77,6 +79,10 @@
         background: $el-aside-bg;
         color: $el-aside-color;
         overflow: hidden;
+    }
+    .right_sidebar{
+        border-left: 4px solid gainsboro;
+        background: rgba(161, 161, 161, 0.32);
     }
 
     .el-main {
