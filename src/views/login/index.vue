@@ -12,7 +12,7 @@
 
                 <div v-if="notforget">
                     <div class="logo">
-                        <icon name="tree" :scale="8"></icon>
+                        <icon name="tree" :scale="6"></icon>
                         <div class="title">
                             <a>
                                 <span>{{$t('login.edenPart1')}}</span><span
@@ -31,8 +31,12 @@
                                 <el-input :placeholder="$t('login.pwdplaceholder')" type="password"
                                           v-model="ruleForm.password"></el-input>
                             </el-form-item>
+                            <el-form-item prop="password">
+                                <verify v-on:verifySuccess="verifySuccess=true"/>
+                            </el-form-item>
                             <el-form-item class="btn">
-                                <el-button :loading="loading" type="primary" @click="handleLogin('ruleForm')">
+                                <el-button :loading="loading" :disabled="!verifySuccess" type="primary"
+                                           @click="handleLogin('ruleForm')">
                                     {{$t('login.btn')}}
                                 </el-button>
                             </el-form-item>
@@ -100,6 +104,8 @@
 <script>
     import langselect from '@/components/langselect'
     import storage from '@/utils/storage'
+    import verify from '@/components/verify'
+
 
     const useRegexp = {
         exist: /\S+/
@@ -108,7 +114,7 @@
     export default {
         name: 'login',
         components: {
-            langselect
+            langselect, verify
         },
         mounted() {
             // this.$notify({
@@ -169,7 +175,8 @@
                     email: '',
                     newPassword: '',
                     confirmPassword: ''
-                }
+                },
+                verifySuccess: false
             }
         },
         computed: {
@@ -235,6 +242,8 @@
             forgetHandle() {
                 this.$message.success(this.$t('login.pwdChanged'))
                 this.wrapSwitch(true)
+            },
+            init() {
             }
         }
     }
@@ -285,7 +294,7 @@
             right: 29px;
             top: 25px;
         }
-        .translate-left,.translate-right {
+        .translate-left, .translate-right {
             will-change: auto;
             transform: translateX(0px);
             transition: transform .6s ease-in-out;
