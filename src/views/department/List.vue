@@ -8,24 +8,16 @@
                             <div slot="header" class="clearfix">
                                 <span>所有部门</span>
                                 <el-button style="float: right; padding: 3px 0" type="text"
-                                           @click="dialog.AddDepartmentVisible=true"
-                                >新建
+                                           @click="dialog.AddDepartmentVisible=true">新建
                                 </el-button>
                             </div>
-                            <el-tree
-                                    :data="departments"
-                                    node-key="id"
-                                    default-expand-all
-                                    :props="defaultProps">
+                            <el-tree :data="departments" node-key="id" default-expand-all :props="defaultProps">
                         <span class="custom-tree-node" slot-scope="{ node, data }">
                             <span>{{ node.label }}</span>
                             <span>
-                              <el-button
-                                      type="text"
-                                      size="mini"
-                                      @click="() => remove(node, data)">
-                                {{data.id==1?"":"删除"}}
-                              </el-button>
+                                <el-button type="text" size="mini" @click="() => remove(node, data)">
+                                    {{data.id==1?"":"删除"}}
+                                </el-button>
                             </span>
                           </span>
                             </el-tree>
@@ -36,22 +28,14 @@
                             <div slot="header" class="clearfix">
                                 <span>所有职位</span>
                                 <el-button style="float: right; padding: 3px 0" type="text"
-                                           @click="dialog.AddPositionVisible=true"
-                                >新建
+                                           @click="dialog.AddPositionVisible=true">新建
                                 </el-button>
                             </div>
-                            <el-tree
-                                    :data="positions"
-                                    node-key="id"
-                                    default-expand-all
-                                    :props="defaultProps">
+                            <el-tree :data="positions" node-key="id" default-expand-all :props="defaultProps">
                         <span class="custom-tree-node" slot-scope="{ node, data }">
                             <span>{{ node.label }}</span>
                             <span>
-                              <el-button
-                                      type="text"
-                                      size="mini"
-                                      @click="() => remove(node, data)">
+                              <el-button type="text" size="mini" @click="() => remove(node, data)">
                                 {{data.id==1?"":"删除"}}
                               </el-button>
                             </span>
@@ -73,7 +57,7 @@
                         <el-button type="primary" icon="el-icon-circle-plus-outline"
                                    @click="dialog.AddEmployeeVisible=true">新建
                         </el-button>
-                        <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                        <el-button type="danger" icon="el-icon-delete" @click="del(rows.notify.list)">删除</el-button>
                         <el-input v-model="input" placeholder="请输入内容" class="w200p ml20p"></el-input>
                         <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
                         <el-button type="primary" icon="el-icon-refresh"
@@ -81,7 +65,7 @@
                         </el-button>
                     </el-row>
                     <el-table :data="rows.notify.list" style="width: 100%" border stripe v-loading="listLoading">
-                        <el-table-column type="selection" width="55"></el-table-column>
+                        <el-table-column type="selection"></el-table-column>
                         <el-table-column fixed prop="Name" label="头像" sortable></el-table-column>
                         <el-table-column prop="Number" label="职员姓名" sortable></el-table-column>
                         <el-table-column prop="Number" label="性别" sortable></el-table-column>
@@ -97,11 +81,11 @@
                         <el-table-column prop="" label="操作" fixed="right" width="150">
                             <template slot-scope="scope">
                                 <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
-                                <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                                <el-button type="primary" size="small" @click="del([scope.row])">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
-                    <el-row class="mt20p">
+                    <el-row class="table-bottom" v-if="rows.notify.list.length != 0">
                         <el-pagination class="pull-right"
                                        @size-change="handleSizeChange()"
                                        @current-change="getData()"
@@ -112,6 +96,7 @@
                                        :total="rows.count">
                         </el-pagination>
                     </el-row>
+
                 </el-card>
             </el-col>
         </el-row>
@@ -180,31 +165,32 @@
                     }
                     ]
                 }],
-                positions: [{
-                    id: 2,
-                    label: '经营层',
-                }, {
-                    id: 3,
-                    label: '财务部'
-                }, {
-                    id: 4,
-                    label: '安全生产部'
-                }, {
-                    id: 5,
-                    label: '市场经营部'
-                }, {
-                    id: 6,
-                    label: '广告项目部'
-                }, {
-                    id: 7,
-                    label: '测试部门'
-                }, {
-                    id: 8,
-                    label: '研发部门'
-                }, {
-                    id: 9,
-                    label: '工程管理部'
-                }
+                positions: [
+                    {
+                        id: 2,
+                        label: '经营层',
+                    }, {
+                        id: 3,
+                        label: '财务部'
+                    }, {
+                        id: 4,
+                        label: '安全生产部'
+                    }, {
+                        id: 5,
+                        label: '市场经营部'
+                    }, {
+                        id: 6,
+                        label: '广告项目部'
+                    }, {
+                        id: 7,
+                        label: '测试部门'
+                    }, {
+                        id: 8,
+                        label: '研发部门'
+                    }, {
+                        id: 9,
+                        label: '工程管理部'
+                    }
                 ],
                 defaultProps: {
                     children: 'children',
@@ -222,6 +208,20 @@
             },
             getData() {
 
+            },
+            del(row) {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    console.log(row)
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    })
+                }).catch(() => {
+                })
             }
         },
         filter: {},

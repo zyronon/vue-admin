@@ -2,13 +2,13 @@
     <div class="all-list">
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="info" icon="el-icon-refresh"></el-button>
+                <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
                 <el-button type="primary" icon="el-icon-circle-plus-outline"
-                           @click="dialog.AddEmployeeVisible=true">新建
+                           @click="dialogProjectVisible=true">新建
                 </el-button>
-                <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                <el-button type="danger" icon="el-icon-delete" @click="del(rows.list)">删除</el-button>
                 <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
-                <el-date-picker class="w300p ml10p"
+                <el-date-picker class="w250p ml10p"
                                 v-model="rows.filter.date"
                                 type="daterange"
                                 align="right"
@@ -21,7 +21,8 @@
                 <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
                 <el-button type="primary" icon="el-icon-refresh"
                            @click="rows.filter.key = '';rows.filter.date = ''">重置
-                </el-button></div>
+                </el-button>
+            </div>
             <div>
                 <el-radio-group v-model="rows.filter.type" @change="getData()">
                     <el-radio-button label="-1">所有</el-radio-button>
@@ -33,7 +34,7 @@
         </el-row>
         <el-row>
             <el-table :data="rows.list" style="width: 100%" border stripe v-loading="listLoading">
-                <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                <el-table-column type="selection"></el-table-column>
                 <el-table-column fixed prop="Name" label="项目编号" sortable width="450"></el-table-column>
                 <el-table-column prop="Number" label="项目编号" sortable></el-table-column>
                 <el-table-column prop="Status" label="状态" sortable>
@@ -45,21 +46,23 @@
                 <el-table-column prop="Create_Date" label="创建时间" sortable></el-table-column>
                 <el-table-column prop="" label="操作" fixed="right" width="150">
                     <template slot-scope="scope">
-                        <el-button type="primary" size="small" @click="look(scope.row.id)">查看</el-button>
-                        <el-button type="primary" size="small" @click="del(scope.row.id)">删除</el-button>
+                        <el-button type="primary" size="small" @click="look(scope.row)">查看</el-button>
+                        <el-button type="danger" size="small" @click="del([scope.row])">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
+            <el-row class="table-bottom">
+                <el-pagination class="pull-right"
+                               @size-change="handleSizeChange()"
+                               @current-change="getData()"
+                               :current-page="1"
+                               :page-sizes="[10, 20, 30, 40]"
+                               :page-size="100"
+                               layout="total, sizes, prev, pager, next, jumper"
+                               :total="rows.count">
+                </el-pagination>
+            </el-row>
         </el-row>
-        <el-pagination
-                @size-change="handleSizeChange()"
-                @current-change="getData()"
-                :current-page="1"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="rows.count">
-        </el-pagination>
 
         <el-dialog title="项目" :visible.sync="dialogProjectVisible" width="30%">
             <div>
@@ -143,22 +146,24 @@
         methods: {
             async getData() {
                 this.listLoading = true
-                let data = {
-                    offset: this.rows.offset,
-                    limit: this.rows.limit,
-                    key: this.rows.filter.key,
-                    date: this.rows.filter.date,
-                    type: this.rows.filter.type,
+                setTimeout(async () => {
+                    let data = {
+                        offset: this.rows.offset,
+                        limit: this.rows.limit,
+                        key: this.rows.filter.key,
+                        date: this.rows.filter.date,
+                        type: this.rows.filter.type,
 
-                }
-                // console.log(data)
-                let result = await Project.list(data)
-                // console.log(result)
-                if (result.status == 1) {
-                    this.rows.list = result.data.list
-                    this.rows.count = result.data.count
-                }
-                this.listLoading = false
+                    }
+                    // console.log(data)
+                    let result = await Project.list(data)
+                    // console.log(result)
+                    if (result.status == 1) {
+                        this.rows.list = result.data.list
+                        this.rows.count = result.data.count
+                    }
+                    this.listLoading = false
+                }, 500)
             },
             handleSizeChange(limit) {
                 this.rows.limit = limit
@@ -170,13 +175,25 @@
             createProject() {
                 this.dialogProjectVisible = true
             },
-            del(id) {
-                console.log(id)
+            del(row) {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                    .then(() => {
+                        console.log(row)
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        })
+                    }).catch(() => {
+                })
             },
             look(id) {
                 console.log(id)
                 this.$router.push({name: 'ProjectDetail', params: {id: id}})
-            }
+            },
         },
         filters: {
             processStatus(value) {

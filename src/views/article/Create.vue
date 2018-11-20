@@ -1,7 +1,7 @@
 <template>
     <div class="add-article">
         <el-row>
-            <el-button type="primary" icon="el-icon-arrow-left" style="margin-bottom: 10px;" @click="back()">返回
+            <el-button type="primary" icon="el-icon-arrow-left" style="margin-bottom: 10px;" @click="$router.go(-1)">返回
             </el-button>
         </el-row>
         <el-card class="box-card">

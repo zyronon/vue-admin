@@ -2,11 +2,11 @@
     <div class="all-list">
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="info"  icon="el-icon-refresh" @click="refresh()"></el-button>
+                <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
                 <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createIncome()">收款</el-button>
                 <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createPayout()">付款</el-button>
-                <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
-                <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
+                <el-button type="danger" icon="el-icon-delete" @click="del(rows)">删除</el-button>
+                <el-input v-model="rows.filter.key" placeholder="文章名称" class="w200p ml10p"></el-input>
                 <el-date-picker class="w300p ml10p"
                                 v-model="rows.filter.date"
                                 type="daterange"
@@ -29,9 +29,9 @@
                 </el-radio-group>
             </div>
         </el-row>
-        <el-row>
-            <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
-                <!--<el-table-column type="selection" width="55"></el-table-column>-->
+        <el-row class="mb0p">
+            <el-table :data="rows"  border stripe v-loading="listLoading">
+                <el-table-column type="selection"></el-table-column>
                 <el-table-column fixed prop="CarOwnerName" label="收款人" sortable></el-table-column>
                 <el-table-column prop="CarBrand" label="付款人" sortable></el-table-column>
                 <el-table-column prop="CarType" label="金额" sortable></el-table-column>
@@ -42,89 +42,22 @@
                 <el-table-column prop="" label="操作" fixed="right" width="150">
                     <template slot-scope="scope">
                         <el-button type="primary" size="small">查看</el-button>
-                        <el-button type="primary" size="small">删除</el-button>
+                        <el-button type="danger" size="small" @click="del([scope.row])">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="1"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="400">
-        </el-pagination>
-
-
-        <el-dialog title="违章" :visible.sync="isShowIllegal" width="70%">
-            <div>
-                <div class="modal-body">
-                    <el-row>
-                        <el-col :span="6">
-                            <el-button type="primary" icon="el-icon-circle-plus-outline" style="margin-left: 10px;">
-                                刷新违章
-                            </el-button>
-                        </el-col>
-                        <el-col :span="6">
-                            <label class="col-form-label">上次刷新时间：
-                                <span v-if="car!=null">
-                                    <span v-if="car.Illegal.FetchDate!=null">
-                                    {{car.Illegal.FetchDate}}
-                                    </span>
-                                </span>
-                            </label>
-                        </el-col>
-                        <el-col :span="6">
-                            <label class="col-form-label">车牌号：{{car.LicensePlateNumber}}</label>
-                        </el-col>
-                        <el-col :span="6">
-                            <label class="col-form-label">车牌号：{{car.CarOwnerName}}</label>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="6"><label class="col-md-3 col-form-label">违章总条数：{{data.amount}}</label>
-                        </el-col>
-                        <el-col :span="6"><label class="col-md-3 col-form-label">未处理违章条数：{{data.untreated}}</label>
-                        </el-col>
-                        <el-col :span="6"><label class="col-md-3 col-form-label">未处理违章总罚款：{{data.totalFine}}</label>
-                        </el-col>
-                        <el-col :span="6"><label class="col-md-3 col-form-label">未处理违章总扣分：{{data.totalPoints}}</label>
-                        </el-col>
-
-                    </el-row>
-                    <el-tabs type="border-card">
-                        <el-tab-pane label="未处理">
-                            <el-table :data="showNotProcessRow()" style="width: 100%" border stripe
-                                      v-loading="listLoading">
-                                <el-table-column fixed prop="CarOwnerName" label="金额" sortable></el-table-column>
-                                <el-table-column prop="LicensePlateNumber" label="地址" sortable></el-table-column>
-                                <el-table-column prop="CarBrand" label="原因" sortable></el-table-column>
-                                <el-table-column prop="CarType" label="扣分" sortable></el-table-column>
-                                <el-table-column prop="CarType" label="省份" sortable></el-table-column>
-                                <el-table-column prop="CanRentTime" label="城市" sortable></el-table-column>
-                                <el-table-column prop="CreationTime" label="状态" sortable></el-table-column>
-                                <el-table-column prop="IsRent" label="时间" sortable></el-table-column>
-                            </el-table>
-                        </el-tab-pane>
-                        <el-tab-pane label="全部">
-                            <el-table :data="showNotProcessRow()" style="width: 100%" border stripe
-                                      v-loading="listLoading">
-                                <el-table-column fixed prop="CarOwnerName" label="金额" sortable></el-table-column>
-                                <el-table-column prop="LicensePlateNumber" label="地址" sortable></el-table-column>
-                                <el-table-column prop="CarBrand" label="原因" sortable></el-table-column>
-                                <el-table-column prop="CarType" label="扣分" sortable></el-table-column>
-                                <el-table-column prop="CarType" label="省份" sortable></el-table-column>
-                                <el-table-column prop="CanRentTime" label="城市" sortable></el-table-column>
-                                <el-table-column prop="CreationTime" label="状态" sortable></el-table-column>
-                                <el-table-column prop="IsRent" label="时间" sortable></el-table-column>
-                            </el-table>
-                        </el-tab-pane>
-                    </el-tabs>
-                </div>
-            </div>
-        </el-dialog>
+        <el-row class="table-bottom" v-if="rows.length != 0">
+            <el-pagination class="pull-right"
+                           @size-change="handleSizeChange()"
+                           @current-change="getData()"
+                           :current-page="1"
+                           :page-sizes="[10, 20, 30, 40]"
+                           :page-size="100"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           :total="rows.count">
+            </el-pagination>
+        </el-row>
 
     </div>
 </template>
@@ -161,7 +94,7 @@
                 input: '',
                 listLoading: false,
                 radio: '可发车',
-                pickerOptions2: {
+                pickerOptions: {
                     shortcuts: [{
                         text: '最近一周',
                         onClick(picker) {
@@ -241,6 +174,26 @@
             },
             showNotProcessRow() {
                 return []
+            },
+            getData() {
+
+            },
+            look(row) {
+            },
+            del(row) {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                    .then(() => {
+                        console.log(row)
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        })
+                    }).catch(() => {
+                })
             }
         }
     }

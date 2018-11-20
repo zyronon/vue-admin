@@ -74,8 +74,8 @@
             </el-form>
             <el-row style="border-top: 1px solid gainsboro;padding-top: 20px;">
                 <el-col :span="24">
-                    <el-button type="primary" icon="el-icon-check" style="margin-bottom: 10px;">提交</el-button>
-                    <el-button type="danger" icon="el-icon-delete" style="margin-bottom: 10px;">重置</el-button>
+                    <el-button type="primary" icon="el-icon-check">提交</el-button>
+                    <el-button type="danger" icon="el-icon-delete">重置</el-button>
                 </el-col>
             </el-row>
         </el-card>

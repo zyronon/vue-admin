@@ -2,11 +2,11 @@
     <div class="all-list">
         <el-row type="flex" justify="space-between">
             <div>
-                <el-button type="info" icon="el-icon-refresh"></el-button>
+                <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
                 <el-button type="primary" icon="el-icon-circle-plus-outline"
-                           @click="dialog.AddEmployeeVisible=true">新建
+                           @click="$router.push('create')">新建
                 </el-button>
-                <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                <el-button type="danger" icon="el-icon-delete" @click="del(rows)">删除</el-button>
                 <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
                 <el-date-picker class="w300p ml10p"
                                 v-model="rows.filter.date"
@@ -31,9 +31,9 @@
                 </el-radio-group>
             </div>
         </el-row>
-        <el-row>
-            <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
-                <el-table-column type="selection" width="55"></el-table-column>
+        <el-row class="mb0p">
+            <el-table :data="rows" class="w100" border stripe v-loading="listLoading">
+                <el-table-column type="selection"></el-table-column>
                 <el-table-column fixed prop="CarOwnerName" label="车主姓名" sortable></el-table-column>
                 <el-table-column prop="LicensePlateNumber" label="车牌号/是否现车" sortable width="200">
                     <template slot-scope="scope">
@@ -56,30 +56,31 @@
                 <el-table-column prop="IsRent" label="是否可发车" sortable></el-table-column>
                 <el-table-column prop="" label="操作" fixed="right" width="250">
                     <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
+                        <el-button @click="look(scope.row)" type="info" size="small">查看</el-button>
                         <el-button type="primary" size="small">编辑</el-button>
-                        <el-button type="primary" size="small">删除</el-button>
+                        <el-button type="danger" size="small" @click="del([scope.row])">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="1"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="400">
-        </el-pagination>
-
+        <el-row class="table-bottom" v-if="rows.length != 0">
+            <el-pagination class="pull-right"
+                           @size-change="handleSizeChange()"
+                           @current-change="getData()"
+                           :current-page="1"
+                           :page-sizes="[10, 20, 30, 40]"
+                           :page-size="100"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           :total="rows.count">
+            </el-pagination>
+        </el-row>
 
         <el-dialog title="违章" :visible.sync="isShowIllegal" width="70%">
             <div>
                 <div class="modal-body">
                     <el-row>
                         <el-col :span="6">
-                            <el-button type="primary" icon="el-icon-circle-plus-outline" style="margin-left: 10px;">
+                            <el-button type="primary" icon="el-icon-refresh" class="ml10p">
                                 刷新违章
                             </el-button>
                         </el-col>
@@ -141,7 +142,6 @@
                 </div>
             </div>
         </el-dialog>
-
     </div>
 </template>
 
@@ -177,7 +177,7 @@
                 input: '',
                 listLoading: false,
                 radio: '可发车',
-                pickerOptions2: {
+                pickerOptions: {
                     shortcuts: [{
                         text: '最近一周',
                         onClick(picker) {
@@ -226,6 +226,10 @@
             }
         },
         methods: {
+            look(id) {
+                console.log(id)
+                // this.$router.push({name: 'ProjectDetail', params: {id: id}})
+            },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`)
             },
@@ -251,6 +255,21 @@
             },
             showNotProcessRow() {
                 return [];
+            },
+            del(row) {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                    .then(() => {
+                        console.log(row)
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        })
+                    }).catch(() => {
+                })
             }
         }
     }

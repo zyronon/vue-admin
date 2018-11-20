@@ -20,7 +20,7 @@
                 <el-row class="mb10p mt10p">
                     <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addLevel()">
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" @click="delLevel(index)"></el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="delLevel(index)" v-if="index!=0"></el-button>
                 </el-row>
                 <el-card class="box-card">
                     <el-form :inline="true" :model="formInline" class="demo-form-inline">
@@ -51,10 +51,10 @@
             </div>
             <el-row style="border-top: 1px solid gainsboro;padding-top: 20px;margin-top: 20px;">
                 <el-col :span="24">
-                    <el-button type="primary" icon="el-icon-check" >提交</el-button>
-                    <el-button @click="$router.push('detail')" type="success" icon="el-icon-check" >预览
+                    <el-button type="primary" icon="el-icon-check">提交</el-button>
+                    <el-button @click="$router.push('detail')" type="success" icon="el-icon-check">预览
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" >重置</el-button>
+                    <el-button type="danger" icon="el-icon-delete">重置</el-button>
                 </el-col>
             </el-row>
         </el-card>
@@ -82,7 +82,7 @@
             },
             delLevel(index) {
                 if (index != 0)
-                this.list.splice(index, 1)
+                    this.list.splice(index, 1)
             }
         },
         filter: {},

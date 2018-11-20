@@ -31,12 +31,8 @@
                 <el-row>
                     <el-col :span="24">
                         <el-form-item label="内容:">
-                            <el-input
-                                    type="textarea"
-                                    :autosize="{ minRows: 4, maxRows: 7}"
-                                    placeholder="请输入内容"
-                                    v-model="textarea2">
-                            </el-input>
+                            <div ref="editor" style="text-align:left"></div>
+
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -71,10 +67,10 @@
             </el-form>
             <el-row style="border-top: 1px solid gainsboro;padding-top: 20px;">
                 <el-col :span="24">
-                    <el-button type="primary" icon="el-icon-check" style="margin-bottom: 10px;">提交</el-button>
-                    <el-button @click="$router.push('detail')" type="success" icon="el-icon-check" style="margin-bottom: 10px;">预览
+                    <el-button type="primary" icon="el-icon-check">提交</el-button>
+                    <el-button @click="$router.push('detail')" type="success" icon="el-icon-check">预览
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" style="margin-bottom: 10px;">重置</el-button>
+                    <el-button type="danger" icon="el-icon-delete">重置</el-button>
                 </el-col>
             </el-row>
         </el-card>

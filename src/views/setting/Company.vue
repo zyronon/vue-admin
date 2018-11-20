@@ -7,11 +7,11 @@
                     <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createContractTemplate()">
                         合同模板
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="del(rows,1)">删除</el-button>
                 </el-row>
                 <el-row>
                     <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
-                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column type="selection"></el-table-column>
                         <el-table-column fixed prop="CarOwnerName" label="合同编号" sortable></el-table-column>
                         <el-table-column fixed prop="CarOwnerName" label="合同名称" sortable></el-table-column>
                         <el-table-column prop="CarBrand" label="合同状态" sortable></el-table-column>
@@ -26,15 +26,17 @@
                         </el-table-column>
                     </el-table>
                 </el-row>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="1"
-                        :page-sizes="[10, 20, 30, 40]"
-                        :page-size="100"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
-                </el-pagination>
+                <el-row class="table-bottom" v-if="rows.length != 0">
+                    <el-pagination class="pull-right"
+                                   @size-change="handleSizeChange()"
+                                   @current-change="getData()"
+                                   :current-page="1"
+                                   :page-sizes="[10, 20, 30, 40]"
+                                   :page-size="100"
+                                   layout="total, sizes, prev, pager, next, jumper"
+                                   :total="rows.count">
+                    </el-pagination>
+                </el-row>
 
                 <el-dialog title="合同模板" :visible.sync="ContractTemplateVisible" width="80%">
                     <div class="dialog-body">
@@ -71,11 +73,11 @@
                     <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createMessageTemplate()">
                         短信模板
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" @click="$router.push('create')">删除</el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="del(rows,2)">删除</el-button>
                 </el-row>
                 <el-row>
                     <el-table :data="rows" style="width: 100%" border stripe v-loading="listLoading">
-                        <!--<el-table-column type="selection" width="55"></el-table-column>-->
+                        <el-table-column type="selection"></el-table-column>
                         <el-table-column fixed prop="CarOwnerName" label="短信模板编号" sortable></el-table-column>
                         <el-table-column fixed prop="CarOwnerName" label="短信模板名称" sortable></el-table-column>
                         <el-table-column prop="CarBrand" label="短信模板状态" sortable></el-table-column>
@@ -90,15 +92,17 @@
                         </el-table-column>
                     </el-table>
                 </el-row>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="1"
-                        :page-sizes="[10, 20, 30, 40]"
-                        :page-size="100"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
-                </el-pagination>
+                <el-row class="table-bottom" v-if="rows.length != 0">
+                    <el-pagination class="pull-right"
+                                   @size-change="handleSizeChange()"
+                                   @current-change="getData()"
+                                   :current-page="1"
+                                   :page-sizes="[10, 20, 30, 40]"
+                                   :page-size="100"
+                                   layout="total, sizes, prev, pager, next, jumper"
+                                   :total="rows.count">
+                    </el-pagination>
+                </el-row>
 
                 <el-dialog title="短信模板" :visible.sync="MessageTemplateVisible" width="20%">
                     <div>
@@ -178,6 +182,21 @@
             },
             createMessageTemplate() {
                this.MessageTemplateVisible = true;
+            },
+            del(row,type) {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                    .then(() => {
+                        console.log(row)
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        })
+                    }).catch(() => {
+                })
             }
         },
         mounted() {
