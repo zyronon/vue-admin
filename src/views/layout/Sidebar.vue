@@ -1,7 +1,7 @@
 <template>
     <el-scrollbar wrapClass="scrollbar-wrapper">
         <el-menu
-                unique-opened="true"
+                unique-opened
                 class="sidebar-menu"
                 mode="vertical"
                 :show-timeout="200"

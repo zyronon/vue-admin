@@ -8,6 +8,8 @@ export default {
         dashboard: '首页',
         widget: '控件',
         permission: '权限控制',
+        PermissionList: '权限列表',
+        CreatePermission: '创建权限',
         datatable: '表格',
         components: '组件',
         page1: '组件1',

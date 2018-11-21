@@ -8,6 +8,12 @@ p {
     margin: 0;
 }
 
+
+/*
+
+width
+
+*/
 $width: 1000;
 @while $width >= 0 {
     .w#{$width}p {
@@ -16,6 +22,22 @@ $width: 1000;
     $width: $width - 50;
 }
 
+
+$width: 200;
+@while $width >= 0 {
+    .w#{$width} {
+        width: percentage($width / 100);
+    }
+    $width: $width - 10;
+}
+
+
+
+/*
+
+margin
+
+*/
 $margin: 50;
 
 @while $margin >= 0 {
@@ -57,6 +79,14 @@ $margin: 50;
     $margin: $margin - 1;
 }
 
+
+/*
+
+padding
+
+*/
+
+
 $padding: 50;
 @while $padding >= 0 {
     .pl#{$padding}p {
@@ -97,20 +127,19 @@ $padding: 50;
     $padding: $padding - 1;
 }
 
+
+/*
+
+font
+
+*/
+
 $font: 30;
 @while $font >=0 {
     .f#{$font} {
         font-size: #{$font}px;
     }
     $font: $font - 1;
-}
-
-$width: 200;
-@while $width >= 0 {
-    .w#{$width} {
-        width: percentage($width / 100);
-    }
-    $width: $width - 10;
 }
 
 .pull-left {

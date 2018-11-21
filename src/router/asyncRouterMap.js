@@ -202,6 +202,36 @@ export const asyncRouterMap = [
             // }
         ]
     },
+    // 权限页面 只有 admin 用户才可访问
+    {
+        path: '/permission',
+        component: Layout,
+        redirect: '/permission/list',
+        meta: {
+            roles: ['admin']
+        },
+        children: [
+            {
+                path: 'list',
+                component: _import('permission/List'),
+                name: 'PermissionList',
+                meta: {
+                    title: 'PermissionList',
+                    icon: 'test',
+                    roles: ['admin']
+                }
+            },{
+                path: 'create',
+                component: _import('permission/Create'),
+                name: 'CreatePermission',
+                hidden:true,
+                meta: {
+                    title: 'CreatePermission',
+                    icon: 'widgets'
+                }
+            }
+        ]
+    },
     // 车辆管理
     {
         path: '/car',
@@ -344,27 +374,6 @@ export const asyncRouterMap = [
                 meta: {
                     title: 'CompanySetting',
                     icon: 'widgets'
-                }
-            }
-        ]
-    },
-    // 权限页面 只有 admin 用户才可访问
-    {
-        path: '/permission',
-        component: Layout,
-        redirect: '/permission/index',
-        meta: {
-            roles: ['admin']
-        },
-        children: [
-            {
-                path: 'index',
-                component: _import('permission/index'),
-                name: 'permission',
-                meta: {
-                    title: 'permission',
-                    icon: 'test',
-                    roles: ['admin']
                 }
             }
         ]
