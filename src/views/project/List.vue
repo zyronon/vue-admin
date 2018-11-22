@@ -7,7 +7,6 @@
                            @click="dialogProjectVisible=true">新建
                 </el-button>
                 <el-button type="danger" icon="el-icon-delete" @click="del(rows.list)">删除</el-button>
-                <el-input v-model="rows.filter.key" placeholder="项目编号/项目名称" class="w200p ml10p"></el-input>
                 <el-date-picker class="w250p ml10p"
                                 v-model="rows.filter.date"
                                 type="daterange"
@@ -18,10 +17,10 @@
                                 end-placeholder="结束日期"
                                 :picker-options="pickerOptions">
                 </el-date-picker>
-                <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
-                <el-button type="primary" icon="el-icon-refresh"
-                           @click="rows.filter.key = '';rows.filter.date = ''">重置
-                </el-button>
+                <el-input placeholder="请输入内容" v-model="input" class="input-with-select w250p ml10p">
+                    <el-button slot="append" icon="el-icon-delete" @click="reset()"></el-button>
+                    <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
+                </el-input>
             </div>
             <div>
                 <el-radio-group v-model="rows.filter.type" @change="getData()">
@@ -97,6 +96,7 @@
         name: 'ProjectList',
         data() {
             return {
+                input: "",
                 project: {},
                 dialogProjectVisible: false,
                 rows: {
@@ -213,6 +213,7 @@
 <style scoped lang="scss">
     .el-row {
         margin-bottom: 20px;
+
         &:last-child {
             margin-bottom: 0;
         }

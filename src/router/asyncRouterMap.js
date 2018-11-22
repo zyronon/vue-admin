@@ -81,20 +81,20 @@ export const asyncRouterMap = [
                     title: 'NotifyList',
                     icon: 'widgets'
                 }
-            },{
+            }, {
                 path: 'create',
                 component: _import('notify/Create'),
                 name: 'CreateNotify',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'CreateNotify',
                     icon: 'widgets'
                 }
-            },{
+            }, {
                 path: 'detail',
                 component: _import('notify/Detail'),
                 name: 'NotifyDetail',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'NotifyDetail',
                     icon: 'widgets'
@@ -120,11 +120,11 @@ export const asyncRouterMap = [
                     title: 'ApplyList',
                     icon: 'widgets'
                 }
-            },{
+            }, {
                 path: 'create',
                 component: _import('apply/Create'),
                 name: 'CreateApply',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'CreateApply',
                     icon: 'widgets'
@@ -132,7 +132,7 @@ export const asyncRouterMap = [
             }
         ]
     },
-    // 审批流程
+    // 流程
     {
         path: '/approval',
         component: Layout,
@@ -155,16 +155,16 @@ export const asyncRouterMap = [
                 path: 'create',
                 component: _import('approval/Create'),
                 name: 'CreateApproval',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'CreateApproval',
                     icon: 'widgets'
                 }
-            },{
+            }, {
                 path: 'detail',
                 component: _import('approval/Detail'),
                 name: 'ApprovalDetail',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'ApprovalDetail',
                     icon: 'widgets'
@@ -220,11 +220,11 @@ export const asyncRouterMap = [
                     icon: 'test',
                     roles: ['admin']
                 }
-            },{
+            }, {
                 path: 'create',
                 component: _import('permission/Create'),
                 name: 'CreatePermission',
-                hidden:true,
+                hidden: true,
                 meta: {
                     title: 'CreatePermission',
                     icon: 'widgets'
@@ -236,6 +236,7 @@ export const asyncRouterMap = [
     {
         path: '/car',
         component: Layout,
+        hidden: true,
         name: 'CarManager',
         meta: {
             title: 'CarManager',
@@ -266,6 +267,7 @@ export const asyncRouterMap = [
     {
         path: '/article',
         component: Layout,
+        hidden: true,
         meta: {
             title: 'ArticleManager',
             icon: 'widgets'
@@ -295,6 +297,7 @@ export const asyncRouterMap = [
     {
         path: '/order',
         component: Layout,
+        hidden: true,
         meta: {
             title: 'OrderManager',
             icon: 'widgets'
@@ -324,6 +327,7 @@ export const asyncRouterMap = [
     {
         path: '/finance',
         component: Layout,
+        hidden: true,
         meta: {
             title: 'FinanceManager',
             icon: 'widgets'

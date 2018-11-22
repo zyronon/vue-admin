@@ -6,11 +6,20 @@
                        @click="$router.push('create')">新建
             </el-button>
             <el-button type="danger" icon="el-icon-delete" @click="del(rows.notify.list)">删除</el-button>
-            <el-input v-model="input" placeholder="请输入内容" class="w200p ml20p"></el-input>
-            <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
-            <el-button type="primary" icon="el-icon-refresh"
-                       @click="rows.filter.key = '';rows.filter.date = ''">重置
-            </el-button>
+            <el-date-picker class="w250p ml10p"
+                            v-model="rows.filter.date"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+            </el-date-picker>
+            <el-input placeholder="请输入内容" v-model="input" class="input-with-select w250p ml10p">
+                <el-button slot="append" icon="el-icon-delete" @click="reset()"></el-button>
+                <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
+            </el-input>
         </el-row>
         <el-card class="box-card mb20p">
             <div slot="header" class="clearfix">
@@ -60,8 +69,44 @@
                 rows: {
                     notify: {
                         list: []
+                    },
+                    list: [],
+                    count: 0,
+                    offset: 0,
+                    limit: 10,
+                    filter: {
+                        type: '-1',
+                        date: [],
+                        key: ''
                     }
-                }
+                },
+                pickerOptions: {
+                    shortcuts: [{
+                        text: '最近一周',
+                        onClick(picker) {
+                            const end = new Date()
+                            const start = new Date()
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                            picker.$emit('pick', [start, end])
+                        }
+                    }, {
+                        text: '最近一个月',
+                        onClick(picker) {
+                            const end = new Date()
+                            const start = new Date()
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                            picker.$emit('pick', [start, end])
+                        }
+                    }, {
+                        text: '最近三个月',
+                        onClick(picker) {
+                            const end = new Date()
+                            const start = new Date()
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+                            picker.$emit('pick', [start, end])
+                        }
+                    }]
+                },
             }
         },
         created() {
