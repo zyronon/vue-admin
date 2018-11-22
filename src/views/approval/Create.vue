@@ -7,10 +7,10 @@
         <el-card class="box-card">
             <el-form :inline="true" :model="formInline" class="demo-form-inline mb20p">
                 <el-form-item label="审批流程名称">
-                    <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+                    <el-input v-model="formInline.user" placeholder="审批流程名称"></el-input>
                 </el-form-item>
                 <el-form-item label="使用范围">
-                    <el-select v-model="formInline.region" placeholder="活动区域">
+                    <el-select v-model="formInline.region" placeholder="使用范围">
                         <el-option label="区域一" value="shanghai"></el-option>
                         <el-option label="区域二" value="beijing"></el-option>
                     </el-select>
@@ -38,15 +38,10 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="审批人员：">
-                                <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+                                <el-input v-model="formInline.user" class="w400p" placeholder="审批人" @focus="addUser()">
+                                    <el-button slot="append" icon="el-icon-plus" @click="addUser()"></el-button>
+                                </el-input>
                             </el-form-item>
-                            <el-form-item label="审批通过：">
-                                <el-select v-model="formInline.region" placeholder="活动区域">
-                                    <el-option label="区域一" value="shanghai"></el-option>
-                                    <el-option label="区域二" value="beijing"></el-option>
-                                </el-select>
-                            </el-form-item>
-
                         </el-form>
                     </div>
                 </div>
@@ -64,6 +59,17 @@
                 </el-col>
             </el-row>
         </el-card>
+        <!--<el-dialog-->
+                <!--title="提示"-->
+                <!--:visible.sync="dialogVisible"-->
+                <!--width="30%"-->
+                <!--:before-close="handleClose">-->
+            <!--<span>这是一段信息</span>-->
+            <!--<span slot="footer" class="dialog-footer">-->
+                <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+                <!--<el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
+              <!--</span>-->
+        <!--</el-dialog>-->
     </div>
 </template>
 
@@ -107,6 +113,11 @@
                 } else {
                     deleteEl.style.display = "none"
                 }
+            },
+            search(id) {
+            },
+            addUser() {
+                console.log('addUser')
             }
         },
         mounted() {
@@ -123,6 +134,7 @@
 <style scoped lang='scss'>
     .processes {
         position: relative;
+
         .item {
             z-index: 1;
             margin-bottom: 40px;

@@ -6,6 +6,7 @@ import '@/theme/element-#41B883/index.css'
 import '@/assets/scss/index.scss'
 import '@/mock'
 
+
 import App from '@/App'
 import {router} from '@/router'
 import '@/router/routerControl'
@@ -14,6 +15,8 @@ import store from '@/store'
 import i18n from '@/lang'
 
 import dayjs from 'dayjs'
+// import "./assets/icon/iconfont.css"
+
 
 Vue.component('icon', Icon)
 
@@ -32,8 +35,8 @@ Vue.filter('processStatus', function (value) {
             return '已结束'
     }
 })
-Vue.filter('date', function (value,format) {
-   return dayjs(value).format(format)
+Vue.filter('date', function (value, format) {
+    return dayjs(value).format(format)
 })
 
 Vue.config.productionTip = false
