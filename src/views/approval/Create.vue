@@ -38,8 +38,10 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="审批人员：">
-                                <el-input v-model="formInline.user" class="w400p" placeholder="审批人" @focus="addUser()">
-                                    <el-button slot="append" icon="el-icon-plus" @click="addUser()"></el-button>
+                                <el-input v-model="formInline.user" class="w400p" placeholder="审批人"
+                                          @focus="dialog.chooseUser = true">
+                                    <el-button slot="append" icon="el-icon-plus"
+                                               @click="dialog.chooseUser = true"></el-button>
                                 </el-input>
                             </el-form-item>
                         </el-form>
@@ -59,17 +61,55 @@
                 </el-col>
             </el-row>
         </el-card>
-        <!--<el-dialog-->
-                <!--title="提示"-->
-                <!--:visible.sync="dialogVisible"-->
-                <!--width="30%"-->
-                <!--:before-close="handleClose">-->
-            <!--<span>这是一段信息</span>-->
-            <!--<span slot="footer" class="dialog-footer">-->
-                <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
-                <!--<el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
-              <!--</span>-->
-        <!--</el-dialog>-->
+        <el-dialog
+                title="提示"
+                :visible.sync="dialog.chooseUser"
+                width="50%"
+                :before-close="close">
+
+
+            <el-tabs type="border-card" stretch>
+                <el-tab-pane label="所有部门">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>所有部门</span>
+                        </div>
+                        <el-tree
+                                :data="departments"
+                                show-checkbox
+                                default-expand-all
+                                node-key="id"
+                                ref="tree"
+                                highlight-current
+                                :props="defaultProps">
+                        </el-tree>
+                        <!--<el-tree :data="departments" node-key="id" default-expand-all :props="defaultProps">-->
+                        <!--<span class="custom-tree-node" slot-scope="{ node, data }">-->
+                            <!--<span>{{ node.label }}</span>-->
+                          <!--</span>-->
+                        <!--</el-tree>-->
+                    </el-card>
+                </el-tab-pane>
+                <el-tab-pane label="所有职位">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>所有职位</span>
+                        </div>
+                        <el-tree :data="positions" node-key="id" default-expand-all :props="defaultProps">
+                            <span class="custom-tree-node" slot-scope="{ node, data }">
+                                <span>{{ node.label }}</span>
+                            </span>
+                        </el-tree>
+                    </el-card>
+                </el-tab-pane>
+            </el-tabs>
+
+
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialog.chooseUser = false">取 消</el-button>
+                <el-button type="primary" @click="dialog.chooseUser = false">确 定</el-button>
+              </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -79,13 +119,76 @@
         components: {},
         data() {
             return {
+                dialog: {
+                    chooseUser: false
+                },
                 formInline: {},
-                list: [{}]
+                list: [{}],
+                departments: [{
+                    id: 1,
+                    label: '集团部门',
+                    children: [{
+                        id: 2,
+                        label: '经营层',
+                    }, {
+                        id: 3,
+                        label: '财务部'
+                    }, {
+                        id: 4,
+                        label: '安全生产部'
+                    }, {
+                        id: 5,
+                        label: '市场经营部'
+                    }, {
+                        id: 6,
+                        label: '广告项目部'
+                    }, {
+                        id: 7,
+                        label: '测试部门'
+                    }, {
+                        id: 8,
+                        label: '研发部门'
+                    }, {
+                        id: 9,
+                        label: '工程管理部'
+                    }
+                    ]
+                }],
+                positions: [
+                    {
+                        id: 2,
+                        label: '经营层',
+                    }, {
+                        id: 3,
+                        label: '财务部'
+                    }, {
+                        id: 4,
+                        label: '安全生产部'
+                    }, {
+                        id: 5,
+                        label: '市场经营部'
+                    }, {
+                        id: 6,
+                        label: '广告项目部'
+                    }, {
+                        id: 7,
+                        label: '测试部门'
+                    }, {
+                        id: 8,
+                        label: '研发部门'
+                    }, {
+                        id: 9,
+                        label: '工程管理部'
+                    }
+                ],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                }
 
             }
         },
         created() {
-
         },
         methods: {
             addLevel(v) {
@@ -116,9 +219,9 @@
             },
             search(id) {
             },
-            addUser() {
-                console.log('addUser')
-            }
+            close() {
+                this.dialog.chooseUser = false
+            },
         },
         mounted() {
             this.calculationLeftHeight()
