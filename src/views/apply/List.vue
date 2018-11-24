@@ -3,7 +3,7 @@
         <el-row class="mb20p">
             <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
             <el-button type="primary" icon="el-icon-circle-plus-outline"
-                       @click="$router.push('create')">新建
+                       @click="$router.push('choose')">新建
             </el-button>
             <el-button type="danger" icon="el-icon-delete" @click="del()">删除</el-button>
             <el-date-picker class="w250p ml10p"

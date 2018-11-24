@@ -129,6 +129,15 @@ export const asyncRouterMap = [
                     title: 'CreateApply',
                     icon: 'widgets'
                 }
+            }, {
+                path: 'choose',
+                component: _import('apply/Choose'),
+                name: 'ChooseApply',
+                hidden: true,
+                meta: {
+                    title: 'ChooseApply',
+                    icon: 'widgets'
+                }
             }
         ]
     },

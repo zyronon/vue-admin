@@ -61,50 +61,60 @@
                 </el-col>
             </el-row>
         </el-card>
+
+
         <el-dialog
                 title="提示"
                 :visible.sync="dialog.chooseUser"
-                width="50%"
+                width="40%"
                 :before-close="close">
+            <el-row style="height: 70%;">
+                <el-col :span="12">
+                    <el-tabs type="border-card" stretch>
+                        <el-tab-pane label="所有部门">
+                            <el-tree
+                                    style="height: 350px;overflow-y: scroll;"
+                                    :data="departments"
+                                    show-checkbox
+                                    default-expand-all
+                                    node-key="id"
+                                    ref="tree"
+                                    highlight-current
+                                    :props="defaultProps">
+                            </el-tree>
+                        </el-tab-pane>
+                        <el-tab-pane label="所有职位">
+                            <el-tree
+                                    style="height: 350px;overflow-y: scroll;"
+                                    :data="positions"
+                                    show-checkbox
+                                    default-expand-all
+                                    node-key="id"
+                                    ref="tree"
+                                    highlight-current
+                                    :props="defaultProps">
+                            </el-tree>
+                        </el-tab-pane>
+                    </el-tabs>
 
-
-            <el-tabs type="border-card" stretch>
-                <el-tab-pane label="所有部门">
-                    <el-card class="box-card">
-                        <div slot="header" class="clearfix">
-                            <span>所有部门</span>
-                        </div>
-                        <el-tree
-                                :data="departments"
-                                show-checkbox
-                                default-expand-all
-                                node-key="id"
-                                ref="tree"
-                                highlight-current
-                                :props="defaultProps">
-                        </el-tree>
-                        <!--<el-tree :data="departments" node-key="id" default-expand-all :props="defaultProps">-->
-                        <!--<span class="custom-tree-node" slot-scope="{ node, data }">-->
-                            <!--<span>{{ node.label }}</span>-->
-                          <!--</span>-->
-                        <!--</el-tree>-->
-                    </el-card>
-                </el-tab-pane>
-                <el-tab-pane label="所有职位">
-                    <el-card class="box-card">
-                        <div slot="header" class="clearfix">
-                            <span>所有职位</span>
-                        </div>
-                        <el-tree :data="positions" node-key="id" default-expand-all :props="defaultProps">
-                            <span class="custom-tree-node" slot-scope="{ node, data }">
-                                <span>{{ node.label }}</span>
-                            </span>
-                        </el-tree>
-                    </el-card>
-                </el-tab-pane>
-            </el-tabs>
-
-
+                </el-col>
+                <el-col :span="11" :offset="1">
+                    <el-table
+                            @current-change="handleCurrentChange"
+                            border
+                            :data="tableData"
+                            height="400">
+                        <el-table-column prop="date">
+                            <template slot="header" slot-scope="scope">
+                                <div style="display: flex;justify-content: space-between;">
+                                    <span>已选（11）</span>
+                                    <el-button type="default">清空</el-button>
+                                </div>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-col>
+            </el-row>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialog.chooseUser = false">取 消</el-button>
                 <el-button type="primary" @click="dialog.chooseUser = false">确 定</el-button>
@@ -119,9 +129,76 @@
         components: {},
         data() {
             return {
+                tableData: [
+                    {
+                        date: '2016-05-02',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
+                        date: '2016-05-04',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1517 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-01',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2016-05-03',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1516 弄'
+                    }],
                 dialog: {
                     chooseUser: false
                 },
+                input: "",
                 formInline: {},
                 list: [{}],
                 departments: [{
@@ -130,6 +207,32 @@
                     children: [{
                         id: 2,
                         label: '经营层',
+                        children: [{
+                            id: 2,
+                            label: '经营层',
+                        }, {
+                            id: 3,
+                            label: '财务部'
+                        }, {
+                            id: 4,
+                            label: '安全生产部'
+                        }, {
+                            id: 5,
+                            label: '市场经营部'
+                        }, {
+                            id: 6,
+                            label: '广告项目部'
+                        }, {
+                            id: 7,
+                            label: '测试部门'
+                        }, {
+                            id: 8,
+                            label: '研发部门'
+                        }, {
+                            id: 9,
+                            label: '工程管理部'
+                        }
+                        ]
                     }, {
                         id: 3,
                         label: '财务部'
@@ -191,6 +294,9 @@
         created() {
         },
         methods: {
+            handleCurrentChange(val) {
+                alert(val)
+            },
             addLevel(v) {
                 this.list.push({})
             },

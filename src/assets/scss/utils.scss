@@ -38,7 +38,7 @@ $width: 200;
 margin
 
 */
-$margin: 50;
+$margin: 500;
 
 @while $margin >= 0 {
     .ml#{$margin}p {
@@ -47,7 +47,7 @@ $margin: 50;
     $margin: $margin - 1;
 }
 
-$margin: 50;
+$margin: 500;
 @while $margin >= 0 {
     .mr#{$margin}p {
         margin-right: #{$margin}px !important;
@@ -55,7 +55,7 @@ $margin: 50;
     $margin: $margin - 1;
 }
 
-$margin: 50;
+$margin: 500;
 @while $margin >=0 {
     .mt#{$margin}p {
         margin-top: #{$margin}px !important;
@@ -63,7 +63,7 @@ $margin: 50;
     $margin: $margin - 1;
 }
 
-$margin: 50;
+$margin: 500;
 @while $margin >= 0 {
     .mb#{$margin}p {
         margin-bottom: #{$margin}px !important;
@@ -71,7 +71,7 @@ $margin: 50;
     $margin: $margin - 1;
 }
 
-$margin: 50;
+$margin: 500;
 @while $margin >= 0 {
     .m#{$margin}p {
         margin: #{$margin}px !important;

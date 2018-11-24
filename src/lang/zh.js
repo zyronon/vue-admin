@@ -41,6 +41,7 @@ export default {
         CreateNotify: '新建',
         NotifyDetail: '详情',
         ApplyManager: '申请管理',
+        ChooseApply: '选择申请',
         ApplyList: '申请列表',
         CreateApply: '新建申请',
         ApprovalManager: '流程管理',

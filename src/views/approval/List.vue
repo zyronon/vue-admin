@@ -27,9 +27,7 @@
             </div>
             <el-table :data="rows.notify.list" style="width: 100%" border stripe v-loading="listLoading">
                 <el-table-column type="selection"></el-table-column>
-                <el-table-column fixed prop="Name" label="供应商" sortable></el-table-column>
-                <el-table-column prop="Number" label="合同分类" sortable></el-table-column>
-                <el-table-column prop="Number" label="合同金额" sortable></el-table-column>
+                <el-table-column fixed prop="Name" label="名称" sortable></el-table-column>
                 <el-table-column prop="Create_By" label="创建人" sortable></el-table-column>
                 <el-table-column prop="Create_Date" label="创建时间" sortable></el-table-column>
                 <el-table-column prop="Status" label="状态" sortable>
