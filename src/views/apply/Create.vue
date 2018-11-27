@@ -10,7 +10,7 @@
                 <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
             </div>
             <el-form ref="form" :model="form" label-width="120px" label-position="left">
-                <el-form-item label="编号:">
+                <el-form-item label="类型:">
                     <el-select v-model="value" placeholder="请选择" :change="changeType()">
                         <el-option
                                 v-for="item in options"
