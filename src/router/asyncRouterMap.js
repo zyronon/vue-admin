@@ -245,7 +245,7 @@ export const asyncRouterMap = [
     {
         path: '/car',
         component: Layout,
-        hidden: true,
+        // hidden: true,
         name: 'CarManager',
         meta: {
             title: 'CarManager',
@@ -276,7 +276,7 @@ export const asyncRouterMap = [
     {
         path: '/article',
         component: Layout,
-        hidden: true,
+        // hidden: true,
         meta: {
             title: 'ArticleManager',
             icon: 'widgets'
@@ -306,7 +306,7 @@ export const asyncRouterMap = [
     {
         path: '/order',
         component: Layout,
-        hidden: true,
+        // hidden: true,
         meta: {
             title: 'OrderManager',
             icon: 'widgets'
@@ -336,7 +336,7 @@ export const asyncRouterMap = [
     {
         path: '/finance',
         component: Layout,
-        hidden: true,
+        // hidden: true,
         meta: {
             title: 'FinanceManager',
             icon: 'widgets'
