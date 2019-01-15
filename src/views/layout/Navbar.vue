@@ -5,9 +5,9 @@
             <span class="el-header__title">
         VUE<span class="subtitle">EDEN</span>
         <span class="version-wrap">
-          {{system_version}}
+        {{system_version}}
         </span>
-      </span>
+        </span>
         </div>
 
         <div class="middle-area">
@@ -92,32 +92,39 @@
 
     .el-header {
         position: relative;
+
         .sidebar-wrap {
             display: flex;
         }
+
         .left-area {
             min-width: 240px;
             padding-left: 12px;
             box-sizing: border-box;
         }
+
         .middle-area {
             height: 60px;
             flex: 1;
+
             &__cgwrap {
                 float: left;
                 height: 100%;
                 width: 60px;
+
                 .category-icon {
                     color: #515151;
                     cursor: pointer;
                     height: 100%;
                     padding: 0 15px;
                     transition: color .28s;
+
                     &:hover {
                         color: #41b883;
                     }
                 }
             }
+
             &__msglist {
                 float: left;
                 height: 60px;
@@ -127,6 +134,7 @@
                 padding-left: 10px;
                 box-sizing: border-box;
             }
+
             &:after {
                 content: '';
                 clear: both;
@@ -134,23 +142,28 @@
                 width: 100%;
             }
         }
+
         .right-area {
             //{flex-center}
             @extend .flex-center;
             padding-right: 16px;
             height: 60px;
             min-width: $right-area-width;
+
             .fullscreen {
                 height: 100%;
                 padding-right: 22px;
             }
+
             .lang {
                 height: 60px;
             }
+
             .notice {
                 margin-left: 20px;
             }
         }
+
         &__title &__icon {
             vertical-align: middle;
         }
@@ -159,9 +172,11 @@
             font-size: 20px;
             font-weight: bold;
             color: $main-color;
+
             .subtitle {
                 color: $sub-color;
             }
+
             .version-wrap {
                 background: #eaeaea;
                 padding: 3px 8px;

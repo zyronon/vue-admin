@@ -14,14 +14,6 @@
                     <tags-view/>
                     <app-main/>
                 </el-main>
-                <el-footer>
-                    <div class="company">
-                        VUE管理系统 © 2017 版本号: 1.5.2bate
-                    </div>
-                    <div class="github">
-                        Github地址：<a href="https://github.com/ttentau/vue-admin">vue-admin</a>
-                    </div>
-                </el-footer>
             </el-container>
             <el-aside class="right_sidebar" :width="rightSideWidth">
                 <side-bar-right class="sidebar-container"/>

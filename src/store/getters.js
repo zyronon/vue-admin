@@ -2,7 +2,7 @@ const getters = {
     /* app */
     sidebar: state => state.app.sidebar,
     getSliderStateWidth: state => {
-        return state.app.sidebar.sliderState === 'full' ? '240px' : '60px'
+        return state.app.sidebar.sliderState === 'full' ? '200px' : '60px'
     },
     getRightSliderStateWidth: state => {
         return state.app.rightSidebar.rightSliderState === 'full' ? '300px' : '0px'
