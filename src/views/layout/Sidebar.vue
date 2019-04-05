@@ -22,7 +22,6 @@
     import {mapGetters} from 'vuex'
     import sidebarItem from './SidebarItem'
     import _import from '@/utils/import'
-    const Layout = _import('layout/Layout')
 
     export default {
         name: 'Sidebar',
@@ -31,70 +30,6 @@
                 bg: '#556d84',
                 tc: '#fff',
                 atc: '#41B883',
-                project:[
-                    // 项目管理
-                    {
-                        path: '/project',
-                        redirect: 'project/list',
-                        component: Layout,
-                        name: 'ProjectManager',
-                        meta: {
-                            title: 'ProjectManager',
-                            icon: 'widgets'
-                        },
-                        children: [
-                            {
-                                path: 'list',
-                                component: _import('project/List'),
-                                name: 'ProjectList',
-                                meta: {
-                                    title: 'ProjectList',
-                                    icon: 'widgets'
-                                }
-                            },
-                            {
-                                path: 'detail',
-                                hidden: true,
-                                component: _import('project/Detail'),
-                                name: 'ProjectDetail',
-                                meta: {
-                                    title: 'ProjectDetail',
-                                    icon: 'widgets'
-                                }
-                            },
-                            {
-                                path: 'project-change',
-                                hidden: true,
-                                component: _import('project/ProjectChange'),
-                                name: 'ProjectChange',
-                                meta: {
-                                    title: 'ProjectChange',
-                                    icon: 'widgets'
-                                }
-                            }
-                        ]
-                    },
-                    // 设置
-                    {
-                        path: '/setting',
-                        component: Layout,
-                        meta: {
-                            title: 'SystemSetting',
-                            icon: 'widgets'
-                        },
-                        children: [
-                            {
-                                path: 'company',
-                                component: _import('setting/Company'),
-                                name: 'CompanySetting',
-                                meta: {
-                                    title: 'CompanySetting',
-                                    icon: 'widgets'
-                                }
-                            }
-                        ]
-                    }
-                ]
             }
         },
         components: {
