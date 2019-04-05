@@ -1,0 +1,74 @@
+{
+    "name": "vue-admin",
+    "version": "0.1.0",
+    "private": true,
+    "author": "ttentau@163.com",
+    "description": "vue-admin is a extremely beautiful admin management system template uses vue and element-ui",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ttentau/vue-admin"
+    },
+    "bugs": {
+        "url": "https://github.com/ttentau/vue-admin/issues"
+    },
+    "keywords": [
+        "vue",
+        "admin",
+        "management-system",
+        "admin-template"
+    ],
+    "scripts": {
+        "serve": "vue-cli-service serve --open",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "push": "git add . && git commit -m 'update'  && git push origin master"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "semi": false
+    },
+    "dependencies": {
+        "@riophae/vue-treeselect": "^0.0.37",
+        "@tweenjs/tween.js": "^17.2.0",
+        "axios": "^0.18.0",
+        "dayjs": "^1.7.5",
+        "echarts": "^4.1.0",
+        "element-ui": "^2.4.6",
+        "js-cookie": "^2.2.0",
+        "lodash": "^4.17.11",
+        "mockjs": "^1.0.1-beta3",
+        "normalize.css": "^8.0.0",
+        "nprogress": "^0.2.0",
+        "query-string": "^6.1.0",
+        "screenfull": "^3.3.2",
+        "vue": "^2.5.17",
+        "vue-i18n": "^8.0.0",
+        "vue-router": "^3.0.1",
+        "vue-seamless-scroll": "^1.1.16",
+        "vuex": "^3.0.1",
+        "wangeditor": ">=3.0.0"
+    },
+    "devDependencies": {
+        "@vue/babel-preset-app": "^3.0.1",
+        "@vue/cli-plugin-babel": "^3.0.1",
+        "@vue/cli-service": "^3.0.1",
+        "@vue/cli-shared-utils": "^3.0.1",
+        "babel-plugin-component": "^1.1.1",
+        "node-sass": "^4.9.3",
+        "postcss-import": "^12.0.0",
+        "postcss-url": "^8.0.0",
+        "raw-loader": "^0.5.1",
+        "sass-loader": "^7.1.0",
+        "vue-svg-icon": "^1.2.9",
+        "vue-template-compiler": "^2.5.17"
+    },
+    "engines": {
+        "node": ">= 8.0.0",
+        "npm": ">= 4.0.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
+}
