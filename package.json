@@ -1,0 +1,63 @@
+{
+    "name": "vue-layout",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "build-report": "vue-cli-service build --report",
+        "build-prod": "vue-cli-service build --mode production",
+        "build-dev": "vue-cli-service build --mode development",
+        "lint": "vue-cli-service lint",
+        "analyz": "NODE_ENV=production  npm_config_report=true npm run build"
+    },
+    "dependencies": {
+        "core-js": "^2.6.5",
+        "vue": "^2.6.6",
+        "axios": "^0.18.0",
+        "element-ui": "^2.6.3",
+        "file-saver": "^2.0.1",
+        "js-cookie": "^2.2.0",
+        "normalize.css": "^8.0.1",
+        "vue-router": "^3.0.2",
+        "vuex": "^3.1.0",
+        "vue-i18n": "^8.0.0",
+        "wangeditor": ">=3.0.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.5.0",
+        "@vue/cli-plugin-eslint": "^3.5.0",
+        "@vue/cli-service": "^3.5.0",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.8.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "vue-template-compiler": "^2.5.21",
+        "vue-svg-icon": "^1.2.9",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
+}
