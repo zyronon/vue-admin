@@ -71,6 +71,8 @@
 </script>
 
 <style scoped lang='scss'>
+    @import "@/assets/scss/color.scss";
+
     .drag {
         position: relative;
         background-color: #e8e8e8;
@@ -96,7 +98,7 @@
     }
 
     .drag_bg {
-        background-color: #7ac23c;
+        background-color: $main-color;
         height: 34px;
         width: 0px;
     }
