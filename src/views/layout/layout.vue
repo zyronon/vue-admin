@@ -93,7 +93,9 @@
                 </div>
             </el-aside>
             <el-main>
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </el-main>
             <el-aside class="el-aside-left" :width="isRightCollapse?'0px':'320px'">
                 <side-bar-right class="sidebar-container"/>

@@ -1,5 +1,5 @@
 <template>
-    <div class="all-list">
+    <div class="all-list" v-loading="loading">
         <el-row type="flex" justify="space-between">
             <div>
                 <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
@@ -7,9 +7,9 @@
                            @click="$router.push('create')">新建
                 </el-button>
                 <el-button type="danger" icon="el-icon-delete" @click="del(rows)">删除</el-button>
-                <el-input v-model="rows.filter.key" placeholder="文章名称" class="w200p ml10p"></el-input>
+                <el-input v-model="searchData.searchKey" placeholder="文章名称" class="w200p ml10p"></el-input>
                 <el-date-picker class="w300p ml10p"
-                                v-model="rows.filter.date"
+                                v-model="searchData.date"
                                 type="daterange"
                                 align="right"
                                 unlink-panels
@@ -20,22 +20,12 @@
                 </el-date-picker>
                 <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
                 <el-button type="primary" icon="el-icon-refresh"
-                           @click="rows.filter.key = '';rows.filter.date = ''">重置
+                           @click="searchData.searchKey = '';searchData.date = ''">重置
                 </el-button>
-            </div>
-            <div>
-                <el-select v-model="value4" clearable placeholder="请选择" style="margin-left: 10px;">
-                    <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                    </el-option>
-                </el-select>
             </div>
         </el-row>
         <el-row class="mb0p">
-            <el-table :data="rows" border stripe v-loading="listLoading">
+            <el-table :data="tableData.list" border stripe >
                 <el-table-column type="selection"></el-table-column>
                 <el-table-column fixed prop="CarOwnerName" label="车主姓名" sortable></el-table-column>
                 <el-table-column prop="CarBrand" label="品牌" sortable></el-table-column>
@@ -56,15 +46,15 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-row class="table-bottom" v-if="rows.length != 0">
+        <el-row class="table-bottom mt10p" v-if="tableData.count !== 0">
             <el-pagination class="pull-right"
-                           @size-change="handleSizeChange()"
-                           @current-change="getData()"
-                           :current-page="1"
+                           @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange"
+                           :current-page="offset"
                            :page-sizes="[10, 20, 30, 40]"
-                           :page-size="100"
+                           :page-size="limit"
                            layout="total, sizes, prev, pager, next, jumper"
-                           :total="rows.count">
+                           :total="tableData.count">
             </el-pagination>
         </el-row>
     </div>
@@ -75,83 +65,53 @@
         name: "index",
         data() {
             return {
-                car: {
-                    Illegal: {
-                        FetchDate: '2018-11-11 12:23'
-                    },
-                    LicensePlateNumber: '沪A12345',
-                    CarOwnerName: '曹操',
+                loading:true,
+                searchData: {},
+                tableData: {
+                    list: [],
+                    count: 30
                 },
-                data: {
-                    amount: 10,
-                    untreated: 10,
-                    totalFine: 10,
-                    totalPoints: 10,
-                },
-                options: [{
-                    value: '选项1',
-                    label: '起租日期'
-                }, {
-                    value: '选项2',
-                    label: '开始日期'
-                }, {
-                    value: '选项3',
-                    label: '结束日期'
-                }],
-                value4: '',
-                input: '',
-                listLoading: false,
-                radio: '可发车',
+                offset: 0,
+                limit: 10,
                 pickerOptions: this.$CONSTANT.PICKEROPTIONS,
-                isShowIllegal: false
             }
         },
-        computed: {
-            rows() {
-                let temp = []
-                for (let i = 0; i < 10; i++) {
-                    temp.push({
-                        CarOwnerName: '曹操',
-                        LicensePlateNumber: '沪A12345',
-                        CarBrand: '奥迪',
-                        CarType: 'A6',
-                        Illegal: '18条',
-                        CanRentTime: 1554486493646,
-                        CreationTime: '2018-11-11',
-                        IsRent: '是'
-                    })
-                }
-                return temp
-            }
+        created() {
+            this.getData();
         },
         methods: {
-            handleSizeChange(val) {
-                console.log(`每页 ${val} 条`)
-            },
-            handleCurrentChange(val) {
-                console.log(`当前页: ${val}`)
-            },
-            refresh() {
-                this.listLoading = true
+            getData(){
+                this.loading = true
+                for (let i = 0; i < 30; i++) {
+                    this.tableData.list.push(
+                        {
+                            CarOwnerName: '曹操',
+                            LicensePlateNumber: '沪A12345',
+                            CarBrand: '奥迪',
+                            CarType: 'A6',
+                            Illegal: '18条',
+                            CanRentTime: 1554486493646,
+                            CreationTime: '2018-11-11',
+                            IsRent: '是'
+                        }
+                    )
+                }
                 setTimeout(() => {
-                    this.listLoading = false
-                }, 1000)
+                    this.loading = false
+                }, this.$CONSTANT.DELAYTIME)
+            },
+            //页条目改变事件
+            handleSizeChange(val) {
+                this.limit = val
+                this.getData()
+            },
+            //页码改变事件
+            handleCurrentChange(val) {
+                this.offset = val
+                this.getData()
             },
             addArticle() {
                 this.$router.push('create')
-            },
-            showIllegal(row) {
-                this.isShowIllegal = true
-            },
-            close() {
-                this.isShowIllegal = false
-            },
-            refreshIllegal() {
-            },
-            showNotProcessRow() {
-                return []
-            },
-            look(row) {
             },
             del(row) {
                 this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -160,7 +120,6 @@
                     type: 'warning'
                 })
                     .then(() => {
-                        console.log(row)
                         this.$message({
                             type: 'success',
                             message: '删除成功!'
@@ -176,6 +135,7 @@
 <style scoped lang="scss">
     .el-row {
         margin-bottom: 20px;
+
         &:last-child {
             margin-bottom: 0;
         }
