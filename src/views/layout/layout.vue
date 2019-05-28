@@ -111,7 +111,7 @@
     export default {
         name: "layout",
         components: {
-            breadcrumb,infodrop,
+            breadcrumb, infodrop,
             'side-bar-right': SidebarRight,
         },
         data() {
@@ -181,7 +181,8 @@
                 display: flex;
                 align-items: center;
             }
-            .right-right{
+
+            .right-right {
                 display: flex;
                 align-items: center;
             }
@@ -198,6 +199,7 @@
             border: 0;
             padding-bottom: 50px;
         }
+
         .el-menu:not(.el-menu--collapse) {
             width: 240px;
             min-height: 400px;
@@ -222,7 +224,8 @@
 
     .el-aside-left {
         transition: width .3s;
-        background: #d8d8d8;
+        border: 1px solid #ddd;
+        background: #fff;
     }
 
     .el-main {

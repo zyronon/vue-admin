@@ -5,11 +5,10 @@
             <span>你有100条新消息</span>
             <i class="el-icon-close cp" @click="removeAll()"></i>
         </div>
-        <!--        <ul class="list">-->
         <transition-group name="list" tag="ul">
             <li class="item" v-for="(item,index) in messages" :key="item.id">
                 <div class="header">
-                    <i class="el-notification__icon el-icon-info"></i>
+                    <i class=" el-icon-bell"></i>
                     <div class="title">提示提示{{index}}</div>
                     <i class="el-icon-close cp" @click="remove(index)"></i>
                 </div>
@@ -18,8 +17,6 @@
                 </div>
             </li>
         </transition-group>
-
-        <!--        </ul>-->
     </div>
 </template>
 
@@ -31,52 +28,39 @@
                 messages: [],
             }
         },
+        created() {
+            this.getData()
+        },
         methods: {
             remove(index) {
                 this.messages.splice(index, 1)
             },
             removeAll() {
-                // this.$mConfirm('', '确定清空所有消息？', () => {
-                //     this.messages = []
-                // })
-                this.getData()
-
+                this.$mConfirm('', '确定清空所有消息？', () => {
+                    this.messages = []
+                })
             },
-            getData(){
-                for (let i = 0; i < 5; i++) {
+            getData() {
+                for (let i = 0; i < 10; i++) {
                     this.messages.push({id: i})
                 }
             }
         },
         components: {},
         mounted() {
-           this.getData()
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .item {
-        transition: all .3s;
-    }
-
-    .list-enter-active, .list-leave-active {
-        transition: all .3s;
-    }
-
-    .list-enter, .list-leave-to {
-        opacity: 0;
-        transform: translateX(230px);
-    }
-
-    .list-leave-active {
-        position: absolute;
-    }
     .messages {
         height: 100%;
         width: 320px;
-        border: 1px solid #bbb;
 
+        .el-icon-close:hover{
+            transition: all .5s;
+            transform: rotate(90deg);
+        }
         .notice {
             padding: 0 10px;
             position: relative;
@@ -94,11 +78,12 @@
 
         ul {
             li {
-                padding: 10px;
-                margin: 10px;
+                padding: 15px;
+                margin: 20px 15px;
                 background: #f1f1f1;
                 border-radius: 4px;
                 color: #606266;
+                box-shadow: 3px 3px 5px 1px  #ccc;
 
                 .header {
                     display: flex;
@@ -110,12 +95,29 @@
                         color: black;
                     }
 
-                    .el-icon-info {
-                        color: #888b91;
+                    .el-icon-bell {
+                        color: #7ac23c;
                         font-size: 18px;
                     }
                 }
             }
         }
+    }
+
+    .item {
+        transition: all .3s;
+    }
+
+    .list-enter-active, .list-leave-active {
+        transition: all .3s;
+    }
+
+    .list-enter, .list-leave-to {
+        opacity: 0;
+        transform: translateX(230px);
+    }
+
+    .list-leave-active {
+        position: absolute;
     }
 </style>
