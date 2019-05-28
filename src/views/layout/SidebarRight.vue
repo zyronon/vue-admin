@@ -1,29 +1,29 @@
 <template>
     <div class="messages">
         <div class="notice">
-            <span></span>
+            <i class="el-icon-chat-dot-square cp"></i>
             <span>你有100条新消息</span>
-            <i class="el-icon-close cp"></i>
+            <i class="el-icon-close cp" @click="removeAll()"></i>
         </div>
-        <div class="list">
-            <div class="item" v-for="(item,index) in messages" :key="item.id">
+        <!--        <ul class="list">-->
+        <transition-group name="list" tag="ul">
+            <li class="item" v-for="(item,index) in messages" :key="item.id">
                 <div class="header">
                     <i class="el-notification__icon el-icon-info"></i>
-                    <div class="title">提示提示</div>
-                    <i class="el-icon-close cp"></i>
+                    <div class="title">提示提示{{index}}</div>
+                    <i class="el-icon-close cp" @click="remove(index)"></i>
                 </div>
                 <div class="content">
                     这是一条不会自这是一条不会自动关闭的消息这是一条不会自动关闭的消息动关闭的消息
                 </div>
-            </div>
-        </div>
+            </li>
+        </transition-group>
+
+        <!--        </ul>-->
     </div>
 </template>
 
 <script>
-
-    // import _ from 'lodash'
-
     export default {
         name: 'SidebarRight',
         data() {
@@ -34,25 +34,50 @@
         methods: {
             remove(index) {
                 this.messages.splice(index, 1)
+            },
+            removeAll() {
+                // this.$mConfirm('', '确定清空所有消息？', () => {
+                //     this.messages = []
+                // })
+                this.getData()
 
             },
+            getData(){
+                for (let i = 0; i < 5; i++) {
+                    this.messages.push({id: i})
+                }
+            }
         },
         components: {},
         mounted() {
-            for (let i = 0; i < 20; i++) {
-                this.messages.push({id: i})
-            }
+           this.getData()
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .item {
+        transition: all .3s;
+    }
+
+    .list-enter-active, .list-leave-active {
+        transition: all .3s;
+    }
+
+    .list-enter, .list-leave-to {
+        opacity: 0;
+        transform: translateX(230px);
+    }
+
+    .list-leave-active {
+        position: absolute;
+    }
     .messages {
+        height: 100%;
         width: 320px;
         border: 1px solid #bbb;
 
         .notice {
-
             padding: 0 10px;
             position: relative;
             height: 50px;
@@ -61,10 +86,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            i {
+                font-size: 18px;
+            }
         }
 
-        .list {
-            .item {
+        ul {
+            li {
                 padding: 10px;
                 margin: 10px;
                 background: #f1f1f1;

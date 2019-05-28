@@ -68,10 +68,10 @@ export default {
     },
 
     $mConfirm(type, msg, onConfirm) {
-        MessageBox.confirm(msg === null ? '确定删除这条数据？' : msg, '提示', {
+        MessageBox.confirm(msg === '' ? '确定删除这条数据？' : msg, '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
-            type: type === null ? 'warning' : type
+            type: type === '' ? 'warning' : type
         }).then(() => {
             onConfirm()
             // this.$message({
