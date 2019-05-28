@@ -196,12 +196,11 @@
 
         .el-menu {
             border: 0;
-            transition: width .3s !important;
             padding-bottom: 50px;
-
-            .el-menu-item {
-                transition: width .3s !important;
-            }
+        }
+        .el-menu:not(.el-menu--collapse) {
+            width: 240px;
+            min-height: 400px;
         }
 
         .sidebar-minimizer {
