@@ -36,12 +36,16 @@
                 this.messages.splice(index, 1)
             },
             removeAll() {
+                return this.getData()
+                if (this.messages.length === 0) {
+                    return this.$warning('没有消息可清空！')
+                }
                 this.$mConfirm('', '确定清空所有消息？', () => {
                     this.messages = []
                 })
             },
             getData() {
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 7; i++) {
                     this.messages.push({id: i})
                 }
             }
@@ -54,14 +58,19 @@
 
 <style lang="scss" scoped>
     .messages {
-        height: 100%;
-        width: 320px;
+        /*overflow: auto;*/
+        /*height: 100%;*/
+        /*min-width: 300px;*/
+        /*overflow-x: hidden;*/
+        /*padding: 0 15px;*/
+        /*box-sizing: border-box;*/
 
         .el-icon-close:hover{
             transition: all .5s;
             transform: rotate(90deg);
         }
         .notice {
+            /*position: absolute;*/
             padding: 0 10px;
             position: relative;
             height: 50px;
@@ -78,6 +87,8 @@
 
         ul {
             li {
+                /*box-sizing: border-box;*/
+                /*width: 280px;*/
                 padding: 15px;
                 margin: 20px 15px;
                 background: #f1f1f1;

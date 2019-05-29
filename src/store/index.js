@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Cookies from 'js-cookie'
-
 Vue.use(Vuex)
+import Storage from '@/utils/storage'
 
 const store = new Vuex.Store({
     state: {
@@ -10,7 +9,7 @@ const store = new Vuex.Store({
         roles: [],
         // userInfo: Cookies.get('userInfo') === undefined ? null : JSON.parse(Cookies.get('userInfo')),
         userInfo: {name:'test',avatar:'https://i.loli.net/2018/08/18/5b7819891bab1.jpg'},
-        token: Cookies.get('token') === undefined ? null : Cookies.get('token'),
+        token: '',
         historyQuery: new Map()
     },
     mutations: {
@@ -26,7 +25,8 @@ const store = new Vuex.Store({
         //设置用户信息
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo
-            Cookies.set('userInfo', userInfo, {expires: 15})
+            Storage.set('userInfo', userInfo)
+            // Cookies.set('userInfo', userInfo, {expires: 15})
         },
         //设置 配置文件
         setConfig(state, config) {
@@ -35,11 +35,11 @@ const store = new Vuex.Store({
         //设置 token
         setToken(state, token) {
             state.token = token
-            Cookies.set('token', token, {expires: 15})
+            // Cookies.set('token', token, {expires: 15})
         },
         logout(state) {
-            Cookies.remove('token')
-            Cookies.remove('userInfo')
+            // Cookies.remove('token')
+            // Cookies.remove('userInfo')
             state.token = null
             state.userInfo = null
         }

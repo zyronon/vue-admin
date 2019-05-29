@@ -1,16 +1,11 @@
 <template>
     <div class="login-page">
-        <el-tooltip class="svg-github" effect="dark" content="Fork Me" placement="bottom">
-            <a href="https://github.com/Sakuyakun/vue-eden">
-                <icon name="github" :scale="2.5"></icon>
-            </a>
-        </el-tooltip>
+
 
         <div class="login-wrap">
             <el-col :class="translateLeft" :span="10">
                 <div v-if="notforget">
                     <div class="logo">
-                        <icon name="tree" :scale="6"></icon>
                         <div class="title">
                             <a>
                                 <span>TTent</span><span class="subtitle">au</span>

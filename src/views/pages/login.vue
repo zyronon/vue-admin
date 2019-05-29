@@ -80,7 +80,7 @@
             <div class="w50">
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
-                    <icon name="tree" :scale="10" class="logo"></icon>
+<!--                    <icon name="tree" :scale="10" class="logo"></icon>-->
                     <div class="name">Vue-Admin</div>
                 </div>
             </div>
@@ -148,7 +148,8 @@
             login() {
                 this.$refs['loginForm'].validate((valid) => {
                     if (valid) {
-                        alert('submit!')
+                        this.$store.commit('setToken','adfasddfdsfadfads')
+                        this.$router.push({path: '/'})
                     } else {
                         console.log('error submit!!')
                         return false

@@ -7,12 +7,8 @@ import '@/route/routerControl'
 import store from '@/store'
 import filters from '@/utils/filters'
 import tools from '@/utils/tools'
-import Icon from 'vue-svg-icon/Icon.vue'
 
 Vue.config.productionTip = false
-
-Vue.component('icon', Icon)
-// Vue.use(ELEMENT)
 
 Vue.use(Element, {size: 'medium'})
 

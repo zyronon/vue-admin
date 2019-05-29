@@ -2,13 +2,14 @@
     <el-container>
         <el-header>
             <div class="left">
-                <icon class="el-header__icon" name="tree" :scale="4"></icon>
+                <i class="el-icon-school f30 mr30p"></i>
                 <span class="name">TTentau</span>
             </div>
             <div class="right">
                 <div class="right-left">
                     <div @click="switchNavbar()">
-                        <icon class="menu-icon cp" name="menu" :scale="2.8"></icon>
+                        <i v-if="!isCollapse" class="el-icon-s-unfold cp f22 ml10p mr10p"></i>
+                        <i v-else class="el-icon-s-fold cp f22 ml10p mr10p"></i>
                     </div>
                     <breadcrumb/>
                 </div>
@@ -16,7 +17,7 @@
                     <infodrop class="mr20p"/>
                     <el-badge is-dot class="notice-area">
                         <div @click="switchRightbar">
-                            <icon style="padding: 0;margin: 0;" name="notice" :scale="2.8"></icon>
+                            <i class="el-icon-bell f22 cp"></i>
                         </div>
                     </el-badge>
                 </div>
@@ -40,10 +41,9 @@
                                 :key="item.children[0].name"
                                 :to="item.path+'/'+item.children[0].path">
                             <el-menu-item :index="item.path + '/' + item.children[0].path">
-                                <icon v-if="item.children[0].meta && item.children[0].meta.icon"
-                                      :name="item.children[0].meta.icon"
-                                      :scale="2">
-                                </icon>
+
+                                <i class="el-icon-setting" v-if="item.children[0].meta && item.children[0].meta.icon"
+                                   :name="item.children[0].meta.icon"></i>
                                 <span slot="title" v-if="item.children[0].meta && item.children[0].meta.title">
                                         {{item.children[0].meta.title}}
                                     </span>
@@ -56,10 +56,8 @@
                                     :key="item.name"
                                     :index="item.name || item.path">
                             <template slot="title">
-                                <icon v-if="item.meta && item.meta.icon"
-                                      :name="item.meta.icon"
-                                      :scale="2">
-                                </icon>
+                                <i class="el-icon-setting" v-if="item.meta && item.meta.icon"
+                                   :name="item.meta.icon"></i>
                                 <span slot="title" v-if="item.meta && item.meta.title">
                                     {{!isCollapse ? item.meta.title : ''}}
                                 </span>
@@ -75,10 +73,8 @@
                                              :to="item.path+'/'+child.path"
                                              :key="child.name">
                                     <el-menu-item :index="item.path+'/'+child.path">
-                                        <icon v-if="child.meta && child.meta.icon"
-                                              :name="child.meta.icon"
-                                              :scale="2">
-                                        </icon>
+                                        <i class="el-icon-setting" v-if="child.meta && child.meta.icon"
+                                           :name="child.meta.icon"></i>
                                         <span slot="title" v-if="child.meta && child.meta.title">
                                             {{child.meta.title}}
                                         </span>
@@ -92,13 +88,13 @@
                     <i v-bind:class="{ 'el-icon-arrow-left': !isCollapse, 'el-icon-arrow-right':isCollapse}"></i>
                 </div>
             </el-aside>
-            <el-main>
+            <el-main :style="{'margin-right':isRightCollapse?'0':'320px'}">
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
             </el-main>
-            <el-aside class="el-aside-left" :width="isRightCollapse?'0px':'320px'">
-                <side-bar-right class="sidebar-container"/>
+            <el-aside class="el-aside-left" :style="{'right':isRightCollapse?'-320px':'0'}"  >
+                <side-bar-right class="sidebar-container" />
             </el-aside>
         </el-container>
     </el-container>
@@ -133,7 +129,6 @@
                 return children.filter(item => !item.hidden).length === 1
             },
             switchNavbar() {
-                console.log(666)
                 this.isCollapse = !this.isCollapse
             },
             switchRightbar() {
@@ -144,9 +139,6 @@
 </script>
 
 <style scoped lang="scss">
-    svg {
-        margin-right: 25px;
-    }
 
     .is-active {
         background: #20a8d8 !important;
@@ -154,6 +146,9 @@
 
     .el-container {
         height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
     }
 
     .el-header {
@@ -225,13 +220,21 @@
     }
 
     .el-aside-left {
-        transition: width .3s;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        width: 320px!important;
+        transition: all .3s;
         border: 1px solid #ddd;
         background: #fff;
     }
 
     .el-main {
+        transition: all .3s;
         background: #f1f1f1;
     }
+
 
 </style>
