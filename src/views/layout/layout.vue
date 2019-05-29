@@ -2,7 +2,7 @@
     <el-container>
         <el-header>
             <div class="left">
-                <i class="el-icon-school f30 mr30p"></i>
+                <i class="el-icon-school f30 mr30p cp" @click="reload()"></i>
                 <span class="name">TTentau</span>
             </div>
             <div class="right">
@@ -125,6 +125,9 @@
         created() {
         },
         methods: {
+            reload(){
+                location.href = '/'
+            },
             onlyOneShowingChildren(children) {
                 return children.filter(item => !item.hidden).length === 1
             },

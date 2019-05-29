@@ -33,27 +33,27 @@
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2) !important;
 }
 //
-////滚动条的宽度
-//::-webkit-scrollbar {
-//    width: 15px!important;
-//    height: 15px!important;
-//}
-////滚动条的滑块
-//::-webkit-scrollbar-thumb {
-//    background-color: #a1a3a9;
-//    border-radius: 4px!important;
-//}
-//::-webkit-scrollbar-thumb:hover{
-//    background: #a1a3a9!important;
-//}
-//::-webkit-scrollbar-thumb:active{
-//    background: #6f7074 !important;
-//}
-//
-//
-//.el-button--primary{
-//    background: #007bff;
-//}
-//.el-button--primary:hover{
-//    background: #0069d9;
-//}
+//滚动条的宽度
+::-webkit-scrollbar {
+    width: 13px!important;
+    height: 15px!important;
+}
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+    background-color: #a1a3a9;
+    border-radius: 4px!important;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #a1a3a9!important;
+}
+::-webkit-scrollbar-thumb:active{
+    background: #6f7074 !important;
+}
+
+
+.el-button--primary{
+    background: #007bff;
+}
+.el-button--primary:hover{
+    background: #0069d9;
+}

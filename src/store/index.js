@@ -7,9 +7,9 @@ const store = new Vuex.Store({
     state: {
         userCanAccess: [],
         roles: [],
-        // userInfo: Cookies.get('userInfo') === undefined ? null : JSON.parse(Cookies.get('userInfo')),
+        // userInfo: Storage.get('userInfo') === undefined ? null : JSON.parse(Cookies.get('userInfo')),
         userInfo: {name:'test',avatar:'https://i.loli.net/2018/08/18/5b7819891bab1.jpg'},
-        token: '',
+        token: Storage.get('token'),
         historyQuery: new Map()
     },
     mutations: {
@@ -26,7 +26,6 @@ const store = new Vuex.Store({
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo
             Storage.set('userInfo', userInfo)
-            // Cookies.set('userInfo', userInfo, {expires: 15})
         },
         //设置 配置文件
         setConfig(state, config) {
@@ -35,11 +34,11 @@ const store = new Vuex.Store({
         //设置 token
         setToken(state, token) {
             state.token = token
-            // Cookies.set('token', token, {expires: 15})
+            Storage.set('token', token)
         },
-        logout(state) {
-            // Cookies.remove('token')
-            // Cookies.remove('userInfo')
+        LOGOUT(state) {
+            Storage.remove('token')
+            Storage.remove('userInfo')
             state.token = null
             state.userInfo = null
         }
@@ -47,6 +46,9 @@ const store = new Vuex.Store({
     actions: {
         addHistoryQuery({commit}, {path, params}) {
             commit('ADD_HISTORY_QUERY', {path, params})
+        },
+        logout({commit}){
+            commit('LOGOUT')
         }
     }
 })

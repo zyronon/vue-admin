@@ -7,7 +7,7 @@
                         <h1>登录</h1>
                         <h5>输入用户名和密码</h5>
                     </div>
-                    <el-form ref="loginForm" :rules="loginRules" :model="loginForm" label-width="0px">
+                    <el-form ref="loginForm" status-icon :rules="loginRules" :model="loginForm" label-width="0px">
                         <el-form-item label="" prop="account">
                             <el-input prefix-icon="el-icon-user" placeholder="请输入账号"
                                       v-model="loginForm.account"></el-input>
@@ -80,7 +80,7 @@
             <div class="w50">
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
-<!--                    <icon name="tree" :scale="10" class="logo"></icon>-->
+                    <i class="el-icon-office-building f50"></i>
                     <div class="name">Vue-Admin</div>
                 </div>
             </div>

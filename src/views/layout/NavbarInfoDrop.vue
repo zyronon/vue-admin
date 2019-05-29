@@ -6,7 +6,7 @@
       </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="profile">个人中心</el-dropdown-item>
-                <el-dropdown-item command="lock">锁定</el-dropdown-item>
+<!--                <el-dropdown-item command="lock">锁定</el-dropdown-item>-->
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
@@ -18,7 +18,7 @@
 
 <script>
     export default {
-        name: 'demo',
+        name: 'NavbarInfoDrop',
         data() {
             return {
                 username: this.$store.state.userInfo.name||'test',
@@ -40,8 +40,14 @@
                 }
             },
             async logouthandle() {
-                await this.$store.dispatch('logout')
-                window.location.reload()
+                const loading = this.$loading({
+                    text: '正在退出'
+                })
+                setTimeout(() => {
+                    loading.close()
+                    this.$store.dispatch('logout')
+                    this.$router.push({path: '/login'})
+                }, 500)
             },
             lockhandle() {
                 this.$store.dispatch('setLockState', 'lock')
