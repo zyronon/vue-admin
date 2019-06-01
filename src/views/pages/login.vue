@@ -36,34 +36,34 @@
                     <el-form ref="registerForm" status-icon :rules="registerRules" :model="registerForm"
                              label-width="0px">
                         <el-form-item label="" prop="account">
-                            <el-input placeholder="请输入内容" v-model="registerForm.account">
+                            <el-input placeholder="请输入账号" v-model="registerForm.account">
                                 <template slot="prepend">
                                     <span class="c-red">* </span>账号：
                                 </template>
                             </el-input>
                         </el-form-item>
                         <el-form-item label="" prop="password">
-                            <el-input placeholder="请输入内容" v-model="registerForm.password">
+                            <el-input placeholder="请输入密码" v-model="registerForm.password">
                                 <template slot="prepend">
                                     <span class="c-red">* </span>密码：
                                 </template>
                             </el-input>
                         </el-form-item>
                         <el-form-item label="" prop="phone">
-                            <el-input placeholder="请输入内容" v-model="registerForm.phone">
+                            <el-input placeholder="请输入手机号" v-model="registerForm.phone">
                                 <template slot="prepend">
                                     <span class="c-red">* </span>手机号：
                                 </template>
                             </el-input>
                         </el-form-item>
                         <el-form-item label="">
-                            <el-input placeholder="请输入内容" v-model="registerForm.name">
+                            <el-input placeholder="请输入姓名" v-model="registerForm.name">
                                 <template slot="prepend">姓名：
                                 </template>
                             </el-input>
                         </el-form-item>
                         <el-form-item label="">
-                            <el-input placeholder="请输入内容" v-model="registerForm.nickname">
+                            <el-input placeholder="请输入昵称" v-model="registerForm.nickname">
                                 <template slot="prepend">昵称：
                                 </template>
                             </el-input>
