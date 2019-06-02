@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="container">
-            <div class="w50">
+            <div class="w50 left">
                 <div v-show="!isRegister" class="form-body">
                     <div class="notice">
                         <h1>登录</h1>
@@ -77,7 +77,7 @@
                     </el-form>
                 </div>
             </div>
-            <div class="w50">
+            <div class="w50 right">
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
                     <i class="el-icon-office-building f50"></i>
@@ -194,7 +194,6 @@
         .container {
             display: flex;
             width: 800px;
-            /*height: 350px;*/
             background: #fff;
             border-radius: 4px;
             box-shadow: 0px 2px 20px 7px rgba(195, 193, 193, 0.25) !important;

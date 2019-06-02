@@ -36,7 +36,6 @@
                 this.messages.splice(index, 1)
             },
             removeAll() {
-                return this.getData()
                 if (this.messages.length === 0) {
                     return this.$warning('没有消息可清空！')
                 }

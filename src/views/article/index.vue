@@ -1,31 +1,37 @@
 <template>
     <div class="all-list" v-loading="loading">
-        <el-row type="flex" justify="space-between">
-            <div>
-                <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
-                <el-button type="primary" icon="el-icon-circle-plus-outline"
-                           @click="$router.push('create')">新建
-                </el-button>
-                <el-button type="danger" icon="el-icon-delete" @click="del(rows)">删除</el-button>
-                <el-input v-model="searchData.searchKey" placeholder="文章名称" class="w200p ml10p"></el-input>
-                <el-date-picker class="w300p ml10p"
-                                v-model="searchData.date"
-                                type="daterange"
-                                align="right"
-                                unlink-panels
-                                range-separator="至"
-                                start-placeholder="开始日期"
-                                end-placeholder="结束日期"
-                                :picker-options="pickerOptions">
-                </el-date-picker>
-                <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
-                <el-button type="primary" icon="el-icon-refresh"
-                           @click="searchData.searchKey = '';searchData.date = ''">重置
-                </el-button>
+        <el-card>
+            <div slot="header">
+                文章列表
             </div>
-        </el-row>
-        <el-row class="mb0p">
-            <el-table :data="tableData.list" border stripe >
+            <el-input v-model="searchData.searchKey" placeholder="文章名称" class="w200p ml10p"></el-input>
+            <el-date-picker class="w300p ml10p"
+                            v-model="searchData.date"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+            </el-date-picker>
+            <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
+            <el-button type="primary" icon="el-icon-refresh"
+                       @click="searchData.searchKey = '';searchData.date = ''">重置
+            </el-button>
+        </el-card>
+        <el-card class="mt20p">
+            <div  class="d-flex justify-content-between align-items-center">
+                <span> 共有0条数据 </span>
+                <div>
+                    <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
+                    <el-button type="primary" icon="el-icon-circle-plus-outline"
+                               @click="$router.push('create')">新建
+                    </el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="del(rows)">删除</el-button>
+                </div>
+            </div>
+            <el-table :data="tableData.list" border stripe class="mt20p">
                 <el-table-column type="selection"></el-table-column>
                 <el-table-column fixed prop="CarOwnerName" label="车主姓名" sortable></el-table-column>
                 <el-table-column prop="CarBrand" label="品牌" sortable></el-table-column>
@@ -45,27 +51,27 @@
                     </template>
                 </el-table-column>
             </el-table>
-        </el-row>
-        <el-row class="table-bottom mt10p" v-if="tableData.count !== 0">
-            <el-pagination class="pull-right"
-                           @size-change="handleSizeChange"
-                           @current-change="handleCurrentChange"
-                           :current-page="offset"
-                           :page-sizes="[10, 20, 30, 40]"
-                           :page-size="limit"
-                           layout="total, sizes, prev, pager, next, jumper"
-                           :total="tableData.count">
-            </el-pagination>
-        </el-row>
+            <el-row class="table-bottom mt20p" v-if="tableData.count !== 0">
+                <el-pagination class="pull-right"
+                               @size-change="handleSizeChange"
+                               @current-change="handleCurrentChange"
+                               :current-page="offset"
+                               :page-sizes="[10, 20, 30, 40]"
+                               :page-size="limit"
+                               layout="total, sizes, prev, pager, next, jumper"
+                               :total="tableData.count">
+                </el-pagination>
+            </el-row>
+        </el-card>
     </div>
 </template>
-
 <script>
+
     export default {
         name: "index",
         data() {
             return {
-                loading:true,
+                loading: true,
                 searchData: {},
                 tableData: {
                     list: [],
@@ -77,12 +83,12 @@
             }
         },
         created() {
-            this.getData();
+            this.getData()
         },
         methods: {
-            getData(){
+            getData() {
                 this.loading = true
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 12; i++) {
                     this.tableData.list.push(
                         {
                             CarOwnerName: '曹操',

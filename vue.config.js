@@ -29,7 +29,7 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias
             .set('vue$', 'vue/dist/vue.esm.js')
-            .set('@', resolve('src'))
+            // .set('@', resolve('src')) vue会默认生成@的指引，所以这一行是多余的
             .set('assets', resolve('src/assets'))
             .set('components', resolve('src/components'))
             .set('api', resolve('src/api'))
