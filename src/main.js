@@ -17,7 +17,7 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 })
 
-//将tools里面的方法挂载到vue上,以方便用调用，直接this.$xxx方法名就可以了
+//将tools里面的方法挂载到vue上,以方便调用，直接this.$xxx方法名就可以了
 Object.keys(tools).forEach(key => {
     Vue.prototype[key] = tools[key]
 })
