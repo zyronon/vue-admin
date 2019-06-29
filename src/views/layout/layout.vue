@@ -124,9 +124,7 @@
         },
         created() {
         },
-        mounted(){
-            console.log(1)
-        },
+        mounted(){},
         methods: {
             reload(){
                 location.href = '/'

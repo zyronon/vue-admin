@@ -22,6 +22,8 @@ Object.keys(tools).forEach(key => {
     Vue.prototype[key] = tools[key]
 })
 
+Vue.prototype.$bus = new Vue()
+
 new Vue({
     store,
     router,

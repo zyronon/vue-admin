@@ -21,7 +21,7 @@
             </el-button>
         </el-card>
         <el-card class="mt20p">
-            <div  class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
                 <span> 共有0条数据 </span>
                 <div>
                     <el-button type="info" icon="el-icon-refresh" @click="getData()"></el-button>
