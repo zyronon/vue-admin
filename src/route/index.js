@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 import _import from '@/utils/import'
 import CONSTANT from '@/utils/const_var'
+
 const Layout = _import('layout/layout')
 Vue.use(VueRouter)
 
@@ -35,7 +36,7 @@ export const constantRouterMap = [
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
-export const router = new VueRouter({
+export default new VueRouter({
     // mode: 'history',
     routes: constantRouterMap,
     scrollBehavior: () => ({y: 0})

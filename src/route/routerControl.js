@@ -1,4 +1,4 @@
-import {router} from '@/route'
+import router from '@/route'
 import store from '@/store'
 import {asyncRouterMap} from '@/route/asyncRouterMap'
 import {Loading} from 'element-ui'
