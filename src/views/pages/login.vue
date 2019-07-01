@@ -148,7 +148,7 @@
             login() {
                 this.$refs['loginForm'].validate((valid) => {
                     if (valid) {
-                        this.$store.commit('setToken','adfasddfdsfadfads')
+                        this.$store.commit('SET_TOKEN','adfasddfdsfadfads')
                         this.$router.push({path: '/'})
                     } else {
                         console.log('error submit!!')

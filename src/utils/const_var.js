@@ -1,4 +1,4 @@
-export const CONSTANT = {
+export default {
     REDIRECT: 'redirect',
 
     //请求方法

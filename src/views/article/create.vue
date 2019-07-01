@@ -77,7 +77,7 @@
 </template>
 
 <script>
-    import E from 'wangeditor';
+    import E from 'wangeditor'
 
     export default {
         name: "CreateArticle",
@@ -90,17 +90,20 @@
                 checked: false
             }
         },
+        created() {
+        },
         methods: {
-            submit(){
+            submit() {
+                this.$success('sdfsd')
             },
             preview() {
-                let printHtml = this.editor.txt.html();
+                let printHtml = this.editor.txt.html()
                 printHtml = `<div style = "font-family: 宋体,SimSun;line-height: 30px;margin-bottom: 0;">
                                 ${printHtml}
-                            </div>`;
-                let wind = window.open('', 'newwindow', 'height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
-                wind.document.body.innerHTML = printHtml;
-                wind.print();
+                            </div>`
+                let wind = window.open('', 'newwindow', 'height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+                wind.document.body.innerHTML = printHtml
+                wind.print()
             }
         },
         mounted() {

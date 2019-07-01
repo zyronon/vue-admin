@@ -13,7 +13,7 @@
                             range-separator="至"
                             start-placeholder="开始日期"
                             end-placeholder="结束日期"
-                            :picker-options="pickerOptions">
+                            :picker-options="CONSTANT.PICKEROPTIONS">
             </el-date-picker>
             <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
             <el-button type="primary" icon="el-icon-refresh"
@@ -79,7 +79,6 @@
                 },
                 offset: 0,
                 limit: 10,
-                pickerOptions: this.$CONSTANT.PICKEROPTIONS,
             }
         },
         created() {
@@ -104,7 +103,7 @@
                 }
                 setTimeout(() => {
                     this.loading = false
-                }, this.$CONSTANT.DELAYTIME)
+                }, this.CONSTANT.DELAYTIME)
             },
             //页条目改变事件
             handleSizeChange(val) {

@@ -25,7 +25,7 @@ router.beforeEach(async (to, from, next) => {
             if (store.state.roles.length === 0) {
                 let loadingInstance = Loading.service({text: '加载中'})
 
-                store.commit('setRoles', asyncRouterMap)
+                store.commit('SET_ROLES', asyncRouterMap)
                 // if (store.state.userInfo.account === 'testtest' && store.state.userInfo.password === '666') {
                 //     console.log('管理员账号')
                 //     store.commit('setRoles', asyncRouterMap)

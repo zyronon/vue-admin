@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 import _import from '@/utils/import'
-import {CONSTANT} from '@/utils/const_var'
+import CONSTANT from '@/utils/const_var'
 const Layout = _import('layout/layout')
 Vue.use(VueRouter)
 

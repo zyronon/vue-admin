@@ -1,0 +1,6 @@
+export const ADD_HISTORY_QUERY = 'ADD_HISTORY_QUERY'
+export const SET_ROLES = 'SET_ROLES'
+export const SET_USERINFO = 'SET_USERINFO'
+export const SET_CONFIG = 'SET_CONFIG'
+export const SET_TOKEN = 'SET_TOKEN'
+export const LOGOUT = 'LOGOUT'

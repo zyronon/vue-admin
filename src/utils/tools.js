@@ -1,12 +1,6 @@
 import {Message, MessageBox} from 'element-ui'
-import {CONSTANT} from '@/utils/const_var'
-import Config from '@/config'
 
 export default {
-
-    $config: Config,
-    $CONSTANT: CONSTANT,
-
     $jsonParse(v) {
         console.log(v)
         if (v !== undefined && v !== null && v !== '') {
@@ -60,12 +54,6 @@ export default {
         }
         return itemArr
     },
-    //合并json，主要用于dialog。dialog日期不能完成覆盖掉，必须保留其引用。否则修改日期不生效
-    $concatJson(oldJson, newJson) {
-        for (const newElement in newJson) {
-            oldJson[newElement] = newJson[newElement]
-        }
-    },
 
     $mConfirm(type, msg, onConfirm) {
         MessageBox.confirm(msg === '' ? '确定删除这条数据？' : msg, '提示', {
@@ -74,10 +62,6 @@ export default {
             type: type === '' ? 'warning' : type
         }).then(() => {
             onConfirm()
-            // this.$message({
-            //     type: 'success',
-            //     message: '操作成功!'
-            // })
         }).catch(() => {
         })
     },
