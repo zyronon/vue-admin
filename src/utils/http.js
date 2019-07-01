@@ -1,8 +1,8 @@
 import axios from 'axios'
-import store from '@/store'
 import tools from './tools'
 import Config from '../config/index'
 import {CONSTANT} from '../utils/const_var'
+import store from '@/store'
 
 
 const instance = axios.create({
@@ -40,7 +40,7 @@ instance.interceptors.response.use(
             if (data.resultCode === '000000') {
                 // 接口自定义错误代码
                 // 移除登陆token 显示接口错误消息
-            }25
+            }
             return Promise.reject(data)
         } else {
             if (data === null) {
@@ -60,8 +60,8 @@ instance.interceptors.response.use(
                     })
                 } else {
                     return Promise.resolve({
-                        resultCode:'009900',
-                        resultMsg: data.message!==null?data.message:'',
+                        resultCode: '009900',
+                        resultMsg: data.message !== null ? data.message : '',
                         pageReturn: null
                     })
                 }
@@ -107,53 +107,34 @@ instance.interceptors.response.use(
     }
 )
 
-async function request(url, data = {}, params = {}, method = CONSTANT.POST, auth = false, version = Config.API_VERSION, headers = null) {
-    if (params.noUserId === undefined || !params.noUserId) {
-        if (params.userId === undefined || params.userId === null) {
-            if (store.state.userInfo !== null) {
-                params.userId = store.state.userInfo.userId || ''
-            }
-        }
-    }
-    delete params.noUserId
-    if (auth) {
+
+/**
+ * @apiDescription 封装的网络请求方法
+ * @apiGroup
+ * @apiName request
+ * @apiParam  url 地址
+ * @apiParam  data 请求数据
+ * @apiParam  params 请求参数
+ * @apiParam  method 方法类型：get或者post
+ * @apiParam  auth 是否认证
+ * @apiParam  version 接口版本号
+ * @apiParam  headers 请求header
+ * @apiParamExample
+ *       request('Appointment/appointmentList', data, params, CONSTANT.GET)
+ * @apiReturn Promise
+ */
+async function request(url, data = {}, params = {}, method = CONSTANT.POST, version = Config.API_VERSION) {
+    if (method === CONSTANT.POST) {
+        data.userId = store.state.userInfo === null ? '' : store.state.userInfo.id
     } else {
-        let result
-        if (method === CONSTANT.POST) {
-            result = await instance({
-                url: version + url,
-                method: method,
-                data: data,
-                params: params
-            })
-        } else if (method === CONSTANT.GET) {
-            result = await instance({
-                url: version + url,
-                method: method,
-                params: params
-            })
-        } else if (method === CONSTANT.PUT) {
-            result = await instance({
-                url: version + url,
-                method: method,
-                params: params,
-                data: data
-            })
-        } else if (method === CONSTANT.PATCH) {
-            result = await instance({
-                url: version + url,
-                method: method,
-                params: params
-            })
-        } else if (method === CONSTANT.DELETE) {
-            result = await instance({
-                url: version + url,
-                method: method,
-                params: params
-            })
-        }
-        return result
+        params.userId = store.state.userInfo === null ? '' : store.state.userInfo.id
     }
+    return await instance({
+        url: version + url,
+        method: method,
+        data: data,
+        params: params
+    })
 }
 
 export default request

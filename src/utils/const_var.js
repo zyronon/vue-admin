@@ -8,7 +8,6 @@ export const CONSTANT = {
     DELETE: 'delete',
     PUT: 'put',
 
-
     //静态常量
     PICKEROPTIONS: {
         shortcuts: [{
@@ -37,18 +36,8 @@ export const CONSTANT = {
             }
         }]
     },
-    TERMINALTYPE: 'PC_BACK',
     PAGENUMBER: 1,
     PAGESIZE: 10,
     DELAYTIME: 250,
     SUCCESS: '000000',
-
-
-    // 状态
-    NOTICE_STATUS: {
-        DRAFT: 'DRAFT',
-        PUBLISH: 'PUBLISH',
-        BACK: 'BACK',
-    },
-
 }
