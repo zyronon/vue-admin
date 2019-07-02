@@ -8,9 +8,11 @@ import store from '@/store'
 import mixin from "./utils/mixin"
 import MockData from './mock'
 
+MockData.init()
 Vue.config.productionTip = false
 Vue.use(Element, {size: 'medium'})
 Vue.prototype.$bus = new Vue()
+
 Vue.mixin(mixin)
 new Vue({
     store,

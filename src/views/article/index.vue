@@ -88,21 +88,7 @@
         },
         methods: {
             test() {
-                let Random = Mock.Random
-                let data = Mock.mock({
-                    'data|3-10': [{
-                        'id|1': '@id',
-                        'title|1': '@ctitle',
-                        'content|1': '@csentence',
-                        // 'createTime|1': Random.date('T')
-                        'createTime|1': "@date('T')"
-                    }],
-                    'code|1': '000000',
-                    'msg': '',
-                })
-                // 输出结果
-                console.log(JSON.stringify(data, null, 4))
-
+                console.log(this.$store.state.user)
             },
             getData() {
                 this.loading = true

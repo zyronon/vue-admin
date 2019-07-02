@@ -6,7 +6,7 @@
             <i class="el-icon-close cp" @click="removeAll()"></i>
         </div>
         <transition-group name="list" tag="ul">
-            <li class="item" v-for="(item,index) in notReadMessages" :key="index">
+            <li class="item" v-for="(item) in notReadMessages" :key="item.id">
                 <div class="header">
                     <i class=" el-icon-bell"></i>
                     <div class="title">{{item.title}}</div>
@@ -31,9 +31,7 @@
     export default {
         name: 'SidebarRight',
         data() {
-            return {
-                messages: [],
-            }
+            return {}
         },
         created() {
             this.getData()

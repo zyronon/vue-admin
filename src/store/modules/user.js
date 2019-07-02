@@ -48,7 +48,7 @@ export const user = {
         async getUserInfo({commit}) {
             let res = await User.userInfo()
             if (res.code === '000000') {
-                commit(types.SET_USERINFO, res)
+                commit(types.SET_USERINFO, res.data)
                 return Promise.resolve(res.msg)
             } else {
                 return Promise.reject(res.msg)

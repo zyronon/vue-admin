@@ -26,7 +26,7 @@
         },
         computed: {
             ...mapState({
-                username: state => state.user.userInfo.name || 'test',
+                username: state => state.user.userInfo.username || 'test',
                 avatar: state => state.user.userInfo.avatar || 'https://i.loli.net/2018/08/18/5b7819891bab1.jpg',
             })
         },
