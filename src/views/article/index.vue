@@ -67,7 +67,6 @@
     </div>
 </template>
 <script>
-
     export default {
         name: "index",
         data() {
@@ -83,11 +82,10 @@
             }
         },
         created() {
-            // this.getData()
+            this.getData()
         },
         methods: {
             test() {
-
             },
             getData() {
                 this.loading = true
@@ -144,7 +142,6 @@
 <style scoped lang="scss">
     .el-row {
         margin-bottom: 20px;
-
         &:last-child {
             margin-bottom: 0;
         }

@@ -1,12 +1,12 @@
 <template>
-    <el-header>
+    <div class="header">
         <div class="left">
-            <i class="el-icon-school f30 mr30p cp" @click="reload()"></i>
+            <i class="el-icon-school f30 ml20p mr30p cp" @click="reload()"></i>
             <span class="name">{{CONFIG.COMPANY_NAME}}</span>
         </div>
         <div class="right">
             <div class="right-left">
-                <div @click="switchNavbar()">
+                <div @click="switchNavbar()" class="d-flex">
                     <i v-if="!isLeftCollapse" class="el-icon-s-unfold cp f22 ml10p mr10p"></i>
                     <i v-else class="el-icon-s-fold cp f22 ml10p mr10p"></i>
                 </div>
@@ -14,14 +14,14 @@
             </div>
             <div class="right-right">
                 <infoDrop class="mr20p"/>
-                <el-badge :value="notReadMessages.length" :hidden="notReadMessages.length===0" class="notice-area">
-                    <div @click="switchRightbar">
-                        <i class="el-icon-bell f22 cp"></i>
-                    </div>
+                <el-badge :value="notReadMessages.length"
+                          :hidden="notReadMessages.length===0"
+                          class="notice-area d-flex">
+                    <i class="el-icon-bell f22 cp" @click="switchRightbar"></i>
                 </el-badge>
             </div>
         </div>
-    </el-header>
+    </div>
 </template>
 <script>
     import breadcrumb from '@/components/breadcrumb'
@@ -59,7 +59,7 @@
 </script>
 
 <style scoped lang='scss'>
-    .el-header {
+    .header {
         display: flex;
         align-items: center;
 
@@ -77,7 +77,8 @@
         }
 
         .right {
-            width: 100%;
+            padding-right: 20px;
+            flex: 1;
             justify-content: space-between;
             display: flex;
             align-items: center;

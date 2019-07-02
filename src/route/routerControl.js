@@ -2,7 +2,7 @@ import router from '@/route'
 import store from '@/store'
 import {asyncRouterMap} from '@/route/asyncRouterMap'
 import {Loading} from 'element-ui'
-import tools from "../utils/tools"
+import globalMethods from "../utils/global-methods"
 import {types} from "../store/mutation-types"
 
 const whiteList = ['/login']
@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
 
                 store.dispatch('getUserInfo').then(
                     resolve => {
-                        tools.$success(resolve)
+                        globalMethods.$success(resolve)
                         store.commit(types.SET_ROLES, asyncRouterMap)
                         // if (store.state.userInfo.account === 'testtest' && store.state.userInfo.password === '666') {
                         //     console.log('管理员账号')
@@ -54,7 +54,7 @@ router.beforeEach(async (to, from, next) => {
                         loadingInstance.close()
                     },
                     reject => {
-                        tools.$error(reject)
+                        globalMethods.$error(reject)
                         store.commit(types.LOGOUT)
                         next({path: '/login'})
                         loadingInstance.close()

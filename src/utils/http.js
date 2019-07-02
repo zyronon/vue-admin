@@ -1,5 +1,5 @@
 import axios from 'axios'
-import tools from './tools'
+import globalMethods from './global-methods'
 import Config from '../config/index'
 import CONSTANT from '../utils/const_var'
 import store from '@/store'
@@ -34,10 +34,7 @@ instance.interceptors.response.use(
         // console.log(response.data)
         const data = response.data
         if (response.status !== 200) {
-            tools.notify({
-                type: 'error',
-                message: response.statusText
-            })
+            globalMethods.$warning(response.statusText)
             if (data.code === '000000') {
                 // 接口自定义错误代码
                 // 移除登陆token 显示接口错误消息

@@ -1,18 +1,20 @@
 <template>
-    <el-container class="outer-ctn">
-        <layout-header></layout-header>
+    <el-container>
+        <el-header>
+            <layout-header></layout-header>
+        </el-header>
         <el-container>
-            <el-aside class="el-aside-left" :width="isLeftCollapse?'60px':'240px'" >
+            <el-aside class="el-aside-left" :width="isLeftCollapse?'60px':'240px'">
                 <layout-menu></layout-menu>
             </el-aside>
-            <el-main :style="{'margin-right':isRightCollapse?'0':'320px'}">
-                <!--                <keep-alive>-->
-                <router-view></router-view>
-                <!--                </keep-alive>-->
-            </el-main>
-            <el-aside class="el-aside-right" :style="{'right':isRightCollapse?'-320px':'0'}">
-                <layout-right-bar/>
-            </el-aside>
+            <el-container>
+                <el-main :style="{'margin-right':isRightCollapse?'0':'320px'}">
+                    <router-view></router-view>
+                </el-main>
+                <el-aside class="el-aside-right" :style="{'right':isRightCollapse?'-320px':'0'}">
+                    <layout-right-bar/>
+                </el-aside>
+            </el-container>
         </el-container>
     </el-container>
 </template>
@@ -49,27 +51,25 @@
 </script>
 
 <style scoped lang="scss">
-    .outer-ctn {
-        display: flex;
-        flex-direction: column;
-    }
 
     .el-container {
-        height: 100%;
         width: 100%;
-        overflow: hidden;
-        position: relative;
+        height: 100%;
     }
-
+    .el-header {
+        padding: 0;
+        font-size: 0;
+        line-height: 60px;
+        background: white;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
     .el-aside-left {
         transition: width .3s;
-        height: 100%;
         background: #3c505a;
-        overflow-x: hidden;
-        position: relative;
+        overflow: hidden;
     }
-
-    .el-aside-right {
+    .el-aside-right{
         position: fixed;
         top: 60px;
         right: 0;
@@ -80,11 +80,11 @@
         border: 1px solid #ddd;
         background: #fff;
     }
-
     .el-main {
-        transition: all .3s;
         background: #f1f1f1;
+        padding: 20px;
+        height: 100%;
+        overflow: auto;
+        transition: all .3s;
     }
-
-
 </style>
