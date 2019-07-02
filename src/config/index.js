@@ -7,5 +7,6 @@ export default {
     API_VERSION: '/v1/',
     ADMIN_ACCOUNT: 'testtest',
     ADMIN_PASSWORD: '666',
+    COMPANY_NAME:'TTentau',
     CHANGELOG: []
 }

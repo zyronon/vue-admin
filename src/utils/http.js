@@ -1,7 +1,7 @@
 import axios from 'axios'
 import tools from './tools'
 import Config from '../config/index'
-import {CONSTANT} from '../utils/const_var'
+import CONSTANT from '../utils/const_var'
 import store from '@/store'
 
 
@@ -28,6 +28,7 @@ instance.interceptors.request.use(
 
 // respone 拦截器
 instance.interceptors.response.use(
+    //响应正常的处理
     response => {
         // console.log(response)
         // console.log(response.data)
@@ -37,7 +38,7 @@ instance.interceptors.response.use(
                 type: 'error',
                 message: response.statusText
             })
-            if (data.resultCode === '000000') {
+            if (data.code === '000000') {
                 // 接口自定义错误代码
                 // 移除登陆token 显示接口错误消息
             }
@@ -45,63 +46,64 @@ instance.interceptors.response.use(
         } else {
             if (data === null) {
                 return Promise.resolve({
-                    resultCode: '009900',
-                    resultMsg: '系统出现错误',
-                    pageReturn: null
+                    code: '009900',
+                    msg: '系统出现错误',
+                    data: {}
                 })
             }
             // console.log(data.resultCode)
-            if (data.resultCode === undefined) {
+            if (data.code === undefined) {
                 if (data.msg !== undefined) {
                     return Promise.resolve({
-                        resultCode: '009900',
-                        resultMsg: data.msg,
-                        pageReturn: null
+                        code: '009900',
+                        msg: data.msg,
+                        data: null
                     })
                 } else {
                     return Promise.resolve({
-                        resultCode: '009900',
-                        resultMsg: data.message !== null ? data.message : '',
-                        pageReturn: null
+                        code: '009900',
+                        msg: data.message !== null ? data.message : '',
+                        data: null
                     })
                 }
             }
         }
         return Promise.resolve(data)
     },
+    //请求出错的处理
     error => {
         // console.log(error.response.data)
         if (error.response === undefined && error.status === undefined) {
             return Promise.resolve({
-                resultCode: '009900',
-                resultMsg: '服务器响应超时',
-                pageReturn: null
+                code: '009900',
+                msg: '服务器响应超时',
+                data: null
             })
         }
         if (error.response.status >= 500) {
             return Promise.resolve({
-                resultCode: '009900',
-                resultMsg: '服务器出现错误',
-                pageReturn: null
+                code: '009900',
+                msg: '服务器出现错误',
+                data: null
             })
         } else if (error.response.status === 401) {
             return Promise.resolve({
-                resultCode: '009900',
-                resultMsg: '用户名或密码不正确',
-                pageReturn: null
+                code: '009900',
+                msg: '用户名或密码不正确',
+                data: null
             })
         } else {
             let data = error.response.data
-            if (data.resultCode !== undefined) {
+            if (data.code !== undefined) {
                 return Promise.resolve({
-                    resultCode: data.resultCode,
-                    resultMsg: data.resultMsg
+                    code: data.code,
+                    msg: data.msg
                 })
             }
             return Promise.resolve({
-                resultCode: '009900',
-                resultMsg: data.msg,
-                pageReturn: null
+                code: '009900',
+                msg: data.msg,
+                data: null
             })
         }
     }
@@ -125,9 +127,9 @@ instance.interceptors.response.use(
  */
 async function request(url, data = {}, params = {}, method = CONSTANT.POST, version = Config.API_VERSION) {
     if (method === CONSTANT.POST) {
-        data.userId = store.state.userInfo === null ? '' : store.state.userInfo.id
+        data.userId = store.state.user.userInfo === null ? '' : store.state.user.userInfo.id
     } else {
-        params.userId = store.state.userInfo === null ? '' : store.state.userInfo.id
+        params.userId = store.state.user.userInfo === null ? '' : store.state.user.userInfo.id
     }
     return await instance({
         url: version + url,

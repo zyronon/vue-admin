@@ -1,8 +1,25 @@
+import dayjs from 'dayjs'
+
 export default {
     //时间转换器
     date(v) {
         if (!v) return ''
-        return new Date(v).toLocaleString()
+        if (typeof v === 'number') {
+            let temp = v + ''
+            if (temp.length === 10) {
+                return dayjs.unix(v).format('YYYY-MM-DD HH:mm:ss')
+            } else {
+                return dayjs(v).format('YYYY-MM-DD HH:mm:ss')
+            }
+        }
+        if (typeof v === 'string') {
+            if (v.length === 10) {
+                return dayjs.unix(parseInt(v)).format('YYYY-MM-DD HH:mm:ss')
+            } else {
+                return dayjs(parseInt(v)).format('YYYY-MM-DD HH:mm:ss')
+            }
+        }
+        return dayjs(v).format('YYYY-MM-DD HH:mm:ss')
     },
     //为空判断
     $(v) {

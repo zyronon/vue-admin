@@ -6,6 +6,7 @@ import router from '@/route'
 import '@/route/routerControl'
 import store from '@/store'
 import mixin from "./utils/mixin"
+import MockData from './mock'
 
 Vue.config.productionTip = false
 Vue.use(Element, {size: 'medium'})

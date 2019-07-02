@@ -90,6 +90,7 @@
 
 <script>
     import verify from '@/components/verify'
+    import {types} from "../../store/mutation-types"
 
     export default {
         components: {
@@ -108,15 +109,15 @@
 
             return {
                 loginForm: {
-                    account:'',
-                    password:'',
+                    account: '',
+                    password: '',
                 },
                 registerForm: {
-                    account:'',
-                    password:'',
-                    phone:'',
-                    name:'',
-                    nickname:'',
+                    account: '',
+                    password: '',
+                    phone: '',
+                    name: '',
+                    nickname: '',
                 },
                 isRegister: false,
                 verifySuccess: false,
@@ -148,7 +149,7 @@
             login() {
                 this.$refs['loginForm'].validate((valid) => {
                     if (valid) {
-                        this.$store.commit('SET_TOKEN','adfasddfdsfadfads')
+                        this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
                         this.$router.push({path: '/'})
                     } else {
                         console.log('error submit!!')
@@ -158,8 +159,8 @@
             },
             goRegister() {
                 this.isRegister = true
-                this.$refs['loginForm'].resetFields();
-                this.$refs['registerForm'].resetFields();
+                this.$refs['loginForm'].resetFields()
+                this.$refs['registerForm'].resetFields()
             },
             register() {
                 this.$refs['registerForm'].validate((valid) => {
@@ -173,8 +174,8 @@
             },
             backLogin() {
                 this.isRegister = false
-                this.$refs['loginForm'].resetFields();
-                this.$refs['registerForm'].resetFields();
+                this.$refs['loginForm'].resetFields()
+                this.$refs['registerForm'].resetFields()
             }
         }
     }

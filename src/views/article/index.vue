@@ -16,9 +16,10 @@
                             :picker-options="CONSTANT.PICKEROPTIONS">
             </el-date-picker>
             <el-button type="primary" icon="el-icon-search" class="ml10p" @click="getData()">搜索</el-button>
-            <el-button type="primary" icon="el-icon-refresh"
+            <el-button type="info" icon="el-icon-refresh"
                        @click="searchData.searchKey = '';searchData.date = ''">重置
             </el-button>
+            <el-button type="info" class="ml20p" @click="test()">测试</el-button>
         </el-card>
         <el-card class="mt20p">
             <div class="d-flex justify-content-between align-items-center">
@@ -66,6 +67,7 @@
     </div>
 </template>
 <script>
+    import Mock from 'mockjs'
 
     export default {
         name: "index",
@@ -85,6 +87,23 @@
             // this.getData()
         },
         methods: {
+            test() {
+                let Random = Mock.Random
+                let data = Mock.mock({
+                    'data|3-10': [{
+                        'id|1': '@id',
+                        'title|1': '@ctitle',
+                        'content|1': '@csentence',
+                        // 'createTime|1': Random.date('T')
+                        'createTime|1': "@date('T')"
+                    }],
+                    'code|1': '000000',
+                    'msg': '',
+                })
+                // 输出结果
+                console.log(JSON.stringify(data, null, 4))
+
+            },
             getData() {
                 this.loading = true
                 for (let i = 0; i < 12; i++) {
