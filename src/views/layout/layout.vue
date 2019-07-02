@@ -51,6 +51,7 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../../assets/scss/color";
 
     .el-container {
         width: 100%;
@@ -66,7 +67,7 @@
     }
     .el-aside-left {
         transition: width .3s;
-        background: #3c505a;
+        background: $menu-bg-color;
         overflow: hidden;
     }
     .el-aside-right{
@@ -81,7 +82,7 @@
         background: #fff;
     }
     .el-main {
-        background: #f1f1f1;
+        background: $bg-color;
         padding: 20px;
         height: 100%;
         overflow: auto;
