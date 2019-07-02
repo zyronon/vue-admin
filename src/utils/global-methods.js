@@ -1,26 +1,29 @@
 import {Message, MessageBox} from 'element-ui'
 
 export default {
+    //解析url
     $parseURL(url) {
-        var a =  document.createElement('a');
-        a.href = url;
+        let a = document.createElement('a')
+        a.href = url
         return {
             host: a.hostname,
             port: a.port,
             query: a.search,
-            params: (function(){
-                var ret = {},
-                    seg = a.search.replace(/^\?/,'').split('&'),
-                    len = seg.length, i = 0, s;
-                for (;i<len;i++) {
-                    if (!seg[i]) { continue; }
-                    s = seg[i].split('=');
-                    ret[s[0]] = s[1];
+            params: (function () {
+                let ret = {},
+                    seg = a.search.replace(/^\?/, '').split('&'),
+                    len = seg.length, i = 0, s
+                for (; i < len; i++) {
+                    if (!seg[i]) {
+                        continue
+                    }
+                    s = seg[i].split('=')
+                    ret[s[0]] = s[1]
                 }
-                return ret;
+                return ret
             })(),
-            hash: a.hash.replace('#','')
-        };
+            hash: a.hash.replace('#', '')
+        }
     },
     $jsonParse(v) {
         console.log(v)
@@ -95,5 +98,28 @@ export default {
     },
     $error(msg) {
         Message({type: 'error', message: msg, duration: 1500, showClose: true})
+    },
+    $checkPlatform() {
+        let isWechat = /micromessenger/i.test(navigator.userAgent),
+            isWeibo = /weibo/i.test(navigator.userAgent),
+            isQQ = /qq\//i.test(navigator.userAgent),
+            isIOS = /(iphone|ipod|ipad|ios)/i.test(navigator.userAgent),
+            isAndroid = /android/i.test(navigator.userAgent)
+    },
+
+    // 倒计时时间格式化
+    $countdownFormatTime(timeStamp) {
+        let day = Math.floor(timeStamp / (24 * 3600 * 1000))
+        let leave1 = timeStamp % (24 * 3600 * 1000)
+        let hours = Math.floor(leave1 / (3600 * 1000))
+        let leave2 = leave1 % (3600 * 1000)
+        let minutes = Math.floor(leave2 / (60 * 1000))
+        let leave3 = leave2 % (60 * 1000)
+        let seconds = Math.floor(leave3 / 1000)
+        if (day) return day + "天" + hours + "小时" + minutes + "分"
+        if (hours) return hours + "小时" + minutes + "分" + seconds + "秒"
+        if (minutes) return minutes + "分" + seconds + "秒"
+        if (seconds) return seconds + "秒"
+        return "时间到！"
     }
 }

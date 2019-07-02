@@ -9,7 +9,6 @@ export default {
     },
     get(key) {
         const value = localStorage.getItem(key) || ''
-
         try {
             return JSON.parse(value)
         } catch (e) {

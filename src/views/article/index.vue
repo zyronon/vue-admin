@@ -67,7 +67,6 @@
     </div>
 </template>
 <script>
-    import Mock from 'mockjs'
 
     export default {
         name: "index",
@@ -88,7 +87,7 @@
         },
         methods: {
             test() {
-                console.log(this.$store.state.user)
+
             },
             getData() {
                 this.loading = true

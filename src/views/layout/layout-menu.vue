@@ -9,7 +9,7 @@
                  :background-color="bg"
                  :text-color="tc"
                  :active-text-color="atc">
-            <template v-for="item in sideMenu" v-if="!item.hidden && item.children">
+            <template v-for="item in sideMenu" >
                 <!-- 单级 -->
                 <router-link
                         v-if="onlyOneShowingChildren(item.children) && !item.children[0].children && !item.hidden"
@@ -37,7 +37,7 @@
                                     {{!isLeftCollapse ? item.meta.title : ''}}
                                 </span>
                     </template>
-                    <template v-for="child in item .children" v-if="!child.hidden">
+                    <template v-for="child in item .children"  >
                         <!-- 二级菜单 -->
                         <sidebar-item v-if="child.children && child.children.length > 0"
                                       :routes="[child]"
@@ -83,7 +83,12 @@
         },
         computed: {
             sideMenu() {
-                return this.$store.state.user.roles
+                let newArr = this.$store.state.user.roles.filter(v => !v.hidden && v.children)
+                newArr.map(v => {
+                    v.children = v.children.filter(w => !w.hidden)
+                    return v
+                })
+                return newArr
             },
             ...mapState({
                 isLeftCollapse: state => state.layout.isLeftCollapse,
