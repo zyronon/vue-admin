@@ -71,7 +71,7 @@
         name: "index",
         data() {
             return {
-                loading: true,
+                loading: false,
                 searchData: {},
                 tableData: {
                     list: [],
@@ -82,7 +82,7 @@
             }
         },
         created() {
-            this.getData()
+            // this.getData()
         },
         methods: {
             getData() {

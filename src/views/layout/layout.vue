@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container class="outer-ctn">
         <layout-header></layout-header>
         <el-container>
             <el-aside class="el-aside-right" :width="isCollapse?'60px':'240px'" style="position: relative;">
@@ -98,13 +98,17 @@
                 tc: '#fff',
                 atc: '#fff',
                 sideMenu: this.$store.state.roles,
-                isCollapse: false,
                 isRightCollapse: true,
             }
         },
         created() {
         },
         mounted() {
+        },
+        computed:{
+            isCollapse(){
+                return this.$store.state.isCollapse
+            }
         },
         methods: {
             reload() {
@@ -129,6 +133,10 @@
         background: #20a8d8 !important;
     }
 
+    .outer-ctn{
+        display: flex;
+        flex-direction: column;
+    }
     .el-container {
         height: 100%;
         width: 100%;

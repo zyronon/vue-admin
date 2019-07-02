@@ -11,9 +11,13 @@ const store = new Vuex.Store({
         // userInfo: Storage.get('userInfo') === undefined ? null : JSON.parse(Cookies.get('userInfo')),
         userInfo: {},
         token: Storage.get('token') === '' ? null : Storage.get('token'),
-        historyQuery: new Map()
+        historyQuery: new Map(),
+        isCollapse:false
     },
     mutations: {
+        collapse(state){
+            state.isCollapse = !state.isCollapse
+        },
         [ADD_HISTORY_QUERY](state, {path, params}) {
             state.historyQuery.set(path, params)
         },
