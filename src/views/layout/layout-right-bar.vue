@@ -25,7 +25,6 @@
 
 <script>
     import {mapState} from 'vuex'
-    import User from '../../api/user'
     import {types} from "../../store/mutation-types"
 
     export default {
@@ -43,7 +42,7 @@
         },
         methods: {
             async remove(item) {
-                let res = await User.hasReadMessage({id: item.id})
+                let res = await this.$api.user.hasReadMessage({id: item.id})
                 if (res.code === '000000') {
                     this.$store.commit(types.SET_NOT_READ_MESSAGES, res.data)
                 } else {
@@ -51,7 +50,7 @@
                 }
             },
             async removeAll() {
-                let res = await User.hasReadAllMessage({})
+                let res = await this.$api.user.hasReadAllMessage({})
                 if (res.code === '000000') {
                     this.$store.commit(types.SET_NOT_READ_MESSAGES, res.data)
                 } else {
@@ -59,7 +58,7 @@
                 }
             },
             async getData() {
-                let res = await User.notReadMessages({})
+                let res = await this.$api.user.notReadMessages({})
                 if (res.code === '000000') {
                     this.$store.commit(types.SET_NOT_READ_MESSAGES, res.data)
                 } else {

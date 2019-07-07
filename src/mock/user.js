@@ -31,5 +31,3 @@ import Mock from 'mockjs'
     })
     Mock.mock(/user\/hasReadAllMessage/, data)
 }()
-
-export default {}

@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Element from 'element-ui'
-import '@/assets/scss/index.scss'
-import router from '@/route'
+import './assets/scss/index.scss'
+import router from './route'
 import '@/route/routerControl'
-import store from '@/store'
+import store from './store'
 import mixin from "./utils/mixin"
-import MockData from './mock'
+import './mock'//导入 mock 数据处理
+import api from './api'
 
-MockData.init()
 Vue.config.productionTip = false
 Vue.use(Element, {size: 'medium'})
 Vue.prototype.$bus = new Vue()
+Vue.prototype.$api = {...api}
 
 Vue.mixin(mixin)
 new Vue({
