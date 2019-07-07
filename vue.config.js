@@ -14,7 +14,7 @@ let isProduction = process.env.NODE_ENV === 'production'
 module.exports = {
     publicPath: isProduction ? '' : '',
     outputDir: process.env.outputDir,
-    assetsDir: './',
+    assetsDir: '',
     lintOnSave: false,//取消eslint的检查
     // configureWebpack: config => {
     //     config.externals = {
