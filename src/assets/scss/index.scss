@@ -1,21 +1,31 @@
-@import "../../../node_modules/normalize.css/normalize.css";//在style标签内引入
-@import '../../../node_modules/element-ui/lib/theme-chalk/index.css';//在style标签内引入
-@import "utils";//for循环生成的 margin、padding、width、height类
-@import "custom";//自定义的一些快捷css类
-@import "color";//颜色
-@import "dialog";//弹窗
-@import "layout";//布局
+@import "../../../node_modules/normalize.css/normalize.css";
+//在style标签内引入
+@import '../../../node_modules/element-ui/lib/theme-chalk/index.css';
+//在style标签内引入
+@import "utils";
+//for循环生成的 margin、padding、width、height类
+@import "custom";
+//自定义的一些快捷css类
+@import "color";
+//颜色
+@import "dialog";
+//弹窗
+@import "layout"; //布局
 
 
 //app
-html,body{
-  height: 100%;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-a{
-  text-decoration: none;
+
+a {
+    text-decoration: none;
 }
-ul,li{
-  padding: 0;
-  margin: 0;
-  list-style: none;
+
+ul, li, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
