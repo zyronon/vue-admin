@@ -77,7 +77,8 @@
 </template>
 
 <script>
-    import E from 'wangeditor'
+    // import E from 'wangeditor'
+    var E = window.wangEditor
 
     export default {
         name: "CreateArticle",

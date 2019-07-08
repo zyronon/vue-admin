@@ -8,14 +8,7 @@ export const user = {
         userInfo: {},
         token: Storage.get('token') === '' ? null : Storage.get('token'),
         roles: [],
-        notReadMessages: [
-            {
-                id:'xxxxxxxxxxx1',
-                title:'xxxx',
-                content:'xxxx',
-                createTime:'2019-01-01 12:30:33'
-            }
-        ],
+        notReadMessages: [],
     },
     mutations: {
         //设置用户信息

@@ -1,18 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-admin-base</title>
-    <script src="https://lib.baomitu.com/lodash.js/4.17.12-pre/lodash.min.js"></script>
+    <link crossorigin="anonymous" integrity="sha384-mimphncWi0uu9ecpX1wtKHojBKyU9d+mU5ebbzfqJGWk2+hoXs/usOb0yeNTblE4" href="https://lib.baomitu.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+    <link crossorigin="anonymous" integrity="sha384-NzLQYzzuG4tOFL7EyrQTVXBbgxB9Y7qBBq3yV2kn5yG+A61JLrc8An6IY5KtSAl8" href="https://lib.baomitu.com/element-ui/2.8.2/theme-chalk/index.css" rel="stylesheet">
+    <link crossorigin="anonymous" integrity="sha384-OYF2qVjT+uoSm9C9s2RPqTw+8yyXYIylhAXea/DdhadXUSYpHfqQm+iq/IznjlF6" href="https://lib.baomitu.com/wangEditor/3.1.1/wangEditor.min.css" rel="stylesheet">
+
+    <script crossorigin="anonymous" integrity="sha384-8t+aLluUVnn5SPPG/NbeZCH6TWIvaXIm/gDbutRvtEeElzxxWaZN+G/ZIEdI/f+y" src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-H4fyEuEEQs/K+e+ex+4qJc07bYkHYtEEDycRL9Oc5wkJF1c1P8UCrNcUdlzLB9Og" src="https://lib.baomitu.com/vuex/3.1.0/vuex.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-EnzMJi5PirMz1dgUr9a4DUHwg7e71+fxk3jLLfJn1vljGydxX8c6bdDYdPDE8224" src="https://lib.baomitu.com/vue-router/3.0.2/vue-router.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-zwI8xqiXyXFUcFP1yC0HSB9fg7NClqJgL1CmP5dykzdwemTawVOBXggTR2szzGfB" src="https://lib.baomitu.com/element-ui/2.6.1/index.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-jfoD5wDMGlBxSOQCN5g0oPmkUu9kz8GN3UXygEs5AzptoaIsYrZylRpHBtHW5edS" src="https://lib.baomitu.com/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-2HWZ0KJxkQ3nhRpHPzk4AO2iIy1S8rSGwN5MpMS/xf34mqOahLqEbqwvdk48EnEv" src="https://lib.baomitu.com/lodash.js/4.17.12-pre/lodash.min.js"></script>    <script crossorigin="anonymous" integrity="sha384-aBANEEc08k14V2NuMKvO9ap8UemgwBqE6/Bh3CzxRxz5vaUiqVe/zulqVHN7yeX5" src="https://lib.baomitu.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-uOV94oddoQmmdQhRtBPzXMX7CBxGVw888Cp9gjgRspAq/go5oea3c+cS8OlY+N6C" src="https://lib.baomitu.com/wangEditor/3.1.1/wangEditor.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-PSpr1/lqNtmADNHmm6srV4Jp7HFHX7UbGfb04LuEufDQP/R/bOPhAUAZvVPY/9PX" src="https://lib.baomitu.com/dayjs/1.8.13/dayjs.min.js"></script>
+
+    <style>
+        .loading{position:absolute;left:50%;top:50%;}.spinner{width:20px;height:20px;position:relative;float:left}.container1 > div,.container2 > div,.container3 > div{width:6px;height:6px;background-color:#333;border-radius:100%;position:absolute;-webkit-animation:bouncedelay 1.2s infinite ease-in-out;animation:bouncedelay 1.2s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}.spinner .spinner-container{position:absolute;width:100%;height:100%}.container2{-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg)}.container3{-webkit-transform:rotateZ(90deg);transform:rotateZ(90deg)}.circle1{top:0;left:0}.circle2{top:0;right:0}.circle3{right:0;bottom:0}.circle4{left:0;bottom:0}.container2 .circle1{-webkit-animation-delay:-1.1s;animation-delay:-1.1s}.container3 .circle1{-webkit-animation-delay:-1.0s;animation-delay:-1.0s}.container1 .circle2{-webkit-animation-delay:-0.9s;animation-delay:-0.9s}.container2 .circle2{-webkit-animation-delay:-0.8s;animation-delay:-0.8s}.container3 .circle2{-webkit-animation-delay:-0.7s;animation-delay:-0.7s}.container1 .circle3{-webkit-animation-delay:-0.6s;animation-delay:-0.6s}.container2 .circle3{-webkit-animation-delay:-0.5s;animation-delay:-0.5s}.container3 .circle3{-webkit-animation-delay:-0.4s;animation-delay:-0.4s}.container1 .circle4{-webkit-animation-delay:-0.3s;animation-delay:-0.3s}.container2 .circle4{-webkit-animation-delay:-0.2s;animation-delay:-0.2s}.container3 .circle4{-webkit-animation-delay:-0.1s;animation-delay:-0.1s}@-webkit-keyframes bouncedelay{0%,80%,100%{-webkit-transform:scale(0.0)}40%{-webkit-transform:scale(1.0)}}@keyframes bouncedelay{0%,80%,100%{transform:scale(0.0);-webkit-transform:scale(0.0)}40%{transform:scale(1.0);-webkit-transform:scale(1.0)}}.check-version-container{width:550px;background:white;border-radius:10px;margin:100px auto;padding:30px}.check-version-next{text-decoration:none;margin-top:30px;color:white;border-radius:5px;text-align:center;line-height:50px;display:block;width:100px;height:50px;background:rgb(0, 123, 255)}.check-version-browser{list-style:none;float:left;text-align:center;margin:15px}.check-version-container-browser{overflow:hidden}.check-version-browser img{width:80px;height:80px}.check-version-browser span{font-size:small;display:block;margin-bottom:10px}.check-version-browser a{padding:5px 10px;margin-top:10px;text-decoration:none;color:white;border-radius:5px;text-align:center;background:rgb(0, 123, 255)}
+    </style>
+    <script>
+        //检测浏览器，如果是ie，直接不让用
+        var url = window.location.href
+        if (url.indexOf('ignore') == -1) {
+            // var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+            // var isOpera = userAgent.indexOf('Opera') > -1; //判断是否Opera浏览器
+            // var isIE = userAgent.indexOf('compatible') > -1
+            //     && userAgent.indexOf('MSIE') > -1 && !isOpera; //判断是否IE浏览器
+            // var isEdge = userAgent.indexOf('Edge') > -1; //判断是否IE的Edge浏览器
+            // var isFF = userAgent.indexOf('Firefox') > -1; //判断是否Firefox浏览器
+            // var isSafari = userAgent.indexOf('Safari') > -1; //判断是否Safari浏览器
+            // var isChrome = userAgent.indexOf('Chrome') > -1; //判断Chrome浏览器
+            if (!!window.ActiveXObject || "ActiveXObject" in window) {
+                window.onload = function () {
+                    var container = document.createElement('div');
+                    container.className = 'check-version-container';
+                    var temp = '';
+                    temp += '<p>你知道您的<b>Internet Explorer 已经过时了</b>吗？</p>';
+                    temp += '<p>为了得到我们网站最好的体验效果，我们建议您升级到最新版本的Internet Explorer或选择另一个web浏览器，最流行的web浏览器在下面可以找到.</p>';
+                    temp += '<a class="check-version-next" href="/?ver=ignore"> 继续访问</a>';
+                    // temp += '<a class="check-version-next" href="request://localhost:4200/ignore"> 继续访问</a>';;
+                    temp += '<ul class="check-version-container-browser">';
+                    temp += '	<li class="check-version-browser">';
+                    temp += '		<img src="https://p4.ssl.qhimg.com/t01ce2c8d4d5d4f608a.png">';
+                    temp += '		<span>360安全浏览器(<span style="color: red;display: inline-block;margin: 0;">推荐</span>)</span>';
+                    temp += '		<a href="https://browser.360.cn/se/"  target="_blank">官网下载</a>';
+                    temp += '	</li>';
+                    temp += '	<li class="check-version-browser">';
+                    temp += '		<img src="https://p1.ssl.qhimg.com/t015df97f5323a948be.png">';
+                    temp += '		<span>360极速浏览器</span>';
+                    temp += '		<a href="https://browser.360.cn/ee/"  target="_blank">官网下载</a>';
+                    temp += '	</li>';
+                    temp += '	<li class="check-version-browser">';
+                    temp += '		<img src="request://3gimg.qq.com/trom_s/pcbrowser/download_logo.png">';
+                    temp += '		<span>QQ浏览器</span>';
+                    temp += '		<a href="https://browser.qq.com/" target="_blank">官网下载</a>';
+                    temp += '	</li>';
+                    temp += '	<li class="check-version-browser">';
+                    temp += '		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538118312068&di=78de0fcf7dc615eb46d88693a8f88448&imgtype=0&src=request%3A%2F%2Fhimg2.huanqiu.com%2Fattachment2010%2F2014%2F0917%2F20140917084118310.png">';
+                    temp += '		<span>谷歌浏览器</span>';
+                    temp += '		<a href="https://www.google.cn/chrome/"  target="_blank">官网下载</a>';
+                    temp += '	</li>';
+                    temp += '</ul>';
+                    container.innerHTML = temp;
+                    document.body.innerHTML = "";
+                    document.body.style.background = 'gainsboro';
+                    document.body.appendChild(container);
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 <noscript>
-    <strong>We're sorry but vue-layout doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    <strong>很抱歉，如果没有启用JavaScript，系统将无法正常运行。请启用JavaScript并刷新页面。</strong>
 </noscript>
-<div id="app"></div>
+
+<div id="app">
+    <div class="loading">
+        <div class="spinner">
+            <div class="spinner-container container1">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+        </div>
+        <span>&nbsp;&nbsp;&nbsp;加载中...</span>
+    </div>
+</div>
 <!-- built files will be auto injected -->
 </body>
 </html>

@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vue from 'vue'
+// import Vuex from 'vuex'
 import {types} from "./mutation-types"
 import {layout} from "./modules/layout"
 import {user} from "./modules/user"

@@ -1,6 +1,7 @@
 export default {
     hexcase: 0,
     chrsz: 8,
+    //加密方法
     hex_md5(s) {
         return this.binl2hex(this.core_md5(this.str2binl(s), s.length * this.chrsz))
     },

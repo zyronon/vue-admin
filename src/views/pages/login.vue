@@ -149,7 +149,19 @@
             login() {
                 this.$refs['loginForm'].validate((valid) => {
                     if (valid) {
-                        this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+                        //管理员账号
+                        if (this.loginForm.account === this.CONFIG.ADMIN_ACCOUNT &&
+                            this.loginForm.password === this.CONFIG.ADMIN_PASSWORD){
+                            this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+                            this.$store.commit(types.SET_USERINFO, {
+                                account:this.CONFIG.ADMIN_ACCOUNT,
+                                password:this.CONFIG.ADMIN_PASSWORD,
+                                username: 'Admin',
+                                avatar: 'https://i.loli.net/2018/08/18/5b7819891bab1.jpg',
+                            })
+                        } else {
+                            this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+                        }
                         this.$router.push({path: '/'})
                     } else {
                         console.log('error submit!!')

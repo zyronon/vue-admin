@@ -3,6 +3,7 @@ import globalMethods from "./global-methods"
 import Config from '../config'
 import CONSTANT from './const_var'
 
+//全局混入
 export default {
     data() {
         return {

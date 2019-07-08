@@ -1,8 +1,8 @@
-import axios from 'axios'
+// import axios from 'axios'
 import globalMethods from './global-methods'
 import Config from '../config/index'
 import CONSTANT from '../utils/const_var'
-import store from '@/store'
+import store from '../store'
 
 
 const instance = axios.create({
@@ -15,9 +15,6 @@ instance.interceptors.request.use(
     config => {
         // if (Cookies.get('token')) {
         //     config.headers['access_token'] = Cookies.get('token')
-        //     if (config.method === 'post') {
-        //         config.headers['access_token'] = Cookies.get('token')
-        //     }
         // }
         return config
     },
@@ -115,9 +112,7 @@ instance.interceptors.response.use(
  * @apiParam  data 请求数据
  * @apiParam  params 请求参数
  * @apiParam  method 方法类型：get或者post
- * @apiParam  auth 是否认证
  * @apiParam  version 接口版本号
- * @apiParam  headers 请求header
  * @apiParamExample
  *       request('Appointment/appointmentList', data, params, CONSTANT.GET)
  * @apiReturn Promise

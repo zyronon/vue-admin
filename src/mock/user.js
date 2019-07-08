@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+// import Mock from 'mockjs'
 
 
 !function notReadMessages() {
@@ -7,23 +7,20 @@ import Mock from 'mockjs'
             'id|1': '@id',
             'title|1': '@ctitle',
             'content|1': '@csentence',
-            // 'createTime|1': Random.date('T')
             'createTime|1': "@date('T')"
         }],
         'code|1': '000000',
         'msg': '',
     })
     Mock.mock(/user\/notReadMessages/, data)
-    Mock.mock(/user\/hasReadMessage/, data)
 }()
 
-!function notReadMessages() {
+!function hasReadAllMessage() {
     let data = Mock.mock({
         'data|0': [{
             'id|1': '@id',
             'title|1': '@ctitle',
             'content|1': '@csentence',
-            // 'createTime|1': Random.date('T')
             'createTime|1': "@date('T')"
         }],
         'code|1': '000000',
