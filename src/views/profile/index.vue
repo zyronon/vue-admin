@@ -22,14 +22,8 @@
 
         <el-row class="profile-content" :gutter="20">
             <el-col :sm="24" :lg="18" class="profile-content__left">
-                <el-alert
-                        title="提示：您在 2018/05/23 生成的系统报告已提交成功"
-                        type="success">
-                </el-alert>
-                <el-alert
-                        title="警告：目前系统有三个资源值请求数量过大"
-                        type="warning">
-                </el-alert>
+                <el-alert title="提示：您在 2018/05/23 生成的系统报告已提交成功" type="success"></el-alert>
+                <el-alert title="警告：目前系统有三个资源值请求数量过大" type="warning"></el-alert>
                 <el-card shadow="hover">
                     <div slot="header">
                         <span class="card-title">个人动态</span>
@@ -138,8 +132,8 @@
                 search: '',
                 feedmock:feedmock,
                 visitHistoryMock:visitHistoryMock,
-                avatarUrl: this.$store.state.userInfo.avatar,
-                username: this.$store.state.userInfo.name,
+                avatarUrl: this.$store.state.user.userInfo.avatar,
+                username: this.$store.state.user.userInfo.name,
                 lastLoginDate: '2019'
             }
         }

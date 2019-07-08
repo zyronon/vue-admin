@@ -81,7 +81,7 @@
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
                     <i class="el-icon-office-building f50"></i>
-                    <div class="name">Vue-Admin</div>
+                    <div class="name">Vue-Base-Admin</div>
                 </div>
             </div>
         </div>
