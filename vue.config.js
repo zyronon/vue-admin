@@ -5,7 +5,7 @@ let isProduction = process.env.NODE_ENV === 'production'
 // vue.config.js
 module.exports = {
     publicPath: isProduction ? '' : '',
-    assetsDir: isProduction ? './' : '',
+    assetsDir: isProduction ? './' : './',
     lintOnSave: false,//取消eslint的检查
     //减少打包面积，引入外链时用的
     configureWebpack: config => {
@@ -29,4 +29,5 @@ module.exports = {
         https: false,
         hotOnly: false,
     },
+
 }
