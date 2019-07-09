@@ -9,8 +9,8 @@
         "build-report": "vue-cli-service build --report",
         "build-prod": "vue-cli-service build --mode production",
         "build-dev": "vue-cli-service build --mode development",
-        "lint": "vue-cli-service lint",
-        "lint2": "eslint --ext .js,.vue src",
+        "lint-fix": "vue-cli-service lint",
+        "lint": "eslint --ext .js,.vue src",
         "analyz": "NODE_ENV=production  npm_config_report=true npm run build"
     },
     "dependencies": {
