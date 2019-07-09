@@ -3,7 +3,7 @@
 
 [vue-admin](https://github.com/ttentau/vue-admin) 是一个前端管理系统的基础布局模板，只包含一个表格和表单示例页面。
 基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element)实现，
-内置vue-router、vuex、axios、mockjs、lodash等库（以上等库均以 cdn 的方式引入，有 vue.config.js 文件有特殊配置）。
+内置vue-router、vuex、axios、mockjs、lodash等库（以上等库均以 cdn 的方式引入，在 vue.config.js 文件有特殊配置）。
 全局变量、全局方法、全局api方法、全局filters这些都配置好了。
 clone下来，直接复制示例页面，然后添加到路由里面即可。
 
