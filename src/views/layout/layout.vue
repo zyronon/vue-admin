@@ -20,34 +20,34 @@
 </template>
 
 <script>
-    import layoutRightBar from './layout-right-bar'
-    import layoutHeader from './layout-header'
-    import layoutMenu from './layout-menu'
-    import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
+  import layoutRightBar from './layout-right-bar'
+  import layoutHeader from './layout-header'
+  import layoutMenu from './layout-menu'
 
 
-    export default {
-        name: "layout",
-        components: {
-            'layout-right-bar': layoutRightBar,
-            'layout-header': layoutHeader,
-            'layout-menu': layoutMenu,
-        },
-        data() {
-            return {}
-        },
-        created() {
-        },
-        mounted() {
-        },
-        computed: {
-            ...mapState({
-                isLeftCollapse: state => state.layout.isLeftCollapse,
-                isRightCollapse: state => state.layout.isRightCollapse,
-            }),
-        },
-        methods: {}
-    }
+  export default {
+    name: 'layout',
+    components: {
+      'layout-right-bar': layoutRightBar,
+      'layout-header': layoutHeader,
+      'layout-menu': layoutMenu,
+    },
+    data() {
+      return {}
+    },
+    created() {
+    },
+    mounted() {
+    },
+    computed: {
+      ...mapState({
+        isLeftCollapse: state => state.layout.isLeftCollapse,
+        isRightCollapse: state => state.layout.isRightCollapse,
+      }),
+    },
+    methods: {},
+  }
 </script>
 
 <style scoped lang="scss">

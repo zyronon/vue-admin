@@ -9,19 +9,25 @@
                  :background-color="bg"
                  :text-color="tc"
                  :active-text-color="atc">
-            <template v-for="item in sideMenu" >
+            <template v-for="item in sideMenu">
                 <!-- 单级 -->
                 <router-link
-                        v-if="onlyOneShowingChildren(item.children) && !item.children[0].children && !item.hidden"
+                        v-if="onlyOneShowingChildren(item.children)
+                        && !item.children[0].children
+                        && !item.hidden"
                         :key="item.children[0].name"
                         :to="item.path+'/'+item.children[0].path">
                     <el-menu-item :index="item.path + '/' + item.children[0].path">
 
-                        <i class="el-icon-setting" v-if="item.children[0].meta && item.children[0].meta.icon"
+                        <i class="el-icon-setting"
+                           v-if="item.children[0].meta
+                            && item.children[0].meta.icon"
                            :name="item.children[0].meta.icon"></i>
-                        <span slot="title" v-if="item.children[0].meta && item.children[0].meta.title">
-                                        {{item.children[0].meta.title}}
-                                    </span>
+                        <span slot="title"
+                              v-if="item.children[0].meta
+                              && item.children[0].meta.title">
+                                {{item.children[0].meta.title}}
+                        </span>
                     </el-menu-item>
                 </router-link>
 
@@ -37,7 +43,7 @@
                                     {{!isLeftCollapse ? item.meta.title : ''}}
                                 </span>
                     </template>
-                    <template v-for="child in item .children"  >
+                    <template v-for="child in item .children">
                         <!-- 二级菜单 -->
                         <sidebar-item v-if="child.children && child.children.length > 0"
                                       :routes="[child]"
@@ -59,50 +65,54 @@
                 </el-submenu>
             </template>
         </el-menu>
-        <div class="sidebar-minimizer" v-bind:style="{ width: isLeftCollapse?'0px':'180px'}" @click="switchNavbar">
-            <i v-bind:class="{ 'el-icon-arrow-left': !isLeftCollapse, 'el-icon-arrow-right':isLeftCollapse}"></i>
+        <div class="sidebar-minimizer"
+             v-bind:style="{ width: isLeftCollapse?'0px':'180px'}"
+             @click="switchNavbar">
+            <i v-bind:class="{
+                'el-icon-arrow-left': !isLeftCollapse,
+                'el-icon-arrow-right':isLeftCollapse
+             }"></i>
         </div>
     </div>
 </template>
 <script>
-    import {mapState} from 'vuex'
-    import {types} from "../../store/mutation-types"
+  import { mapState } from 'vuex'
+  import { types } from '../../store/mutation-types'
 
-    export default {
-        name: "layout-menu",
-        components: {},
-        data() {
-            return {
-                bg: '#3c505a',
-                tc: '#fff',
-                atc: '#fff',
-            }
-        },
-        created() {
-
-        },
-        computed: {
-            sideMenu() {
-                let newArr = this.$store.state.user.roles.filter(v => !v.hidden && v.children)
-                newArr.map(v => {
-                    v.children = v.children.filter(w => !w.hidden)
-                    return v
-                })
-                return newArr
-            },
-            ...mapState({
-                isLeftCollapse: state => state.layout.isLeftCollapse,
-            }),
-        },
-        methods: {
-            onlyOneShowingChildren(children) {
-                return children.filter(item => !item.hidden).length === 1
-            },
-            switchNavbar() {
-                this.$store.commit(types.COLLAPSE_LEFT)
-            },
-        }
-    }
+  export default {
+    name: 'layout-menu',
+    components: {},
+    data() {
+      return {
+        bg: '#3c505a',
+        tc: '#fff',
+        atc: '#fff',
+      }
+    },
+    created() {
+    },
+    computed: {
+      sideMenu() {
+        const newArr = this.$store.state.user.roles.filter(v => !v.hidden && v.children)
+        newArr.map((v) => {
+          v.children = v.children.filter(w => !w.hidden)
+          return v
+        })
+        return newArr
+      },
+      ...mapState({
+        isLeftCollapse: state => state.layout.isLeftCollapse,
+      }),
+    },
+    methods: {
+      onlyOneShowingChildren(children) {
+        return children.filter(item => !item.hidden).length === 1
+      },
+      switchNavbar() {
+        this.$store.commit(types.COLLAPSE_LEFT)
+      },
+    },
+  }
 </script>
 
 <style scoped lang='scss'>

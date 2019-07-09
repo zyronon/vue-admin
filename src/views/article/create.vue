@@ -1,7 +1,12 @@
 <template>
     <div class="add-article">
         <el-row>
-            <el-button type="primary" icon="el-icon-arrow-left" style="margin-bottom: 10px;" @click="$router.go(-1)">返回</el-button>
+            <el-button type="primary"
+                       icon="el-icon-arrow-left"
+                       style="margin-bottom: 10px;"
+                       @click="$router.go(-1)">
+                返回
+            </el-button>
         </el-row>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
@@ -66,10 +71,21 @@
             </el-form>
             <el-row style="border-top: 1px solid gainsboro;padding-top: 20px;">
                 <el-col :span="24">
-                    <el-button @click="submit()" type="primary" icon="el-icon-check" style="margin-bottom: 10px;">提交</el-button>
-                    <el-button @click="preview()" type="success" icon="el-icon-check" style="margin-bottom: 10px;">预览
+                    <el-button
+                            @click="submit()"
+                            type="primary"
+                            icon="el-icon-check"
+                            style="margin-bottom: 10px;">提交
                     </el-button>
-                    <el-button type="danger" icon="el-icon-delete" style="margin-bottom: 10px;">重置</el-button>
+                    <el-button @click="preview()"
+                               type="success"
+                               icon="el-icon-check"
+                               style="margin-bottom: 10px;">预览
+                    </el-button>
+                    <el-button type="danger"
+                               icon="el-icon-delete"
+                               style="margin-bottom: 10px;">重置
+                    </el-button>
                 </el-col>
             </el-row>
         </el-card>
@@ -77,44 +93,45 @@
 </template>
 
 <script>
-    // import E from 'wangeditor'
-    var E = window.wangEditor
+  // import E from 'wangeditor'
+  const E = window.wangEditor
 
-    export default {
-        name: "CreateArticle",
-        data() {
-            return {
-                form: {},
-                employee: {},
-                editor: null,
-                textarea2: '',
-                checked: false
-            }
-        },
-        created() {
-        },
-        methods: {
-            submit() {
-                this.$success('sdfsd')
-            },
-            preview() {
-                let printHtml = this.editor.txt.html()
-                printHtml = `<div style = "font-family: 宋体,SimSun;line-height: 30px;margin-bottom: 0;">
+  export default {
+    name: 'CreateArticle',
+    data() {
+      return {
+        form: {},
+        employee: {},
+        editor: null,
+        textarea2: '',
+        checked: false,
+      }
+    },
+    created() {
+    },
+    methods: {
+      submit() {
+        this.$success('sdfsd')
+      },
+      preview() {
+        let printHtml = this.editor.txt.html()
+        printHtml = `<div style = "font-family: 宋体,SimSun;line-height: 30px;margin-bottom: 0;">
                                 ${printHtml}
                             </div>`
-                let wind = window.open('', 'newwindow', 'height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
-                wind.document.body.innerHTML = printHtml
-                wind.print()
-            }
-        },
-        mounted() {
-            this.editor = new E(this.$refs.editor)
-            this.editor.customConfig.onchange = (html) => {
-                this.editorContent = html
-            }
-            this.editor.create()
-        }
-    }
+        const wind = window.open('', 'newwindow',
+          'height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+        wind.document.body.innerHTML = printHtml
+        wind.print()
+      },
+    },
+    mounted() {
+      this.editor = new E(this.$refs.editor)
+      this.editor.customConfig.onchange = (html) => {
+        this.editorContent = html
+      }
+      this.editor.create()
+    },
+  }
 </script>
 
 <style scoped>

@@ -24,38 +24,37 @@
     </div>
 </template>
 <script>
-    import breadcrumb from '@/components/breadcrumb'
-    import infoDrop from './info-drop'
-    import {types} from "../../store/mutation-types"
-    import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
+  import breadcrumb from '@/components/breadcrumb'
+  import infoDrop from './info-drop'
+  import { types } from '../../store/mutation-types'
 
-    export default {
-        name: "layout-header",
-        components: {breadcrumb, infoDrop},
-        data() {
-            return {}
-        },
-        created() {
-
-        },
-        computed: {
-            ...mapState({
-                isLeftCollapse: state => state.layout.isLeftCollapse,
-                notReadMessages: state => state.user.notReadMessages
-            })
-        },
-        methods: {
-            reload() {
-                location.href = '/'
-            },
-            switchNavbar() {
-                this.$store.commit(types.COLLAPSE_LEFT)
-            },
-            switchRightbar() {
-                this.$store.commit(types.COLLAPSE_RIGHT)
-            }
-        }
-    }
+  export default {
+    name: 'layout-header',
+    components: { breadcrumb, infoDrop },
+    data() {
+      return {}
+    },
+    created() {
+    },
+    computed: {
+      ...mapState({
+        isLeftCollapse: state => state.layout.isLeftCollapse,
+        notReadMessages: state => state.user.notReadMessages,
+      }),
+    },
+    methods: {
+      reload() {
+        window.location.href = '/'
+      },
+      switchNavbar() {
+        this.$store.commit(types.COLLAPSE_LEFT)
+      },
+      switchRightbar() {
+        this.$store.commit(types.COLLAPSE_RIGHT)
+      },
+    },
+  }
 </script>
 
 <style scoped lang='scss'>
@@ -71,7 +70,6 @@
             .name {
                 font-size: 22px;
                 font-weight: bold;
-                font-family: 'Avenir', "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
                 letter-spacing: 3px;
             }
         }

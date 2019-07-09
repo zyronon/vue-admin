@@ -78,91 +78,91 @@
     </div>
 </template>
 <script>
-    export default {
-        name: "index",
-        data() {
-            return {
-                loading: false,
-                searchDate: [],
-                searchData: {},
-                tableData: {
-                    list: [],
-                    count: 30
-                },
-                offset: 0,
-                limit: 10,
-                isSearch: false
-            }
+  export default {
+    name: 'index',
+    data() {
+      return {
+        loading: false,
+        searchDate: [],
+        searchData: {},
+        tableData: {
+          list: [],
+          count: 30,
         },
-        watch: {
-            //检测到这个值有变动，设置到searchData里面
-            searchDate(newValue) {
-                if (newValue && newValue.length > 0) {
-                    this.searchData.minCreateTime = newValue[0]
-                    this.searchData.maxCreateTime = newValue[1]
-                }
-            }
-        },
-        created() {
-            this.getData()
-        },
-        methods: {
-            //搜索
-            search() {
-                this.isSearch = true
-                this.searchData.pageSize = this.limit = 10
-                this.searchData.pageNumber = this.offset = 0
-                this.getData()
-            },
-            //重置
-            reset() {
-                this.isSearch = false
-                this.searchData = {}
-                this.searchDate = []
-                this.limit = 10
-                this.offset = 0
-                this.getData()
-            },
-            getData() {
-                this.loading = true
-                for (let i = 0; i < 12; i++) {
-                    this.tableData.list.push(
-                        {
-                            CarOwnerName: '曹操',
-                            LicensePlateNumber: '沪A12345',
-                            CarBrand: '奥迪',
-                            CarType: 'A6',
-                            Illegal: '18条',
-                            CanRentTime: 1554486493646,
-                            CreationTime: '2018-11-11',
-                            IsRent: '是'
-                        }
-                    )
-                }
-                setTimeout(() => {
-                    this.loading = false
-                }, this.CONSTANT.DELAYTIME)
-            },
-            //页条目改变事件
-            handleSizeChange(val) {
-                this.limit = val
-                this.getData()
-            },
-            //页码改变事件
-            handleCurrentChange(val) {
-                this.offset = val
-                this.getData()
-            },
-            del(row) {
-                this.$mConfirm('', '此操作将永久删除该文件, 是否继续?', () => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    })
-                })
-            }
+        offset: 0,
+        limit: 10,
+        isSearch: false,
+      }
+    },
+    watch: {
+      // 检测到这个值有变动，设置到searchData里面
+      searchDate(newValue) {
+        if (newValue && newValue.length > 0) {
+          this.searchData.minCreateTime = newValue[0]
+          this.searchData.maxCreateTime = newValue[1]
         }
-    }
+      },
+    },
+    created() {
+      this.getData()
+    },
+    methods: {
+      // 搜索
+      search() {
+        this.isSearch = true
+        this.searchData.pageSize = this.limit = 10
+        this.searchData.pageNumber = this.offset = 0
+        this.getData()
+      },
+      // 重置
+      reset() {
+        this.isSearch = false
+        this.searchData = {}
+        this.searchDate = []
+        this.limit = 10
+        this.offset = 0
+        this.getData()
+      },
+      getData() {
+        this.loading = true
+        for (let i = 0; i < 12; i++) {
+          this.tableData.list.push(
+            {
+              CarOwnerName: '曹操',
+              LicensePlateNumber: '沪A12345',
+              CarBrand: '奥迪',
+              CarType: 'A6',
+              Illegal: '18条',
+              CanRentTime: 1554486493646,
+              CreationTime: '2018-11-11',
+              IsRent: '是',
+            },
+          )
+        }
+        setTimeout(() => {
+          this.loading = false
+        }, this.CONSTANT.DELAYTIME)
+      },
+      // 页条目改变事件
+      handleSizeChange(val) {
+        this.limit = val
+        this.getData()
+      },
+      // 页码改变事件
+      handleCurrentChange(val) {
+        this.offset = val
+        this.getData()
+      },
+      del(row) {// eslint-disable-line
+        this.$mConfirm('', '此操作将永久删除该文件, 是否继续?', () => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!',
+          })
+        })
+      },
+    },
+  }
 </script>
 
 

@@ -1,12 +1,13 @@
+/* eslint-disable */
 export default {
     hexcase: 0,
     chrsz: 8,
-    //加密方法
+    // 加密方法
     hex_md5(s) {
         return this.binl2hex(this.core_md5(this.str2binl(s), s.length * this.chrsz))
     },
     core_md5(x, len) {
-        /* append padding */
+    /* append padding */
         x[len >> 5] |= 0x80 << ((len) % 32)
         x[(((len + 64) >>> 9) << 4) + 14] = len
 
@@ -16,10 +17,10 @@ export default {
         let d = 271733878
 
         for (let i = 0; i < x.length; i += 16) {
-            let olda = a
-            let oldb = b
-            let oldc = c
-            let oldd = d
+            const olda = a
+            const oldb = b
+            const oldc = c
+            const oldd = d
 
             a = this.md5_ff(a, b, c, d, x[i + 0], 7, -680876936)
             d = this.md5_ff(d, a, b, c, x[i + 1], 12, -389564586)
@@ -112,26 +113,25 @@ export default {
         return this.md5_cmn(c ^ (b | (~d)), a, b, x, s, t)
     },
     safe_add(x, y) {
-        let lsw = (x & 0xFFFF) + (y & 0xFFFF)
-        let msw = (x >> 16) + (y >> 16) + (lsw >> 16)
+        const lsw = (x & 0xFFFF) + (y & 0xFFFF)
+        const msw = (x >> 16) + (y >> 16) + (lsw >> 16)
         return (msw << 16) | (lsw & 0xFFFF)
     },
     bit_rol(num, cnt) {
         return (num << cnt) | (num >>> (32 - cnt))
     },
     str2binl(str) {
-        let bin = Array()
-        let mask = (1 << this.chrsz) - 1
-        for (let i = 0; i < str.length * this.chrsz; i += this.chrsz)
-            bin[i >> 5] |= (str.charCodeAt(i / this.chrsz) & mask) << (i % 32)
+        const bin = Array()
+        const mask = (1 << this.chrsz) - 1
+        for (let i = 0; i < str.length * this.chrsz; i += this.chrsz) { bin[i >> 5] |= (str.charCodeAt(i / this.chrsz) & mask) << (i % 32) }
         return bin
     },
     binl2hex(binarray) {
-        let hex_tab = this.hexcase ? "0123456789ABCDEF" : "0123456789abcdef"
-        let str = ""
+        const hex_tab = this.hexcase ? '0123456789ABCDEF' : '0123456789abcdef'
+        let str = ''
         for (let i = 0; i < binarray.length * 4; i++) {
-            str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF) +
-                hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8)) & 0xF)
+            str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF)
+                + hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8)) & 0xF)
         }
         return str
     },
