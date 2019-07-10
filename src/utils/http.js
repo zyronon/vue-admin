@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 import globalMethods from './global-methods'
 import Config from '../config/index'
 import CONSTANT from './const_var'
@@ -114,7 +114,7 @@ instance.interceptors.response.use(
  * @apiReturn Promise
  */
 async function request(url, data = {}, params = {}, method = CONSTANT.POST, version = Config.API_VERSION) {
-  console.log(url)
+  // console.log(url)
   if (method === CONSTANT.POST) {
     data.userId = store.state.user.userInfo === null ? '' : store.state.user.userInfo.id
   } else {

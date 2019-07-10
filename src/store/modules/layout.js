@@ -14,8 +14,7 @@ export const layout = {
       state.isRightCollapse = !state.isRightCollapse
     },
   },
-  getters: {
-  },
+  getters: {},
   actions: {},
 }
 export default {}

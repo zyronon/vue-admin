@@ -1,4 +1,4 @@
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 export default {
   // 时间转换器

@@ -24,6 +24,7 @@ export const user = {
       Storage.remove('token')
       state.token = null
       state.userInfo = null
+      state.roles = []
     },
     [types.SET_ROLES](state, roles) {
       state.roles = roles

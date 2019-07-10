@@ -1,6 +1,6 @@
-// import Vue from 'vue'
+import Vue from 'vue'
+import Element from 'element-ui'
 import App from './App'
-// import Element from 'element-ui'
 import './assets/scss/index.scss'
 import router from './router'
 import './router/routerControl'
@@ -11,8 +11,7 @@ import api from './api'
 
 
 Vue.config.productionTip = false
-// Vue.use(Element, {size: 'medium'})
-Vue.use(ELEMENT, { size: 'medium' })
+Vue.use(Element, { size: 'medium' })
 Vue.prototype.$bus = new Vue()
 Vue.prototype.$api = { ...api }
 

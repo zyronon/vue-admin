@@ -1,5 +1,5 @@
-// import VueRouter from 'vue-router'
-// import Vue from 'vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import _import from '../utils/import'
 import CONSTANT from '../utils/const_var'
 

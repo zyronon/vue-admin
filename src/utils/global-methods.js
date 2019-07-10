@@ -1,4 +1,4 @@
-// import {Message, MessageBox} from 'element-ui'
+import {Message, MessageBox} from 'element-ui'
 
 export default {
   // 解析url
@@ -83,7 +83,7 @@ export default {
   },
   
   $mConfirm(type, msg, onConfirm) {
-    ELEMENT.MessageBox.confirm(msg === '' ? '确定删除这条数据？' : msg, '提示', {
+    MessageBox.confirm(msg === '' ? '确定删除这条数据？' : msg, '提示', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: type === '' ? 'warning' : type,
@@ -94,17 +94,17 @@ export default {
   },
   
   $success(msg) {
-    ELEMENT.Message({
+    Message({
       type: 'success', message: msg, duration: 1500, showClose: true,
     })
   },
   $warning(msg) {
-    ELEMENT.Message({
+    Message({
       type: 'warning', message: msg, duration: 1500, showClose: true,
     })
   },
   $error(msg) {
-    ELEMENT.Message({
+    Message({
       type: 'error', message: msg, duration: 1500, showClose: true,
     })
   },

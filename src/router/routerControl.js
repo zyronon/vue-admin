@@ -1,7 +1,7 @@
+import { Loading } from 'element-ui'
 import router from './index'
 import store from '../store'
 import { asyncRouterMap } from './asyncRouterMap'
-// import {Loading} from 'element-ui'
 import globalMethods from '../utils/global-methods'
 import { types } from '../store/mutation-types'
 import Config from '../config'
@@ -18,10 +18,10 @@ router.beforeEach(async (to, from, next) => {
     } else if (store.state.user.roles.length === 0) {
       // 如果vuex 里的user 模块的 roles 为空。那么获取调用用户信息的接口生成动态的路由
       
-      const loadingInstance = ELEMENT.Loading.service({ text: '加载中' })
+      const loadingInstance = Loading.service({ text: '加载中' })
       
       // 如果是管理员，直接添加本地写好的动态路由，上线后记得注释掉此代码
-      if (store.state.user.userInfo.account === Config.ADMIN_ACCOUNT
+      if (store.state.user.userInfo && store.state.user.userInfo.account === Config.ADMIN_ACCOUNT
         && store.state.user.userInfo.password === Config.ADMIN_PASSWORD) {
         console.log('管理员账号')
         store.commit(types.SET_ROLES, asyncRouterMap)

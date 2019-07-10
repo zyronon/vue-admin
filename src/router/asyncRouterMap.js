@@ -1,4 +1,4 @@
-import _import from '@/utils/import'
+import _import from '../utils/import'
 
 const Layout = _import('layout/layout')
 

@@ -10,13 +10,13 @@ module.exports = {
   // 减少打包面积，引入外链时用的
   configureWebpack: (config) => {
     config.externals = {// eslint-disable-line
-      vue: 'Vue',
-      vuex: 'Vuex',
-      'vue-router': 'VueRouter',
-      'element-ui': 'ELEMENT',
-      axios: 'axios',
-      lodash: '_',
-      mockjs: 'Mock',
+      // vue: 'Vue',
+      // vuex: 'Vuex',
+      // 'vue-router': 'VueRouter',
+      // 'element-ui': 'ELEMENT',
+      // axios: 'axios',
+      // lodash: '_',
+      // mockjs: 'Mock',
     }
   },
   // 是否为生产环境构建生成 source map？
