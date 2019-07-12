@@ -2,7 +2,7 @@
     <div class="login">
         <div class="container">
             <div class="w50 left">
-                <div v-show="!isRegister" class="form-body">
+                <div v-show="leftType === 1" class="form-body">
                     <div class="notice">
                         <h1>登录</h1>
                         <h5>输入用户名和密码</h5>
@@ -23,6 +23,9 @@
                         <el-form-item label="">
                             <verify v-on:verifySuccess="verifySuccess=true"/>
                         </el-form-item>
+                        <div class="oh mb10p">
+                            <el-link class="pull-right" @click="forgetPassword()">忘记密码？</el-link>
+                        </div>
                         <el-form-item class="btn mb0p">
                             <div class="d-flex justify-content-between">
                                 <el-button type="primary" @click="goRegister()">注册</el-button>
@@ -35,7 +38,7 @@
                         </el-form-item>
                     </el-form>
                 </div>
-                <div v-show="isRegister" class="form-body">
+                <div v-show="leftType === 2" class="form-body">
                     <div class="notice">
                         <h1 class="mt0p">注册</h1>
                     </div>
@@ -87,12 +90,82 @@
                         </el-form-item>
                     </el-form>
                 </div>
+                <div v-show="leftType === 3" class="form-body">
+                    <div class="notice">
+                        <h1 class="mt0p">忘记密码</h1>
+                    </div>
+                    <el-form ref="forgetPasswordForm" status-icon
+                             :rules="forgetPasswordRules"
+                             :model="forgetPasswordForm"
+                             label-width="0px">
+                        <el-form-item label="" prop="account">
+                            <el-input placeholder="请输入账号" v-model="forgetPasswordForm.account">
+                                <template slot="prepend">
+                                    <span class="c-red">* </span>账号：
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="" prop="phone">
+                            <el-input placeholder="请输入手机号" v-model="forgetPasswordForm.phone">
+                                <template slot="prepend">
+                                    <span class="c-red">* </span>手机号：
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="">
+                            <el-input placeholder="请输入验证码" v-model="forgetPasswordForm.verifyCode">
+                                <el-button slot="append" @click="sendVerifyCode()">
+                                    {{isSendVerifyCode?countdownTime+'秒':'发送验证码'}}
+                                </el-button>
+                            </el-input>
+                        </el-form-item>
+
+                        <el-form-item class="btn mb0p">
+                            <div class="d-flex justify-content-between">
+                                <el-button type="primary" @click="backLogin()">返回</el-button>
+                                <el-button :loading="loading" type="primary" @click="forgetPasswordNext()">下一步
+                                </el-button>
+                            </div>
+                        </el-form-item>
+                    </el-form>
+                </div>
+                <div v-show="leftType === 4" class="form-body">
+                    <div class="notice">
+                        <h1 class="mt0p">修改密码</h1>
+                    </div>
+                    <el-form ref="changePasswordForm" status-icon
+                             :rules="changePasswordRules"
+                             :model="changePasswordForm"
+                             label-width="0px">
+                        <el-form-item label="" prop="password">
+                            <el-input placeholder="请输入新密码" type="password" v-model="changePasswordForm.password">
+                                <template slot="prepend">
+                                    <span class="c-red">* </span>新密码：
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="" prop="newPassword">
+                            <el-input placeholder="请重复密码" type="password" v-model="changePasswordForm.newPassword">
+                                <template slot="prepend">
+                                    <span class="c-red">* </span>重复密码：
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item class="btn mb0p">
+                            <div class="d-flex justify-content-between">
+                                <el-button type="primary" @click="backForgetPassword()">返回</el-button>
+                                <el-button :loading="loading" type="primary" @click="submitChangePassword()">确定
+                                </el-button>
+                            </div>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </div>
             <div class="w50 right">
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
                     <i class="el-icon-office-building f50"></i>
-                    <div class="name">Vue-Base-Admin</div>
+                    <div class="name">拖集集</div>
                 </div>
             </div>
         </div>
@@ -119,6 +192,7 @@
       }
 
       return {
+        leftType: 1,
         loginForm: {
           account: '',
           password: '',
@@ -130,33 +204,130 @@
           name: '',
           nickname: '',
         },
-        isRegister: false,
+        forgetPasswordForm: {
+          account: '',
+          verifyCode: '',
+          phone: '',
+        },
+        changePasswordForm: {
+          password: '',
+          newPassword: '',
+        },
         verifySuccess: false,
         loading: false,
         loginRules: {
           account: [
-            { required: true, message: '请输入账号', trigger: 'blur' },
+            {
+              required: true,
+              message: '请输入账号',
+              trigger: 'blur',
+            },
           ],
           password: [
-            { required: true, message: '请输入密码', trigger: 'blur' },
-            { min: 6, message: '长度不能小于 6 个字符', trigger: 'blur' },
+            {
+              required: true,
+              message: '请输入密码',
+              trigger: 'blur'
+            },
+            {
+              min: 6,
+              message: '长度不能小于 6 个字符',
+              trigger: 'blur'
+            },
           ],
         },
         registerRules: {
           account: [
-            { required: true, message: '请输入账号', trigger: 'blur' },
+            {
+              required: true,
+              message: '请输入账号',
+              trigger: 'blur'
+            },
           ],
           password: [
-            { required: true, message: '请输入密码', trigger: 'blur' },
-            { min: 6, message: '长度不能小于 6 个字符', trigger: 'blur' },
+            {
+              required: true,
+              message: '请输入密码',
+              trigger: 'blur'
+            },
+            {
+              min: 6,
+              message: '长度不能小于 6 个字符',
+              trigger: 'blur'
+            },
           ],
           phone: [
-            { validator: checkPhone, trigger: 'blur' },
+            {
+              validator: checkPhone,
+              trigger: 'blur'
+            },
           ],
         },
+        forgetPasswordRules: {
+          account: [
+            {
+              required: true,
+              message: '请输入账号',
+              trigger: 'blur'
+            },
+          ],
+          phone: [
+            {
+              validator: checkPhone,
+              trigger: 'blur'
+            },
+          ],
+        },
+        changePasswordRules: {
+          password: [
+            {
+              required: true,
+              message: '请输入密码',
+              trigger: 'blur'
+            },
+          ],
+          newPassword: [
+            {
+              required: true,
+              message: '请输入密码',
+              trigger: 'blur'
+            },
+          ],
+        },
+        isSendVerifyCode: false,
+        countdownTime: 60
       }
     },
     methods: {
+      submitChangePassword() {
+        this.$refs['changePasswordForm'].validate((valid) => {
+        })
+      },
+      forgetPasswordNext() {
+        this.leftType = 4
+      },
+      sendVerifyCode() {
+        this.$refs['forgetPasswordForm'].validate((valid) => {
+          if (valid) {
+            if (!this.isSendVerifyCode) {
+              this.isSendVerifyCode = true
+              const inter = setInterval(() => {
+                if (this.countdownTime < 1) {
+                  this.isSendVerifyCode = false
+                  this.countdownTime = 60
+                  clearInterval(inter)
+                } else {
+                  this.countdownTime--
+                }
+              }, 1000)
+            }
+          } else {
+            console.log('error submit!!')
+            return false
+          }
+          return false
+        })
+      },
       login() {
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
@@ -181,15 +352,20 @@
           return false
         })
       },
+      forgetPassword() {
+        this.leftType = 3
+        this.$refs['loginForm'].resetFields()
+        this.$refs['registerForm'].resetFields()
+      },
       goRegister() {
-        this.isRegister = true
-        this.$refs.loginForm.resetFields()
-        this.$refs.registerForm.resetFields()
+        this.leftType = 2
+        this.$refs['loginForm'].resetFields()
+        this.$refs['registerForm'].resetFields()
       },
       register() {
-        this.$refs.registerForm.validate((valid) => {
+        this.$refs['registerForm'].validate((valid) => {
           if (valid) {
-            this.$warning('submit!')
+            alert('submit!')
           } else {
             console.log('error submit!!')
             return false
@@ -198,10 +374,14 @@
         })
       },
       backLogin() {
-        this.isRegister = false
-        this.$refs.loginForm.resetFields()
-        this.$refs.registerForm.resetFields()
+        this.leftType = 1
+        this.$refs['loginForm'].resetFields()
+        this.$refs['registerForm'].resetFields()
       },
+      backForgetPassword() {
+        this.leftType = 3
+        this.$refs['forgetPasswordForm'].resetFields()
+      }
     },
   }
 </script>
