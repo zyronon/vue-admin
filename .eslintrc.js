@@ -39,6 +39,8 @@ module.exports = {
     },
   },
   rules: {
+    'comma-dangle':'off',
+    'linebreak-style':'off',
     'no-unused-expressions': 'off', // 禁止未使用过的表达式 (no-unused-expressions)
     'dot-notation': 'off', // 要求使用点号 (dot-notation) ojb['xxx']
     'no-trailing-spaces': 'off', // 禁用行尾空白
@@ -50,7 +52,7 @@ module.exports = {
     'prefer-destructuring': 'off', // 优先使用数组和对象解构
     'no-continue': 'off',
     'no-underscore-dangle': 'off', // 禁止标识符中有悬空下划线
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-plusplus': 'off',
     'no-multi-assign': 'off',
     'no-console': 'off',
     'max-len': ['error', { code: 120 }],
