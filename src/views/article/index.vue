@@ -41,24 +41,27 @@
             </div>
             <el-table :data="tableData.list" border stripe class="mt20p">
                 <el-table-column type="selection"></el-table-column>
-                <el-table-column fixed prop="CarOwnerName" label="车主姓名"></el-table-column>
-                <el-table-column prop="CarBrand" label="品牌"></el-table-column>
-                <el-table-column prop="CarType" label="型号"></el-table-column>
-                <el-table-column prop="CanRentTime" label="可租时间">
+                <el-table-column fixed prop="CarOwnerName" label="车主姓名" min-width="100"></el-table-column>
+                <el-table-column prop="CarBrand" label="品牌" min-width="100"></el-table-column>
+                <el-table-column prop="CarType" label="型号" min-width="100"></el-table-column>
+                <el-table-column prop="CanRentTime" label="可租时间" min-width="100">
                     <template v-slot="scope">
                         {{scope.row.CanRentTime|date}}
                     </template>
                 </el-table-column>
-                <el-table-column prop="CreationTime" label="上传时间"></el-table-column>
-                <el-table-column prop="IsRent" label="是否可发车"></el-table-column>
-                <el-table-column prop="" label="操作" fixed="right" width="280">
+                <el-table-column prop="CreationTime" label="上传时间" min-width="100"></el-table-column>
+                <el-table-column prop="IsRent" label="是否可发车" min-width="100"></el-table-column>
+                <el-table-column prop="" label="操作" align="center" fixed="right" min-width="200">
                     <template v-slot="scope">
-                        <el-button @click="$router.push({path:'detail',query:{id:'xxx'}})" icon="el-icon-reading"
+                        <el-button @click="$router.push({path:'detail',query:{id:'xxx'}})"
+                                   icon="el-icon-reading"
                                    type="primary" size="small">查看
                         </el-button>
                         <el-button @click="$router.push({path:'detail',query:{id:'xxx'}})"
-                                   type="primary" icon="el-icon-edit" size="small">编辑</el-button>
-                        <el-button type="primary" icon="el-icon-delete" size="small" @click="del(scope.row)">删除
+                                   type="primary" icon="el-icon-edit" size="small">编辑
+                        </el-button>
+                        <el-button type="primary" icon="el-icon-delete" size="small"
+                                   @click="del(scope.row)">删除
                         </el-button>
                     </template>
                 </el-table-column>

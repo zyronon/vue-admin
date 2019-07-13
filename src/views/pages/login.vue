@@ -165,7 +165,7 @@
                 <div class="logo-body">
                     <!-- <img src="" alt="" class="logo">-->
                     <i class="el-icon-office-building f50"></i>
-                    <div class="name">拖集集</div>
+                    <div class="name">{{CONFIG.COMPANY_NAME}}</div>
                 </div>
             </div>
         </div>
