@@ -19,7 +19,7 @@ module.exports = {
       // mockjs: 'Mock',
     }
   },
-  /*chainWebpack: config => {
+  /* chainWebpack: config => {
     config.resolve.alias
       .set('vue$', 'vue/dist/vue.esm.js')
       // .set('@', resolve('src')) vue会默认生成@的指引，所以这一行是多余的
@@ -42,7 +42,7 @@ module.exports = {
     //config.when(approval.env.NODE_ENV === 'production', config =>
     //  config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
     //)
-  },*/
+  }, */
   // 是否为生产环境构建生成 source map？
   productionSourceMap: false,
   css: {},
