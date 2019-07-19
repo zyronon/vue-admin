@@ -28,12 +28,22 @@ export const asyncRouterMap = [
         path: 'create',
         name: 'create',
         component: _import('article/create'),
-        hidden: false,
+        hidden: true,
         meta: {
           title: ' 创建',
           icon: 'comp',
         },
       },
+      {
+        path: 'detail',
+        name: 'detail',
+        component: _import('article/detail'),
+        hidden: true,
+        meta: {
+          title: ' 详情',
+          icon: 'comp',
+        }
+      }
     ],
   }, {
     path: '/profile',
