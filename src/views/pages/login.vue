@@ -173,217 +173,217 @@
 </template>
 
 <script>
-  import verify from '../../components/verify'
-  import { types } from '../../store/mutation-types'
+    import verify from '../../components/verify'
+    import { types } from '../../store/mutation-types'
 
-  export default {
-    components: {
-      verify,
-    },
-    data() {
-      const checkPhone = (rule, value, callback) => {
-        if (!value) {
-          callback(new Error('请输入手机号'))
-        } else if (!(/^1(3|4|5|7|6|8|9)\d{9}$/.test(value))) {
-          callback(new Error('输入的号码不符合规范，请输入11位手机号!'))
-        } else {
-          callback()
-        }
-      }
-
-      return {
-        leftType: 1,
-        loginForm: {
-          account: '',
-          password: '',
+    export default {
+        components: {
+            verify,
         },
-        registerForm: {
-          account: '',
-          password: '',
-          phone: '',
-          name: '',
-          nickname: '',
-        },
-        forgetPasswordForm: {
-          account: '',
-          verifyCode: '',
-          phone: '',
-        },
-        changePasswordForm: {
-          password: '',
-          newPassword: '',
-        },
-        verifySuccess: false,
-        loading: false,
-        loginRules: {
-          account: [
-            {
-              required: true,
-              message: '请输入账号',
-              trigger: 'blur',
-            },
-          ],
-          password: [
-            {
-              required: true,
-              message: '请输入密码',
-              trigger: 'blur'
-            },
-            {
-              min: 6,
-              message: '长度不能小于 6 个字符',
-              trigger: 'blur'
-            },
-          ],
-        },
-        registerRules: {
-          account: [
-            {
-              required: true,
-              message: '请输入账号',
-              trigger: 'blur'
-            },
-          ],
-          password: [
-            {
-              required: true,
-              message: '请输入密码',
-              trigger: 'blur'
-            },
-            {
-              min: 6,
-              message: '长度不能小于 6 个字符',
-              trigger: 'blur'
-            },
-          ],
-          phone: [
-            {
-              validator: checkPhone,
-              trigger: 'blur'
-            },
-          ],
-        },
-        forgetPasswordRules: {
-          account: [
-            {
-              required: true,
-              message: '请输入账号',
-              trigger: 'blur'
-            },
-          ],
-          phone: [
-            {
-              validator: checkPhone,
-              trigger: 'blur'
-            },
-          ],
-        },
-        changePasswordRules: {
-          password: [
-            {
-              required: true,
-              message: '请输入密码',
-              trigger: 'blur'
-            },
-          ],
-          newPassword: [
-            {
-              required: true,
-              message: '请输入密码',
-              trigger: 'blur'
-            },
-          ],
-        },
-        isSendVerifyCode: false,
-        countdownTime: 60
-      }
-    },
-    methods: {
-      submitChangePassword() {
-        this.$refs['changePasswordForm'].validate((valid) => {
-        })
-      },
-      forgetPasswordNext() {
-        this.leftType = 4
-      },
-      sendVerifyCode() {
-        this.$refs['forgetPasswordForm'].validate((valid) => {
-          if (valid) {
-            if (!this.isSendVerifyCode) {
-              this.isSendVerifyCode = true
-              const inter = setInterval(() => {
-                if (this.countdownTime < 1) {
-                  this.isSendVerifyCode = false
-                  this.countdownTime = 60
-                  clearInterval(inter)
+        data() {
+            const checkPhone = (rule, value, callback) => {
+                if (!value) {
+                    callback(new Error('请输入手机号'))
+                } else if (!(/^1(3|4|5|7|6|8|9)\d{9}$/.test(value))) {
+                    callback(new Error('输入的号码不符合规范，请输入11位手机号!'))
                 } else {
-                  this.countdownTime--
+                    callback()
                 }
-              }, 1000)
             }
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-          return false
-        })
-      },
-      login() {
-        this.$refs.loginForm.validate((valid) => {
-          if (valid) {
-            // 管理员账号
-            if (this.loginForm.account === this.CONFIG.ADMIN_ACCOUNT
-              && this.loginForm.password === this.CONFIG.ADMIN_PASSWORD) {
-              this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
-              this.$store.commit(types.SET_USERINFO, {
-                account: this.CONFIG.ADMIN_ACCOUNT,
-                password: this.CONFIG.ADMIN_PASSWORD,
-                username: 'Admin',
-                avatar: 'https://i.loli.net/2018/08/18/5b7819891bab1.jpg',
-              })
-            } else {
-              this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+
+            return {
+                leftType: 1,
+                loginForm: {
+                    account: '',
+                    password: '',
+                },
+                registerForm: {
+                    account: '',
+                    password: '',
+                    phone: '',
+                    name: '',
+                    nickname: '',
+                },
+                forgetPasswordForm: {
+                    account: '',
+                    verifyCode: '',
+                    phone: '',
+                },
+                changePasswordForm: {
+                    password: '',
+                    newPassword: '',
+                },
+                verifySuccess: false,
+                loading: false,
+                loginRules: {
+                    account: [
+                        {
+                            required: true,
+                            message: '请输入账号',
+                            trigger: 'blur',
+                        },
+                    ],
+                    password: [
+                        {
+                            required: true,
+                            message: '请输入密码',
+                            trigger: 'blur'
+                        },
+                        {
+                            min: 6,
+                            message: '长度不能小于 6 个字符',
+                            trigger: 'blur'
+                        },
+                    ],
+                },
+                registerRules: {
+                    account: [
+                        {
+                            required: true,
+                            message: '请输入账号',
+                            trigger: 'blur'
+                        },
+                    ],
+                    password: [
+                        {
+                            required: true,
+                            message: '请输入密码',
+                            trigger: 'blur'
+                        },
+                        {
+                            min: 6,
+                            message: '长度不能小于 6 个字符',
+                            trigger: 'blur'
+                        },
+                    ],
+                    phone: [
+                        {
+                            validator: checkPhone,
+                            trigger: 'blur'
+                        },
+                    ],
+                },
+                forgetPasswordRules: {
+                    account: [
+                        {
+                            required: true,
+                            message: '请输入账号',
+                            trigger: 'blur'
+                        },
+                    ],
+                    phone: [
+                        {
+                            validator: checkPhone,
+                            trigger: 'blur'
+                        },
+                    ],
+                },
+                changePasswordRules: {
+                    password: [
+                        {
+                            required: true,
+                            message: '请输入密码',
+                            trigger: 'blur'
+                        },
+                    ],
+                    newPassword: [
+                        {
+                            required: true,
+                            message: '请输入密码',
+                            trigger: 'blur'
+                        },
+                    ],
+                },
+                isSendVerifyCode: false,
+                countdownTime: 60
             }
-            this.$router.push({ path: '/' })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-          return false
-        })
-      },
-      forgetPassword() {
-        this.leftType = 3
-        this.$refs['loginForm'].resetFields()
-        this.$refs['registerForm'].resetFields()
-      },
-      goRegister() {
-        this.leftType = 2
-        this.$refs['loginForm'].resetFields()
-        this.$refs['registerForm'].resetFields()
-      },
-      register() {
-        this.$refs['registerForm'].validate((valid) => {
-          if (valid) {
-            console.log('submit!!')
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-          return false
-        })
-      },
-      backLogin() {
-        this.leftType = 1
-        this.$refs['loginForm'].resetFields()
-        this.$refs['registerForm'].resetFields()
-      },
-      backForgetPassword() {
-        this.leftType = 3
-        this.$refs['forgetPasswordForm'].resetFields()
-      }
-    },
-  }
+        },
+        methods: {
+            submitChangePassword() {
+                this.$refs['changePasswordForm'].validate((valid) => {
+                })
+            },
+            forgetPasswordNext() {
+                this.leftType = 4
+            },
+            sendVerifyCode() {
+                this.$refs['forgetPasswordForm'].validate((valid) => {
+                    if (valid) {
+                        if (!this.isSendVerifyCode) {
+                            this.isSendVerifyCode = true
+                            const inter = setInterval(() => {
+                                if (this.countdownTime < 1) {
+                                    this.isSendVerifyCode = false
+                                    this.countdownTime = 60
+                                    clearInterval(inter)
+                                } else {
+                                    this.countdownTime--
+                                }
+                            }, 1000)
+                        }
+                    } else {
+                        console.log('error submit!!')
+                        return false
+                    }
+                    return false
+                })
+            },
+            login() {
+                this.$refs.loginForm.validate((valid) => {
+                    if (valid) {
+                        // 管理员账号
+                        if (this.loginForm.account === this.CONFIG.ADMIN_ACCOUNT
+                            && this.loginForm.password === this.CONFIG.ADMIN_PASSWORD) {
+                            this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+                            this.$store.commit(types.SET_USERINFO, {
+                                account: this.CONFIG.ADMIN_ACCOUNT,
+                                password: this.CONFIG.ADMIN_PASSWORD,
+                                username: 'Admin',
+                                avatar: 'https://i.loli.net/2018/08/18/5b7819891bab1.jpg',
+                            })
+                        } else {
+                            this.$store.commit(types.SET_TOKEN, 'adfasddfdsfadfads')
+                        }
+                        this.$router.push({ path: '/' })
+                    } else {
+                        console.log('error submit!!')
+                        return false
+                    }
+                    return false
+                })
+            },
+            forgetPassword() {
+                this.leftType = 3
+                this.$refs['loginForm'].resetFields()
+                this.$refs['registerForm'].resetFields()
+            },
+            goRegister() {
+                this.leftType = 2
+                this.$refs['loginForm'].resetFields()
+                this.$refs['registerForm'].resetFields()
+            },
+            register() {
+                this.$refs['registerForm'].validate((valid) => {
+                    if (valid) {
+                        console.log('submit!!')
+                    } else {
+                        console.log('error submit!!')
+                        return false
+                    }
+                    return false
+                })
+            },
+            backLogin() {
+                this.leftType = 1
+                this.$refs['loginForm'].resetFields()
+                this.$refs['registerForm'].resetFields()
+            },
+            backForgetPassword() {
+                this.leftType = 3
+                this.$refs['forgetPasswordForm'].resetFields()
+            }
+        },
+    }
 </script>
 
 <style lang="scss" scoped>

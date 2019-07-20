@@ -20,34 +20,34 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import layoutRightBar from './layout-right-bar'
-  import layoutHeader from './layout-header'
-  import layoutMenu from './layout-menu'
+    import { mapState } from 'vuex'
+    import layoutRightBar from './layout-right-bar'
+    import layoutHeader from './layout-header'
+    import layoutMenu from './layout-menu'
 
 
-  export default {
-    name: 'layout',
-    components: {
-      'layout-right-bar': layoutRightBar,
-      'layout-header': layoutHeader,
-      'layout-menu': layoutMenu,
-    },
-    data() {
-      return {}
-    },
-    created() {
-    },
-    mounted() {
-    },
-    computed: {
-      ...mapState({
-        isLeftCollapse: state => state.layout.isLeftCollapse,
-        isRightCollapse: state => state.layout.isRightCollapse,
-      }),
-    },
-    methods: {},
-  }
+    export default {
+        name: 'layout',
+        components: {
+            'layout-right-bar': layoutRightBar,
+            'layout-header': layoutHeader,
+            'layout-menu': layoutMenu,
+        },
+        data() {
+            return {}
+        },
+        created() {
+        },
+        mounted() {
+        },
+        computed: {
+            ...mapState({
+                isLeftCollapse: state => state.layout.isLeftCollapse,
+                isRightCollapse: state => state.layout.isRightCollapse,
+            }),
+        },
+        methods: {},
+    }
 </script>
 
 <style scoped lang="scss">
@@ -57,6 +57,7 @@
         width: 100%;
         height: 100%;
     }
+
     .el-header {
         padding: 0;
         font-size: 0;
@@ -65,12 +66,14 @@
         box-sizing: border-box;
         overflow: hidden;
     }
+
     .el-aside-left {
         transition: width .3s;
         background: $menu-bg-color;
         overflow: hidden;
     }
-    .el-aside-right{
+
+    .el-aside-right {
         position: fixed;
         top: 60px;
         right: 0;
@@ -81,6 +84,7 @@
         border: 1px solid #ddd;
         background: #fff;
     }
+
     .el-main {
         background: $bg-color;
         padding: 20px;

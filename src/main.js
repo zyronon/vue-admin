@@ -17,7 +17,7 @@ Vue.prototype.$api = { ...api }
 
 Vue.mixin(mixin)
 new Vue({
-  store,
-  router,
-  render: h => h(App),
+    store,
+    router,
+    render: h => h(App),
 }).$mount('#app')

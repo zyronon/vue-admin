@@ -76,43 +76,43 @@
     </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
-  import { types } from '../../store/mutation-types'
+    import { mapState } from 'vuex'
+    import { types } from '../../store/mutation-types'
 
-  export default {
-    name: 'layout-menu',
-    components: {},
-    data() {
-      return {
-        bg: '#3c505a',
-        tc: '#fff',
-        atc: '#fff',
-      }
-    },
-    created() {
-    },
-    computed: {
-      sideMenu() {
-        const newArr = this.$store.state.user.roles.filter(v => !v.hidden && v.children)
-        newArr.map((v) => {
-          v.children = v.children.filter(w => !w.hidden)
-          return v
-        })
-        return newArr
-      },
-      ...mapState({
-        isLeftCollapse: state => state.layout.isLeftCollapse,
-      }),
-    },
-    methods: {
-      onlyOneShowingChildren(children) {
-        return children.filter(item => !item.hidden).length === 1
-      },
-      switchNavbar() {
-        this.$store.commit(types.COLLAPSE_LEFT)
-      },
-    },
-  }
+    export default {
+        name: 'layout-menu',
+        components: {},
+        data() {
+            return {
+                bg: '#3c505a',
+                tc: '#fff',
+                atc: '#fff',
+            }
+        },
+        created() {
+        },
+        computed: {
+            sideMenu() {
+                const newArr = this.$store.state.user.roles.filter(v => !v.hidden && v.children)
+                newArr.map((v) => {
+                    v.children = v.children.filter(w => !w.hidden)
+                    return v
+                })
+                return newArr
+            },
+            ...mapState({
+                isLeftCollapse: state => state.layout.isLeftCollapse,
+            }),
+        },
+        methods: {
+            onlyOneShowingChildren(children) {
+                return children.filter(item => !item.hidden).length === 1
+            },
+            switchNavbar() {
+                this.$store.commit(types.COLLAPSE_LEFT)
+            },
+        },
+    }
 </script>
 
 <style scoped lang='scss'>

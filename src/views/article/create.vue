@@ -93,45 +93,46 @@
 </template>
 
 <script>
-  // import E from 'wangeditor'
-  const E = window.wangEditor
+    // import E from 'wangeditor'
+    const E = window.wangEditor
 
-  export default {
-    name: 'CreateArticle',
-    data() {
-      return {
-        form: {},
-        employee: {},
-        editor: null,
-        textarea2: '',
-        checked: false,
-      }
-    },
-    created() {
-    },
-    methods: {
-      submit() {
-        this.$success('sdfsd')
-      },
-      preview() {
-        let printHtml = this.editor.txt.html()
-        printHtml = `<div style = "font-family: 宋体,SimSun;line-height: 30px;margin-bottom: 0;">
+    export default {
+        name: 'CreateArticle',
+        data() {
+            return {
+                form: {},
+                employee: {},
+                editor: null,
+                textarea2: '',
+                checked: false,
+            }
+        },
+        created() {
+        },
+        methods: {
+            submit() {
+                this.$success('sdfsd')
+            },
+            preview() {
+                let printHtml = this.editor.txt.html()
+                printHtml = `<div style = "font-family: 宋体,SimSun;line-height: 30px;margin-bottom: 0;">
                                 ${printHtml}
                             </div>`
-        const wind = window.open('', 'newwindow',
-          'height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
-        wind.document.body.innerHTML = printHtml
-        wind.print()
-      },
-    },
-    mounted() {
-      this.editor = new E(this.$refs.editor)
-      this.editor.customConfig.onchange = (html) => {
-        this.editorContent = html
-      }
-      this.editor.create()
-    },
-  }
+                const wind = window.open('', 'newwindow',
+                    `height=1000, width=1000, toolbar=no, menubar=no, scrollbars=no,
+                    resizable=no,location=no, status=no`)
+                wind.document.body.innerHTML = printHtml
+                wind.print()
+            },
+        },
+        mounted() {
+            this.editor = new E(this.$refs.editor)
+            this.editor.customConfig.onchange = (html) => {
+                this.editorContent = html
+            }
+            this.editor.create()
+        },
+    }
 </script>
 
 <style scoped>

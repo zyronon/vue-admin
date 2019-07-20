@@ -19,39 +19,39 @@
 </template>
 
 <script>
-  export default {
-    name: 'breadcrumb',
-    data() {
-      return {
-        list: null,
-      }
-    },
-    created() {
-      this.getBreadcrumb()
-    },
-    watch: {
-      $route() {
-        this.getBreadcrumb()
-      },
-    },
-    methods: {
-      getBreadcrumb() {
-        const matched = this.$route.matched.filter(item => item.name)
-        // if (matched[0] && matched[0].name !== 'dashboard') {
-        //     matched = [{path: '/dashboard', meta: {title: 'dashboard'}}].concat(
-        //         matched
-        //     )
-        // }
-        this.list = matched
-      },
-      getTitle(title) {
-        // if (this.$te(`route.${title}`)) {
-        //     return this.$t(`route.${title}`)
-        // }
-        return title
-      },
-    },
-  }
+    export default {
+        name: 'breadcrumb',
+        data() {
+            return {
+                list: null,
+            }
+        },
+        created() {
+            this.getBreadcrumb()
+        },
+        watch: {
+            $route() {
+                this.getBreadcrumb()
+            },
+        },
+        methods: {
+            getBreadcrumb() {
+                const matched = this.$route.matched.filter(item => item.name)
+                // if (matched[0] && matched[0].name !== 'dashboard') {
+                //     matched = [{path: '/dashboard', meta: {title: 'dashboard'}}].concat(
+                //         matched
+                //     )
+                // }
+                this.list = matched
+            },
+            getTitle(title) {
+                // if (this.$te(`route.${title}`)) {
+                //     return this.$t(`route.${title}`)
+                // }
+                return title
+            },
+        },
+    }
 </script>
 
 <style lang="scss">

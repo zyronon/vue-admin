@@ -4,22 +4,22 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 // vue.config.js
 module.exports = {
-  publicPath: isProduction ? '' : '',
-  assetsDir: isProduction ? './' : './',
-  lintOnSave: true, // 取消eslint的检查
-  // 减少打包面积，引入外链时用的
-  configureWebpack: (config) => {
+    publicPath: isProduction ? '' : '',
+    assetsDir: isProduction ? './' : './',
+    lintOnSave: true, // 取消eslint的检查
+    // 减少打包面积，引入外链时用的
+    configureWebpack: (config) => {
     config.externals = {// eslint-disable-line
-      // vue: 'Vue',
-      // vuex: 'Vuex',
-      // 'vue-router': 'VueRouter',
-      // 'element-ui': 'ELEMENT',
-      // axios: 'axios',
-      // lodash: '_',
-      // mockjs: 'Mock',
-    }
-  },
-  /* chainWebpack: config => {
+            // vue: 'Vue',
+            // vuex: 'Vuex',
+            // 'vue-router': 'VueRouter',
+            // 'element-ui': 'ELEMENT',
+            // axios: 'axios',
+            // lodash: '_',
+            // mockjs: 'Mock',
+        }
+    },
+    /* chainWebpack: config => {
     config.resolve.alias
       .set('vue$', 'vue/dist/vue.esm.js')
       // .set('@', resolve('src')) vue会默认生成@的指引，所以这一行是多余的
@@ -43,15 +43,15 @@ module.exports = {
     //  config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
     //)
   }, */
-  // 是否为生产环境构建生成 source map？
-  productionSourceMap: false,
-  css: {},
-  devServer: {
-    open: true,
-    host: '0.0.0.0',
-    port: 8863,
-    https: false,
-    hotOnly: false,
-  },
+    // 是否为生产环境构建生成 source map？
+    productionSourceMap: false,
+    css: {},
+    devServer: {
+        open: true,
+        host: '0.0.0.0',
+        port: 8863,
+        https: false,
+        hotOnly: false,
+    },
 
 }
