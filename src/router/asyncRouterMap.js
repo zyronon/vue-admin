@@ -66,6 +66,26 @@ export const asyncRouterMap = [
                 },
             },
         ],
+    }, {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: Layout,
+        meta: {
+            title: '控制台',
+            icon: 'comp',
+        },
+        children: [
+            {
+                path: 'index',
+                name: 'DashboardIndex',
+                component: _import('dashboard/Index'),
+                hidden: false,
+                meta: {
+                    title: '控制台',
+                    icon: 'comp',
+                },
+            },
+        ],
     },
 ]
 export default {}
