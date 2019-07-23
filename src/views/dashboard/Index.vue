@@ -1,5 +1,21 @@
 <template>
     <div class="dashboard-ctn">
+        <el-row :gutter="20" class="header">
+            <el-col :span="6">
+                <div class="header-item">
+                    <div class="img-ctn">
+                        <icon name="users" scale="5"></icon>
+                    </div>
+                    <div class="right-ctn">
+                        <div class="number">9999</div>
+                        <span class="notice">新增用户</span>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :span="6"></el-col>
+            <el-col :span="6"></el-col>
+            <el-col :span="6"></el-col>
+        </el-row>
         <el-card>
             <header slot="header" class="d-flex justify-content-between align-items-center">
                 <div class="left">
@@ -69,4 +85,43 @@
     }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .dashboard-ctn {
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header-item {
+            border-radius: 4px;
+            padding: 20px;
+            height: 80px;
+            width: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+
+            .img-ctn {
+                padding: 20px;
+                transition: all .5s;
+                border-radius: 4px;
+                color: #40c9c6;
+            }
+
+            &:hover {
+                .img-ctn {
+                    color: #fff;
+                    background: #40c9c6;
+                }
+            }
+
+            .right-ctn {
+                text-align: center;
+
+                .number {
+                    font-weight: bold;
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+</style>

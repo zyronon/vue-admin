@@ -5,6 +5,27 @@ const Layout = _import('layout/layout')
 // 动态路由表，全部的。服务返回的json结构与此判断，生成该用户对应的路由表
 export const asyncRouterMap = [
     {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: Layout,
+        meta: {
+            title: '控制台',
+            icon: 'comp',
+        },
+        children: [
+            {
+                path: 'index',
+                name: 'DashboardIndex',
+                component: _import('dashboard/Index'),
+                hidden: false,
+                meta: {
+                    title: '控制台',
+                    icon: 'comp',
+                },
+            },
+        ],
+    },
+    {
         path: '/article',
         name: 'article',
         component: Layout,
@@ -62,26 +83,6 @@ export const asyncRouterMap = [
                 hidden: false,
                 meta: {
                     title: '个人中心',
-                    icon: 'comp',
-                },
-            },
-        ],
-    }, {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: Layout,
-        meta: {
-            title: '控制台',
-            icon: 'comp',
-        },
-        children: [
-            {
-                path: 'index',
-                name: 'DashboardIndex',
-                component: _import('dashboard/Index'),
-                hidden: false,
-                meta: {
-                    title: '控制台',
                     icon: 'comp',
                 },
             },

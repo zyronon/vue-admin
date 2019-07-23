@@ -23,7 +23,8 @@ export const constantRouterMap = [
             title: '默认页',
             category: CONSTANT.REDIRECT,
         },
-        redirect: '/article/index',
+        // redirect: '/article/index',
+        redirect: '/dashboard/index'
     },
 
 ]
