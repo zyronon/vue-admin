@@ -12,6 +12,39 @@
                     </div>
                 </div>
             </el-col>
+            <el-col :span="6">
+                <div class="header-item">
+                    <div class="img-ctn">
+                        <icon name="locate" scale="5"></icon>
+                    </div>
+                    <div class="right-ctn">
+                        <div class="number">4488</div>
+                        <span class="notice">累计点击</span>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :span="6">
+                <div class="header-item">
+                    <div class="img-ctn">
+                        <icon name="money" scale="5"></icon>
+                    </div>
+                    <div class="right-ctn">
+                        <div class="number">3325</div>
+                        <span class="notice">累计收入</span>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :span="6">
+                <div class="header-item">
+                    <div class="img-ctn">
+                        <icon name="message" scale="5"></icon>
+                    </div>
+                    <div class="right-ctn">
+                        <div class="number">1233</div>
+                        <span class="notice">累计消息</span>
+                    </div>
+                </div>
+            </el-col>
             <el-col :span="6"></el-col>
             <el-col :span="6"></el-col>
             <el-col :span="6"></el-col>
@@ -95,7 +128,6 @@
             border-radius: 4px;
             padding: 20px;
             height: 80px;
-            width: 100%;
             background: #ffffff;
             display: flex;
             justify-content: space-between;
