@@ -92,8 +92,13 @@
     </div>
 </template>
 <script>
+    import MyInput from './my-input'
+
     export default {
         name: 'index',
+        components: {
+            MyInput
+        },
         data() {
             return {
                 loading: false,
@@ -103,6 +108,7 @@
                     list: [],
                     count: 30
                 },
+                test: '',
                 offset: 0,
                 limit: 10,
                 isSearch: false
@@ -126,7 +132,9 @@
                 this.isSearch = true
                 this.searchData.pageSize = this.limit = 10
                 this.searchData.pageNumber = this.offset = 0
-                this.getData()
+                console.log(this.test)
+                console.log(this.searchData)
+                // this.getData()
             },
             // 重置
             reset() {
