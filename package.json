@@ -5,24 +5,26 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-modern": "vue-cli-service build --modern",
-    "build-report": "vue-cli-service build --report",
-    "build-prod": "vue-cli-service build --mode production",
-    "build-dev": "vue-cli-service build --mode development",
-    "lint-fix": "vue-cli-service lint",
     "lint": "eslint --ext .js,.vue src",
-    "analyz": "NODE_ENV=production  npm_config_report=true npm run build"
+    "analyz": "NODE_ENV=production  npm_config_report=true npm run build",
+    "build-dev": "vue-cli-service build --mode development",
+    "build-modern": "vue-cli-service build --modern",
+    "build-prod": "vue-cli-service build --mode production",
+    "build-report": "vue-cli-service build --report",
+    "lint-fix": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "cnpm": "^6.1.1",
     "core-js": "^2.6.5",
+    "crypto-js": "^4.0.0",
     "dayjs": "^1.8.15",
     "echarts": "^4.2.1",
     "element-ui": "^2.10.1",
     "lodash": "^4.17.14",
     "mockjs": "^1.0.1-beta3",
     "v-charts": "^1.19.0",
+    "vite-plugin-vue2": "^1.5.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
     "vuex": "^3.1.1"

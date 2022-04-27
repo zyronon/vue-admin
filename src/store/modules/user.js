@@ -33,6 +33,10 @@ export const user = {
         [types.SET_NOT_READ_MESSAGES](state, message) {
             state.notReadMessages = message
         },
+        // 设置所有未读消息
+        [types.SET_NOT_READ_MESSAGES2](state, message) {
+            state.notReadMessages = []
+        },
     },
     getters: {},
     actions: {

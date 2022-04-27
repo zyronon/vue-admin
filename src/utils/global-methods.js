@@ -11,7 +11,8 @@ export default {
             query: a.search,
             params: (function () {
                 const ret = {}
-                const seg = a.search.replace(/^\?/, '').split('&')
+                const seg = a.search.replace(/^\?/, '')
+                    .split('&')
                 const len = seg.length
                 let i = 0
                 let s
@@ -81,31 +82,42 @@ export default {
         }
         return itemArr
     },
-    
+
     $mConfirm(type, msg, onConfirm) {
         MessageBox.confirm(msg === '' ? '确定删除这条数据？' : msg, '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: type === '' ? 'warning' : type,
-        }).then(() => {
-            onConfirm()
-        }).catch(() => {
         })
+            .then(() => {
+                onConfirm()
+            })
+            .catch(() => {
+            })
     },
-    
+
     $success(msg) {
         Message({
-            type: 'success', message: msg, duration: 1500, showClose: true,
+            type: 'success',
+            message: msg,
+            duration: 1500,
+            showClose: true,
         })
     },
     $warning(msg) {
         Message({
-            type: 'warning', message: msg, duration: 1500, showClose: true,
+            type: 'warning',
+            message: msg,
+            duration: 1500,
+            showClose: true,
         })
     },
     $error(msg) {
         Message({
-            type: 'error', message: msg, duration: 1500, showClose: true,
+            type: 'error',
+            message: msg,
+            duration: 1500,
+            showClose: true,
         })
     },
     $checkPlatform() {
@@ -115,7 +127,7 @@ export default {
         // const isIOS = /(iphone|ipod|ipad|ios)/i.test(navigator.userAgent)
         // const isAndroid = /android/i.test(navigator.userAgent)
     },
-    
+
     // 倒计时时间格式化
     $countdownFormatTime(timeStamp) {
         const day = Math.floor(timeStamp / (24 * 3600 * 1000))
@@ -131,4 +143,7 @@ export default {
         if (seconds) return `${seconds}秒`
         return '时间到！'
     },
+    $console(val) {
+        console.log(JSON.stringify(val, null, 4))
+    }
 }

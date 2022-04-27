@@ -88,5 +88,27 @@ export const asyncRouterMap = [
             },
         ],
     },
+    {
+        path: '/test',
+        name: 'test',
+        component: Layout,
+        hidden: true,
+        meta: {
+            title: '首页',
+            icon: 'comp',
+        },
+        children: [
+            {
+                path: 'test',
+                name: 'test',
+                component: _import('pages/test'),
+                hidden: false,
+                meta: {
+                    title: '个人中心',
+                    icon: 'comp',
+                },
+            },
+        ],
+    },
 ]
 export default {}

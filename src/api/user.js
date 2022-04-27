@@ -15,6 +15,15 @@ export default {
             msg: '操作成功',
         })
     },
+    historys(data, params) { // eslint-disable-line
+        return request('historys', data, params, CONSTANT.GET)
+    },
+    today(data, params) { // eslint-disable-line
+        return request('today', data, params, CONSTANT.GET)
+    },
+    realtime(data, params) { // eslint-disable-line
+        return request('realtime/', data, params, CONSTANT.GET)
+    },
     
     // 消息
     // 获取所有用户未读信息

@@ -6,16 +6,15 @@ import store from '../store'
 import Storage from './storage'
 
 const instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? Config.PRODUCT_API_URL : Config.API_URL,
+    // baseURL: process.env.NODE_ENV === 'production' ? Config.PRODUCT_API_URL : Config.API_URL,
+    baseURL: 'http://testtestgp.com',
     timeout: 15000,
 })
 
 // request 拦截器
 instance.interceptors.request.use(
     (config) => {
-        if (Storage.get('token')) {
-            config.headers['access_token'] = Storage.get('token')
-        }
+        config.headers['X-Bce-Signature'] = 'bce-auth-v1/758464a045b144fda1200f788c8d9f60/2020-11-20T15:11:19Z/1800/host/017a98547496ff6371c544d814dd753ab1ecb5ce952c38b6d67390a9ed127d04'
         return config
     },
     error => Promise.reject(error),
@@ -30,10 +29,6 @@ instance.interceptors.response.use(
         const { data } = response
         if (response.status !== 200) {
             globalMethods.$warning(response.statusText)
-            if (data.code === '000000') {
-                // 接口自定义错误代码
-                // 移除登陆token 显示接口错误消息
-            }
             return Promise.reject(data)
         }
         if (data === null) {
@@ -41,21 +36,6 @@ instance.interceptors.response.use(
                 code: '009900',
                 msg: '系统出现错误',
                 data: {},
-            })
-        }
-        // console.log(data.resultCode)
-        if (data.code === undefined) {
-            if (data.msg !== undefined) {
-                return Promise.resolve({
-                    code: '009900',
-                    msg: data.msg,
-                    data: null,
-                })
-            }
-            return Promise.resolve({
-                code: '009900',
-                msg: data.message !== null ? data.message : '',
-                data: null,
             })
         }
         return Promise.resolve(data)

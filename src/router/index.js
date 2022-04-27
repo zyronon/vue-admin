@@ -25,6 +25,7 @@ export const constantRouterMap = [
         },
         // redirect: '/article/index',
         redirect: '/dashboard/index'
+        // redirect: '/test/test'
     },
 
 ]
