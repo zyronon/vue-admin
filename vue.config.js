@@ -9,7 +9,7 @@ module.exports = {
     lintOnSave: true, // 取消eslint的检查
     // 减少打包面积，引入外链时用的
     configureWebpack: (config) => {
-    config.externals = {// eslint-disable-line
+        config.externals = {// eslint-disable-line
             // vue: 'Vue',
             // vuex: 'Vuex',
             // 'vue-router': 'VueRouter',
@@ -52,6 +52,15 @@ module.exports = {
         port: 8863,
         https: false,
         hotOnly: false,
+        // proxy: {
+        //     '/api': {     //这里最好有一个 /
+        //         target: 'http://gwgp-5bmrebmatbr.n.bdcloudapi.com',  // 后台接口域名
+        //         changeOrigin: true,  //是否跨域
+        //         pathRewrite: {
+        //             '^/api': ''
+        //         }
+        //     }
+        // }
     },
 
 }
